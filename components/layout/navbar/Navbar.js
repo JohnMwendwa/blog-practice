@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -37,6 +37,8 @@ const Logo = styled.div`
 `;
 
 export default function Navbar() {
+  const [searchTerm, setSearchTerm] = useState(null);
+
   return (
     <NavWrapper>
       <NavigationItems>
@@ -65,7 +67,7 @@ export default function Navbar() {
         </ListItems>
       </NavigationItems>
       <SearchContainer>
-        <Search searchTerm={() => null} />
+        <Search searchTerm={setSearchTerm} />
       </SearchContainer>
     </NavWrapper>
   );

@@ -18,12 +18,19 @@ const NavigationItems = styled.div`
 `;
 const ListItems = styled.ul`
   display: flex;
+  justify-content: flex-end;
   list-style: none;
 `;
 
 const ListItem = styled.li`
-  margin-left: 8px;
+  margin-left: 16px;
+  height: 2rem;
   font-size: 18px;
+  color: white;
+  &:hover {
+    color: black;
+    border-bottom: 3px solid white;
+  }
 `;
 
 const SearchContainer = styled.div`
@@ -33,7 +40,8 @@ const SearchContainer = styled.div`
 `;
 
 const Logo = styled.div`
-  font-size: 32px;
+  font-size: 40px;
+  color: white;
 `;
 
 export default function Navbar() {
@@ -47,28 +55,27 @@ export default function Navbar() {
             <a> TECHme</a>
           </Link>
         </Logo>
-
-        <ListItems>
-          <ListItem>
-            <Link href="/posts">
-              <a> Posts</a>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/about">
-              <a> About</a>
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/contact">
-              <a> Contact</a>
-            </Link>
-          </ListItem>
-        </ListItems>
+        <SearchContainer>
+          <Search searchTerm={setSearchTerm} />
+        </SearchContainer>
       </NavigationItems>
-      <SearchContainer>
-        <Search searchTerm={setSearchTerm} />
-      </SearchContainer>
+      <ListItems>
+        <ListItem>
+          <Link href="/posts">
+            <a> Posts</a>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="/about">
+            <a> About</a>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="/contact">
+            <a> Contact</a>
+          </Link>
+        </ListItem>
+      </ListItems>
     </NavWrapper>
   );
 }

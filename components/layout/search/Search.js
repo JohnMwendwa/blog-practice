@@ -1,4 +1,12 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const SearchForm = styled.form``;
+const SearchInput = styled.input`
+  outline: none;
+  padding: 5px 10px;
+  margin-right: -8px;
+`;
 
 export default function Search({ searchTerm }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,13 +21,13 @@ export default function Search({ searchTerm }) {
   };
 
   return (
-    <form onSubmit={handleSearch}>
-      <input
+    <SearchForm onSubmit={handleSearch}>
+      <SearchInput
         type="search"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Search article..."
       />
-    </form>
+    </SearchForm>
   );
 }

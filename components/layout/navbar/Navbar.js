@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Search from "../search/Search";
 
-const NavWrapper = styled.div`
+const NavWrapper = styled.nav`
   display: flex;
   flex-direction: column;
   padding: 10px 20px 10px;

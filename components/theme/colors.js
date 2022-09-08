@@ -5,4 +5,7 @@ export const colors = {
     success: "#32ff7e",
     error: "#ff3838",
   },
+  btn: {
+    primary: " #eb2f06",
+  },
 };

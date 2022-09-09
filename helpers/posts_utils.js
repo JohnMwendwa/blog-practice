@@ -17,7 +17,7 @@ export const getPostData = (fileName) => {
 
   return {
     slug,
-    data,
+    ...data,
     content,
   };
 };
@@ -34,6 +34,12 @@ export const getAllPosts = () => {
   return sortedPosts;
 };
 
-export const getFeaturedPosts = () => {
-  return getAllPosts().filter((post) => post.isFeatured);
-};
+export function getFeaturedPosts() {
+  const allPosts = getAllPosts();
+
+  const featuredPosts = allPosts.filter((post) => {
+    post.isFeatured;
+  });
+
+  return featuredPosts;
+}

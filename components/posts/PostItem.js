@@ -48,9 +48,7 @@ const CategoryLabel = styled.button`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 0 20px 20px;
-  padd
 `;
 const Content = styled.div`
   margin-top: 0px;

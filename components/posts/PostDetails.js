@@ -19,7 +19,14 @@ const customRenderer = {
   },
 };
 
-const PostContainer = styled.div``;
+const PostContainer = styled.div`
+  width: 95%;
+  max-width: 60rem;
+  padding: 1rem;
+  margin: 2rem auto;
+  line-height: 2rem;
+  font-size: 1.25rem;
+`;
 const Title = styled.h1`
   text-align: center;
 `;

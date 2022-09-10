@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -53,8 +54,6 @@ const CategoryLabel = styled.button`
   color: white;
 `;
 
-const DateContainer = styled.div``;
-
 const ImageContainer = styled.div`
   background-color: gray;
   border-radius: 0.25rem;
@@ -65,6 +64,8 @@ const ImageContainer = styled.div`
     border-radius: 0.25rem;
   }
 `;
+
+const DateContainer = styled.div``;
 
 const About = styled.div`
   display: flex;
@@ -90,6 +91,19 @@ const Author = styled.div`
 `;
 
 const Content = styled.div``;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Btn = styled.button`
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+`;
 
 export default function PostDetails({ post }) {
   const { title, image, author, author_image, date, category, content } = post;
@@ -129,6 +143,12 @@ export default function PostDetails({ post }) {
       <Content>
         <ReactMarkdown components={customRenderer}>{content}</ReactMarkdown>
       </Content>
+
+      <ButtonWrapper>
+        <Link href="/blog">
+          <Btn>Go Back</Btn>
+        </Link>
+      </ButtonWrapper>
     </PostContainer>
   );
 }

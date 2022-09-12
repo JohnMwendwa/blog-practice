@@ -14,6 +14,10 @@ const ContactWrapper = styled.div`
 `;
 const Title = styled.h1`
   text-align: center;
+
+  @media (max-width: 410px) {
+    height: 100px;
+  }
 `;
 const FormWrapper = styled.form`
   display: flex;
@@ -172,7 +176,7 @@ export default function ContactForm() {
         </Divider>
         <SubmitBtn>Send Message</SubmitBtn>
       </FormWrapper>
-      {notification && <Notification {...notification} />}
+      {notification && <Notification mess={notification} />}
     </ContactWrapper>
   );
 }

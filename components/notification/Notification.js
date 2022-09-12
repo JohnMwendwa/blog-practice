@@ -17,7 +17,7 @@ const NotificationContainer = styled.div`
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 
-  &.succes {
+  &.success {
     background-color: ${(c) => c.theme.colors.ui.success};
     color: white;
   }

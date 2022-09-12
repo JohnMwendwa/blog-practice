@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { TypeAnimation } from "react-type-animation";
 
@@ -67,21 +67,73 @@ const SubmitBtn = styled.button`
   }
 `;
 
+const sendMessage = async (details) => {
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    body: JSON.stringify(details),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || "Something went wrong!");
+  }
+};
+
 export default function ContactForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [requestStatus, setRequestStatus] = useState(null);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setRequestStatus("Pending");
+    try {
+      await sendMessage({ name, email, message });
+
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (e) {
+      setError(e.message);
+      setRequestStatus("Error");
+    }
+  };
+
   return (
     <ContactWrapper>
       <Title>
         <TypeAnimation
-          sequence={["Send your feedback", 1000, "Send your queries", 1000]}
+          sequence={["Send your feedback", 2000, "Send your queries", 2000]}
           repeat={Infinity}
           speed={20}
         />
       </Title>
-      <FormWrapper>
+      <FormWrapper onSubmit={handleSubmit}>
         <Divider>
-          <NameInput placeholder="Enter name" />
-          <EmailInput placeholder="Enter email" />
-          <MessageInput placeholder="Enter your message" />
+          <NameInput
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <EmailInput
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <MessageInput
+            placeholder="Enter your message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
         </Divider>
         <SubmitBtn>Send Message</SubmitBtn>
       </FormWrapper>

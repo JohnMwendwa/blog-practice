@@ -4,10 +4,14 @@ import styled from "styled-components";
 const SearchForm = styled.form``;
 const SearchInput = styled.input`
   outline: none;
+  border: none;
   padding: 5px 10px;
   margin-right: -8px;
   background-color: white;
-  font-size: 1rem;
+
+  @media (min-width: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 export default function Search({ searchTerm }) {

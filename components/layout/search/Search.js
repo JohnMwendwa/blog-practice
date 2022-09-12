@@ -6,6 +6,8 @@ const SearchInput = styled.input`
   outline: none;
   padding: 5px 10px;
   margin-right: -8px;
+  background-color: white;
+  font-size: 1rem;
 `;
 
 export default function Search({ searchTerm }) {

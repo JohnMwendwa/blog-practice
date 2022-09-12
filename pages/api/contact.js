@@ -4,14 +4,13 @@ const client = new MongoClient(DB_URL);
 
 const insertDocument = (doc) => {
   const db = client.db();
-  const collection = db.collection("Message");
+  const collection = db.collection("Messages");
 
   return collection.insertOne(doc);
 };
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    console.log("received");
     const { name, email, message } = req.body;
 
     if (

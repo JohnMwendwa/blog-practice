@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { TypeAnimation } from "react-type-animation";
+import Notification from "../notification/Notification";
 
 const ContactWrapper = styled.div`
   width: 95%;
@@ -90,9 +91,11 @@ export default function ContactForm() {
   const [requestStatus, setRequestStatus] = useState(null);
   const [error, setError] = useState(null);
 
+  let notification;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setRequestStatus("Pending");
+    setRequestStatus("pending");
     try {
       await sendMessage({ name, email, message });
 
@@ -101,9 +104,31 @@ export default function ContactForm() {
       setMessage("");
     } catch (e) {
       setError(e.message);
-      setRequestStatus("Error");
+      setRequestStatus("error");
     }
   };
+
+  if (requestStatus === "pending") {
+    notification = {
+      title: "Sending Message...",
+      status: "pending",
+      message: 'Your message is on it"s way',
+    };
+  }
+  if (requestStatus === "success") {
+    notification = {
+      title: "Success",
+      status: "success",
+      message: "Message sent successfully",
+    };
+  }
+  if (requestStatus === "error") {
+    notification = {
+      title: "Error!",
+      status: "error",
+      message: error || "something went wrong!",
+    };
+  }
 
   return (
     <ContactWrapper>
@@ -137,6 +162,7 @@ export default function ContactForm() {
         </Divider>
         <SubmitBtn>Send Message</SubmitBtn>
       </FormWrapper>
+      {notification && <Notification {...notification} />}
     </ContactWrapper>
   );
 }

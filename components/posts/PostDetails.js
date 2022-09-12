@@ -61,7 +61,8 @@ const ImageContainer = styled.div`
   margin-bottom: 10px;
   & img {
     object-fit: cover;
-    max-width: 100%;
+    width: 100%;
+    max-width: 600px;
     border-radius: 0.25rem;
   }
 `;
@@ -126,8 +127,8 @@ export default function PostDetails({ post }) {
         <Image
           src={image}
           alt={author}
-          width={200}
-          height={150}
+          width={600}
+          height={300}
           layout="responsive"
         />
       </ImageContainer>

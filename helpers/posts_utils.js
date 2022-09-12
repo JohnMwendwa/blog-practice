@@ -28,7 +28,7 @@ export const getAllPosts = () => {
 
   //   sort posts by date
   const sortedPosts = allPosts.sort((postA, postB) =>
-    postA.date > postB.date ? -1 : 1
+    new Date(postA.date) > new Date(postB.date) ? -1 : 1
   );
 
   return sortedPosts;

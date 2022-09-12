@@ -102,7 +102,7 @@ export default function ContactForm() {
       const timer = setTimeout(() => {
         setRequestStatus(null);
         setError(null);
-      }, 3000);
+      }, 5000);
       return () => clearTimeout(timer);
     }
   }, [requestStatus]);
@@ -110,9 +110,10 @@ export default function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setRequestStatus("pending");
+
     try {
       await sendMessage({ name, email, message });
-
+      setRequestStatus("success");
       setName("");
       setEmail("");
       setMessage("");
@@ -129,6 +130,7 @@ export default function ContactForm() {
       message: 'Your message is on it"s way',
     };
   }
+
   if (requestStatus === "success") {
     notification = {
       title: "Success",
@@ -136,6 +138,7 @@ export default function ContactForm() {
       message: "Message sent successfully",
     };
   }
+
   if (requestStatus === "error") {
     notification = {
       title: "Error!",
@@ -176,7 +179,7 @@ export default function ContactForm() {
         </Divider>
         <SubmitBtn>Send Message</SubmitBtn>
       </FormWrapper>
-      {notification && <Notification mess={notification} />}
+      {notification && <Notification {...notification} />}
     </ContactWrapper>
   );
 }

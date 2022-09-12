@@ -15,11 +15,21 @@ const NavigationItems = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const ListItems = styled.ul`
   display: flex;
   justify-content: flex-end;
   list-style: none;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+    padding: 10px;
+  }
 `;
 
 const ListItem = styled.li`
@@ -37,10 +47,14 @@ const SearchContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  @media (max-width: 600px) {
+    padding-top: 10px;
+  }
 `;
 
 const Logo = styled.div`
-  font-size: 40px;
+  font-size: 48px;
   color: white;
 `;
 

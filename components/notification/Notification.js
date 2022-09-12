@@ -43,7 +43,7 @@ const Paragraph = styled.p`
 export default function Notification({ title, message, status }) {
   let statusClass = "";
 
-  if ((status = "success")) {
+  if (status === "success") {
     statusClass = "success";
   }
 

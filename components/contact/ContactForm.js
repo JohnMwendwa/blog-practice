@@ -93,6 +93,16 @@ export default function ContactForm() {
 
   let notification;
 
+  useEffect(() => {
+    if (requestStatus === "success" || requestStatus === "error") {
+      const timer = setTimeout(() => {
+        setRequestStatus(null);
+        setError(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [requestStatus]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setRequestStatus("pending");

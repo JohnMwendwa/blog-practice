@@ -20,7 +20,7 @@ export default function Footer() {
     <FooterWrapper>
       <Copyright>&copy; {date}</Copyright>
       <Info>
-        <Link href="mailto:dev.johnmwendwa@gmail.com">
+        <Link href="mailto:info@blog.johnmwendwa.me">
           <a>John Mwendwa</a>
         </Link>
       </Info>

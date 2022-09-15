@@ -1,12 +1,12 @@
 {
-  "name": "mwendwa's blog",
+  "name": "mwendwa",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "export": "next build && next export",
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

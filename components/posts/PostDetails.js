@@ -23,14 +23,18 @@ const customRenderer = {
 };
 
 const PostContainer = styled.div`
+  position: relative;
   width: 95%;
   max-width: 60rem;
   padding: 1rem;
   margin: 2rem auto;
   line-height: 2rem;
-  font-size: 1.25rem;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+
+  @media (min-width: 600px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Header = styled.div`
@@ -50,13 +54,18 @@ const Title = styled.h1`
   }
 `;
 const CategoryLabel = styled.button`
-  align-self: center;
-  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 10px 0 0;
   background-color: black;
   border: 1px solid black;
   padding: 3px 10px;
-  font-size: 1.2rem;
   color: white;
+
+  @media (min-width: 600px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -71,7 +80,9 @@ const ImageContainer = styled.div`
   }
 `;
 
-const DateContainer = styled.div``;
+const DateContainer = styled.div`
+  font-size: 16px;
+`;
 
 const About = styled.div`
   display: flex;
@@ -93,6 +104,7 @@ const Author = styled.div`
   & h4 {
     margin: 0px;
     margin-left: 5px;
+    font-size: 16px;
   }
 `;
 
@@ -122,9 +134,9 @@ export default function PostDetails({ post }) {
 
   return (
     <PostContainer>
+      <CategoryLabel>{category}</CategoryLabel>
       <Header>
         <Title>{title}</Title>
-        <CategoryLabel>{category}</CategoryLabel>
       </Header>
 
       <ImageContainer>
@@ -143,7 +155,7 @@ export default function PostDetails({ post }) {
 
           <h4>{author}</h4>
         </Author>
-        <DateContainer>Posted on {formatedDate}</DateContainer>
+        <DateContainer> {formatedDate}</DateContainer>
       </About>
 
       <Content>

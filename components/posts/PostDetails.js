@@ -44,6 +44,10 @@ const Title = styled.h1`
   line-height: 1;
   margin: 0;
   text-align: center;
+
+  @media (max-width: 450px) {
+    font-size: 2rem;
+  }
 `;
 const CategoryLabel = styled.button`
   align-self: center;

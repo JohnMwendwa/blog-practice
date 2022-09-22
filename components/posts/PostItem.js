@@ -54,8 +54,12 @@ const Content = styled.div`
   margin-top: 0px;
 `;
 const Title = styled.h3`
-  font-size: 32px;
+  font-size: 28px;
   margin: 0;
+
+  @media (min-width: 450px) {
+    font-size: 32px;
+  }
 `;
 const Action = styled.div`
   display: flex;

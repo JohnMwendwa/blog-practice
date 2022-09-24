@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -132,6 +132,8 @@ export default function PostDetails({ post }) {
     year: "numeric",
   });
 
+  const router = useRouter();
+
   return (
     <PostContainer>
       <CategoryLabel>{category}</CategoryLabel>
@@ -163,9 +165,7 @@ export default function PostDetails({ post }) {
       </Content>
 
       <ButtonWrapper>
-        <Link href="/blog">
-          <Btn>Go Back</Btn>
-        </Link>
+        <Btn onClick={() => router.back()}>Go Back</Btn>
       </ButtonWrapper>
     </PostContainer>
   );

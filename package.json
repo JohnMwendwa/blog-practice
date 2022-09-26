@@ -6,12 +6,12 @@
     "dev": "node server.js",
     "build": "next build",
     "export": "next build && next export",
-    "start": "NODE_ENV=production node server.js"
+    "start": "SET NODE_ENV=production && node server.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
     "mongodb": "^4.9.1",
-    "next": "12.1.6",
+    "next": "^12.3.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-markdown": "^8.0.3",

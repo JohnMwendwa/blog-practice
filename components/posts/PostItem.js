@@ -52,7 +52,7 @@ const ContentWrapper = styled.div`
 const Content = styled.div`
   margin-top: 0px;
 `;
-const Title = styled.h3`
+const Title = styled.h1`
   font-size: 28px;
   margin: 0;
 

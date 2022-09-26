@@ -2,7 +2,7 @@
 title: "JavaScript Performance Tips"
 date: "September 7, 2022"
 excerpt: "We will look at 10 simple tips and tricks to increase the speed of your code when writing JS"
-image: "/images/posts/img1.jpg"
+image: "img.jpg"
 category: "JavaScript"
 author: "Jane Kahiu"
 author_image: "https://randomuser.me/api/portraits/women/11.jpg"

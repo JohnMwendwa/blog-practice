@@ -2,7 +2,7 @@
 title: "Django Crash Course"
 date: "September 8, 2022"
 excerpt: "Django is a very powerful, high level Python framework for building web applications"
-image: "/images/posts/img3.jpg"
+image: "img.jpg"
 category: "Python"
 author: "Alex Mogere"
 author_image: "https://randomuser.me/api/portraits/men/10.jpg"

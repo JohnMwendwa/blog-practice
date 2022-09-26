@@ -2,7 +2,7 @@
 title: "How to upload Nextjs to cpanel"
 date: "September 26, 2022"
 excerpt: "If you're having problems uploading your nextjs application on cpanel, here is how you should do it..."
-image: "/images/posts/how-to-upload-nextjs-to-cpanel/nextjs-cpanel.png"
+image: "nextjs-cpanel.png"
 category: "Javascript"
 author: "John Mwendwa"
 author_image: "https://randomuser.me/api/portraits/men/12.jpg"

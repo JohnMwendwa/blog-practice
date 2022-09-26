@@ -2,7 +2,7 @@
 title: "Writing Great Unit Tests"
 date: "2022-09-6"
 excerpt: "We will look at 10 simple tips and tricks on writing unit tests in JavaScript"
-image: "/images/posts/img7.jpg"
+image: "img.jpg"
 category: "JavaScript"
 author: "Anonymous"
 author_image: "https://randomuser.me/api/portraits/men/11.jpg"

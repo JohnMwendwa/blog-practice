@@ -2,7 +2,7 @@
 title: "React Crash Course"
 date: "2022-09-05"
 excerpt: "Crash course to learn the React JavaScript library. We will look at components, hooks and more"
-image: "/images/posts/img5.jpg"
+image: "img.jpg"
 category: "JavaScript"
 author: "John Mwendwa"
 author_image: "https://randomuser.me/api/portraits/men/12.jpg"

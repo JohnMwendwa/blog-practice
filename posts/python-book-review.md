@@ -2,7 +2,7 @@
 title: "Python Book Review"
 date: "2022-09-3"
 excerpt: "In this review, we will be looking at the new Python book from Oriley"
-image: "/images/posts/img6.jpg"
+image: "img.jpg"
 category: "Python"
 author: "Evans Njogu"
 author_image: "https://randomuser.me/api/portraits/men/16.jpg"

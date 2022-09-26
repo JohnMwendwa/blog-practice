@@ -178,8 +178,8 @@ export default function PostDetails({ post }) {
 
       <ImageHedaer>
         <Image
-          src={image}
-          alt={author}
+          src={`/images/posts/${slug}/${image}`}
+          alt={title}
           width={600}
           height={250}
           layout="responsive"

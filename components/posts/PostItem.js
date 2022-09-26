@@ -15,14 +15,13 @@ const Card = styled.div`
 
 const ImageContainer = styled.div`
   width: 100%;
-  height: 13rem;
+  max-height: 13rem;
   background-color: grey;
   margin: 0 auto;
   overflow: hidden;
-  padding: 10px;
 `;
 const Img = styled(Image)`
-  object-fit: cover;
+  object-fit: fill;
   border-radius: 5px;
 `;
 

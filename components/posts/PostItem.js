@@ -81,6 +81,9 @@ const Action = styled.div`
 export default function PostItem({ post = {} }) {
   const { title, image, excerpt, slug, date, author, author_image, category } =
     post;
+
+  const imageSrc = `/images/posts/${slug}/${image}`;
+
   const formatedDate = new Date(date).toLocaleDateString("en-us", {
     day: "numeric",
     month: "long",
@@ -91,8 +94,8 @@ export default function PostItem({ post = {} }) {
     <Card>
       <ImageContainer>
         <Img
-          src={image}
-          alt={author}
+          src={imageSrc}
+          alt={title}
           width={300}
           height={250}
           layout="responsive"
@@ -104,7 +107,7 @@ export default function PostItem({ post = {} }) {
       </TimeWrapper>
       <ContentWrapper>
         <Content>
-          <Link href={`blog/${slug}`}>
+          <Link href={`/blog/${slug}`}>
             <a>
               <Title>{title}</Title>
             </a>
@@ -113,7 +116,7 @@ export default function PostItem({ post = {} }) {
         </Content>
 
         <Action>
-          <Link href={`blog/${slug}`}>
+          <Link href={`/blog/${slug}`}>
             <button>Read More...</button>
           </Link>
           <Action>

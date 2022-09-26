@@ -34,6 +34,7 @@ const TimeWrapper = styled.div`
   justify-content: space-between;
   padding: 5px;
   background-color: grey;
+  position: relative;
 `;
 const Time = styled.time`
   color: white;
@@ -41,8 +42,10 @@ const Time = styled.time`
 const CategoryLabel = styled.button`
   background-color: black;
   color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 3px 10px;
+  position: absolute;
+  top: 3px;
+  right: -1px;
 `;
 const ContentWrapper = styled.div`
   display: flex;

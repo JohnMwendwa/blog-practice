@@ -106,7 +106,7 @@ $ npm run build
 
 For you to upload your application files you have to zip them first.
 
-The only files you're going to zip are your **package.json**, **next.config.js**, **server.js** and **.next** folder.
+The only files you're going to zip are your **package.json**, **next.config.js**, **server.js**, **.next** folder and the **public** folder.
 
 Click the upload link in the file manager and drag your zip file there to upload. Then extract your files and delete the zip file.
 

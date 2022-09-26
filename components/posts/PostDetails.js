@@ -148,6 +148,23 @@ export default function PostDetails({ post }) {
         </SyntaxHighlighter>
       );
     },
+    p: ({ node, children }) => {
+      if (node.children[0].tagName === "img") {
+        const img = node.children[0];
+        return (
+          <ImageContainer>
+            <Image
+              src={`/images/posts/${slug}/${img.properties.src}`}
+              alt={img.properties.alt}
+              width={600}
+              height={400}
+              layout="responsive"
+            />
+          </ImageContainer>
+        );
+      }
+      return <p>{children}</p>;
+    },
   };
 
   const router = useRouter();

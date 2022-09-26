@@ -12,16 +12,6 @@ import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
 SyntaxHighlighter.registerLanguage("js", js);
 SyntaxHighlighter.registerLanguage("css", css);
 
-const customRenderer = {
-  code: ({ language, children }) => {
-    return (
-      <SyntaxHighlighter style={lucario} language={language}>
-        {children}
-      </SyntaxHighlighter>
-    );
-  },
-};
-
 const PostContainer = styled.div`
   position: relative;
   width: 95%;
@@ -68,14 +58,26 @@ const CategoryLabel = styled.button`
   }
 `;
 
-const ImageContainer = styled.div`
+const ImageHedaer = styled.div`
   background-color: gray;
   border-radius: 0.25rem;
+  width: 100%;
   margin-bottom: 10px;
   & img {
     object-fit: cover;
-    width: 100%;
-    max-width: 600px;
+    border-radius: 0.25rem;
+  }
+`;
+
+const ImageContainer = styled.div`
+  background-color: gray;
+  border-radius: 0.25rem;
+  margin: 1rem auto;
+  width: 100%;
+  max-width: 600px;
+
+   {img} {
+    object-fit: cover;
     border-radius: 0.25rem;
   }
 `;
@@ -108,7 +110,12 @@ const Author = styled.div`
   }
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  & a {
+    color: orange;
+    text-decoration: underline;
+  }
+`;
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -124,13 +131,24 @@ const Btn = styled.button`
 `;
 
 export default function PostDetails({ post }) {
-  const { title, image, author, author_image, date, category, content } = post;
+  const { title, image, author, author_image, date, category, content, slug } =
+    post;
 
   const formatedDate = new Date(date).toLocaleDateString("en-us", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
+
+  const customRenderer = {
+    code: ({ language, children }) => {
+      return (
+        <SyntaxHighlighter style={lucario} language={language}>
+          {children}
+        </SyntaxHighlighter>
+      );
+    },
+  };
 
   const router = useRouter();
 
@@ -141,7 +159,7 @@ export default function PostDetails({ post }) {
         <Title>{title}</Title>
       </Header>
 
-      <ImageContainer>
+      <ImageHedaer>
         <Image
           src={image}
           alt={author}
@@ -149,7 +167,7 @@ export default function PostDetails({ post }) {
           height={300}
           layout="responsive"
         />
-      </ImageContainer>
+      </ImageHedaer>
 
       <About>
         <Author>

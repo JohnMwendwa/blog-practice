@@ -9,6 +9,7 @@ export default function PostDetailsPage({ post }) {
       <Head>
         <title>{post.title}</title>
         <meta name="description" content={post.excerpt} />
+        <meta name="author" content={post.author}></meta>
       </Head>
       <PostDetails post={post} />
     </>

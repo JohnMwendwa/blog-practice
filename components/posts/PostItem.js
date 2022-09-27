@@ -110,7 +110,7 @@ export default function PostItem({ post = {} }) {
       </TimeWrapper>
       <ContentWrapper>
         <Content>
-          <Link href={`/blog/${slug}`}>
+          <Link href={`/posts/${slug}`}>
             <a>
               <Title>{title}</Title>
             </a>
@@ -119,7 +119,7 @@ export default function PostItem({ post = {} }) {
         </Content>
 
         <Action>
-          <Link href={`/blog/${slug}`}>
+          <Link href={`/posts/${slug}`}>
             <button>Read More...</button>
           </Link>
           <Action>

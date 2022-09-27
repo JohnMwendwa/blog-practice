@@ -1,5 +1,5 @@
 ---
-title: "How to upload Nextjs to cpanel"
+title: "How to upload Nextjs app on cpanel"
 date: "September 26, 2022"
 excerpt: "If you're having problems uploading your nextjs application on cpanel, here is how you should do it..."
 image: "nextjs-cpanel.png"

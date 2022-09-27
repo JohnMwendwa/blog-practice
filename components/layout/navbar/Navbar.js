@@ -75,7 +75,7 @@ export default function Navbar() {
       </NavigationItems>
       <ListItems>
         <ListItem>
-          <Link href="/blog">
+          <Link href="/posts">
             <a> Posts</a>
           </Link>
         </ListItem>

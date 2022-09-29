@@ -3,16 +3,14 @@ import { getFeaturedPosts } from "../helpers/posts_utils";
 import FeaturedPosts from "../components/homepage/FeaturedPosts";
 
 export default function Home({ posts }) {
-  const postTitles = posts.map((post) => post.title);
-
   if (!posts.length)
     return (
       <>
         <Head>
-          <title>John Mwendwa blog post</title>
+          <title>John Mwendwa Blog - A blog for curious developers</title>
           <meta
             name="description"
-            content="I post about web development and best programming practices "
+            content="Find articles about javascript,reactjs,nextjs,nodejs,mongodb and more..."
           />
         </Head>
       </>
@@ -21,8 +19,11 @@ export default function Home({ posts }) {
   return (
     <>
       <Head>
-        <title>John Mwendwa blog post</title>
-        <meta name="description" content={`John Mwendwa,${postTitles}`} />
+        <title>John Mwendwa Blog - A blog for curious developers</title>
+        <meta
+          name="description"
+          content="Find articles about javascript,reactjs,nextjs,nodejs,mongodb and more..."
+        />
       </Head>
       <FeaturedPosts posts={posts} />
     </>

@@ -163,7 +163,15 @@ export default function PostDetails({ post }) {
           </ImageContainer>
         );
       }
+
       return <p>{children}</p>;
+    },
+    a: ({ node, children, ...props }) => {
+      return (
+        <a {...props} target="_blank">
+          {children}
+        </a>
+      );
     },
   };
 

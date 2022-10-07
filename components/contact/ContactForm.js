@@ -68,7 +68,6 @@ const SubmitBtn = styled.button`
 
   &:hover {
     background-color: ${(c) => c.theme.colors.ui.primary};
-    border-color: orange;
   }
 `;
 

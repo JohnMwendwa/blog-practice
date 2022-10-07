@@ -7,7 +7,7 @@ import Search from "../search/Search";
 const NavWrapper = styled.nav`
   display: flex;
   flex-direction: column;
-  padding: 10px 20px 10px;
+  padding: 20px 40px 10px;
   background-color: ${(props) => props.theme.colors.ui.primary};
 `;
 
@@ -74,6 +74,7 @@ const SearchContainer = styled.div`
 
 const Logo = styled.div`
   font-size: 48px;
+  font-family: Jokerman;
   color: white;
 `;
 

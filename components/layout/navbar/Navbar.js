@@ -37,9 +37,28 @@ const ListItem = styled.li`
   height: 2rem;
   font-size: 18px;
   color: white;
-  &:hover {
-    color: black;
-    border-bottom: 3px solid white;
+
+  > a {
+    position: relative;
+  }
+
+  > a::before {
+    content: "";
+    margin: -8px 0;
+    position: absolute;
+    width: calc(100% + 10px);
+    height: 4px;
+    background-color: white;
+    bottom: 0;
+    left: -5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  a:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
   }
 `;
 

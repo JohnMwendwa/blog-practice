@@ -1,4 +1,10 @@
-@import url(//db.onlinewebfonts.com/c/eec0608ff80827a878d7da11b3b71857?family=Jokerman);
+@font-face {
+  font-family: "Jokerman";
+  src: url("../public/fonts/Jokerman.eot"),
+    url("../public/fonts/Jokerman.woff2") format("woff2"),
+    url("../public/fonts/Jokerman.woff") format("woff"),
+    url("../public/fonts/Jokerman.ttf") format("truetype");
+}
 
 html,
 body {

@@ -20,7 +20,11 @@ export default function Footer() {
   return (
     <FooterWrapper>
       <Copyright>
-        &copy; <Link href="https://johnmwendwa.me">John Mwendwa</Link> {date}
+        &copy;{" "}
+        <Link href="https://johnmwendwa.me">
+          <a target="_blank">John Mwendwa</a>
+        </Link>{" "}
+        {date}
       </Copyright>
     </FooterWrapper>
   );

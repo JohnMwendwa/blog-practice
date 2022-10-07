@@ -9,7 +9,7 @@ const FooterWrapper = styled.footer`
   justify-content: center;
   margin-top: auto;
   min-height: 100px;
-  background-color: #005460;
+  background-color: ${(c) => c.theme.colors.ui.secondary};
   color: white;
 `;
 const Copyright = styled.div``;

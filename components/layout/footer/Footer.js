@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: auto;
-  padding: 20px;
-  height: 80px;
-  border-top: 1px solid black;
+  min-height: 100px;
+  background-color: #005460;
+  color: white;
 `;
 const Copyright = styled.div``;
 const Info = styled.div``;
@@ -18,12 +19,9 @@ export default function Footer() {
   const date = new Date().getFullYear();
   return (
     <FooterWrapper>
-      <Copyright>&copy; {date}</Copyright>
-      <Info>
-        <Link href="mailto:info@blog.johnmwendwa.me">
-          <a>John Mwendwa</a>
-        </Link>
-      </Info>
+      <Copyright>
+        &copy; <Link href="https://johnmwendwa.me">John Mwendwa</Link> {date}
+      </Copyright>
     </FooterWrapper>
   );
 }

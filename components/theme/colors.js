@@ -1,11 +1,11 @@
 export const colors = {
   ui: {
-    primary: " #eb2f06",
-    secondary: "#ff5e57",
-    success: "#32ff7e",
-    error: "#ff3838",
+    primary: "#022B3A",
+    secondary: "#005460",
+    success: "#008330",
+    error: "#FF0000",
   },
   btn: {
-    primary: " #eb2f06",
+    primary: " #022B3A",
   },
 };

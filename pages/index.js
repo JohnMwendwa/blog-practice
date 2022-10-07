@@ -10,7 +10,7 @@ export default function Home({ posts }) {
           <title>John Mwendwa Blog - A blog for curious developers</title>
           <meta
             name="description"
-            content="Find articles about javascript,reactjs,nextjs,nodejs,mongodb and more..."
+            content="Find articles about javascript, reactjs, nextjs, nodejs, mongodb and more..."
           />
         </Head>
       </>
@@ -22,7 +22,7 @@ export default function Home({ posts }) {
         <title>John Mwendwa Blog - A blog for curious developers</title>
         <meta
           name="description"
-          content="Find articles about javascript,reactjs,nextjs,nodejs,mongodb and more..."
+          content="Find articles about javascript, reactjs, nextjs, nodejs, mongodb and more..."
         />
       </Head>
       <FeaturedPosts posts={posts} />

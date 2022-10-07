@@ -4,6 +4,8 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const Card = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 20px;
   max-width: 450px;
   min-width: 300px;
@@ -51,12 +53,14 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px 20px;
+  margin: auto;
 `;
 const Content = styled.div`
   margin-top: 0px;
 `;
 const Title = styled.h1`
   font-size: 28px;
+  line-height: 1.2;
   margin: 0;
 
   @media (min-width: 450px) {
@@ -67,6 +71,7 @@ const Action = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   & h3 {
     margin: 10px;
     font-size: 14px;

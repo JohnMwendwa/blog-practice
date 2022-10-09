@@ -15,7 +15,7 @@ SyntaxHighlighter.registerLanguage("css", css);
 const PostContainer = styled.div`
   position: relative;
   width: 95%;
-  max-width: 60rem;
+  max-width: 55rem;
   padding: 1rem;
   margin: 2rem auto;
   line-height: 2rem;

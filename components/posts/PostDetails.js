@@ -24,6 +24,7 @@ const PostContainer = styled.div`
 
   @media (min-width: 600px) {
     font-size: 1.25rem;
+    border-radius: 0;
   }
 `;
 
@@ -55,6 +56,7 @@ const CategoryLabel = styled.button`
 
   @media (min-width: 600px) {
     font-size: 1.2rem;
+    border-radius: 0;
   }
 `;
 

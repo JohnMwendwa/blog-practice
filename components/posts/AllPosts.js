@@ -9,10 +9,10 @@ const Title = styled.h1`
 const PostsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  row-gap: 0px;
-  column-gap: 1.2rem;
+  gap: 20px;
   justify-items: center;
   align-content: center;
+  padding: 0 30px 30px;
 `;
 
 export default function AllPosts({ posts }) {

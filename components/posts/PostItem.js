@@ -6,7 +6,6 @@ import styled from "styled-components";
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px;
   max-width: 450px;
   min-width: 300px;
   height: auto;

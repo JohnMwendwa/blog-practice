@@ -3,7 +3,7 @@ import { getAllPosts } from "../../helpers/posts_utils";
 import AllPosts from "../../components/posts/AllPosts";
 
 export default function AllBlogPosts({ posts }) {
-  const postTitles = posts.map((post) => post.title.toLowerCase());
+  const postTitles = posts.map((post) => ` ${post.title.toLowerCase()}`);
 
   if (!posts.length)
     return (
@@ -25,7 +25,7 @@ export default function AllBlogPosts({ posts }) {
         <meta name="description" content={postTitles} />
         <meta
           name="keywords"
-          content="HTML, CSS, JavaScript,Reactjs,Nextjs,React-native,react"
+          content="HTML, CSS, JavaScript, Reactjs, Nextjs, React Native, react"
         ></meta>
       </Head>
       <AllPosts posts={posts} />

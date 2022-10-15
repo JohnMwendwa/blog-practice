@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import lucario from "react-syntax-highlighter/dist/cjs/styles/prism/lucario";
+import nightOwl from "react-syntax-highlighter/dist/cjs/styles/prism/night-owl";
 
 import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
@@ -145,7 +145,7 @@ export default function PostDetails({ post }) {
   const customRenderer = {
     code: ({ language, children }) => {
       return (
-        <SyntaxHighlighter style={lucario} language={language}>
+        <SyntaxHighlighter style={nightOwl} language={language}>
           {children}
         </SyntaxHighlighter>
       );

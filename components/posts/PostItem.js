@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-const Card = styled.div`
+const Card = styled.article`
   display: flex;
   flex-direction: column;
   max-width: 450px;
@@ -14,7 +14,7 @@ const Card = styled.div`
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.figure`
   width: 100%;
   max-height: 13rem;
   background-color: grey;

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Search from "../search/Search";
 
-const NavWrapper = styled.nav`
+const Header = styled.header`
   display: flex;
   flex-direction: column;
   padding: 20px 40px 10px;
@@ -82,34 +82,36 @@ export default function Navbar() {
   const [searchTerm, setSearchTerm] = useState(null);
 
   return (
-    <NavWrapper>
+    <Header>
       <NavigationItems>
         <Logo>
           <Link href="/">
-            <a> TECHme</a>
+            <a title="Go to home page"> TECHme</a>
           </Link>
         </Logo>
         <SearchContainer>
           <Search searchTerm={setSearchTerm} />
         </SearchContainer>
       </NavigationItems>
-      <ListItems>
-        <ListItem>
-          <Link href="/posts">
-            <a> Posts</a>
-          </Link>
-        </ListItem>
-        <ListItem>
-          <Link href="/about">
-            <a> About</a>
-          </Link>
-        </ListItem>
-        <ListItem>
-          <Link href="/contact">
-            <a> Contact</a>
-          </Link>
-        </ListItem>
-      </ListItems>
-    </NavWrapper>
+      <nav>
+        <ListItems>
+          <ListItem>
+            <Link href="/posts">
+              <a title="Go to all posts page"> Posts</a>
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/about">
+              <a title="Go to about page"> About</a>
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link href="/contact">
+              <a title="Go to contact page"> Contact</a>
+            </Link>
+          </ListItem>
+        </ListItems>
+      </nav>
+    </Header>
   );
 }

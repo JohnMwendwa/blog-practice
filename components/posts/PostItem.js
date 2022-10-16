@@ -104,7 +104,7 @@ export default function PostItem({ post = {} }) {
           src={imageSrc}
           alt={title}
           width={300}
-          height={250}
+          height={170}
           layout="responsive"
         />
       </ImageContainer>

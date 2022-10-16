@@ -84,7 +84,7 @@ const ImageContainer = styled.div`
   }
 `;
 
-const DateContainer = styled.div`
+const DateContainer = styled.time`
   font-size: 16px;
 `;
 

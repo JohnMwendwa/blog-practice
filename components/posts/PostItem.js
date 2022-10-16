@@ -115,7 +115,7 @@ export default function PostItem({ post = {} }) {
       <ContentWrapper>
         <Content>
           <Link href={`/posts/${slug}`}>
-            <a>
+            <a title="Read more about this article">
               <Title>{title}</Title>
             </a>
           </Link>
@@ -124,7 +124,9 @@ export default function PostItem({ post = {} }) {
 
         <Action>
           <Link href={`/posts/${slug}`}>
-            <button>Read More...</button>
+            <a title="Read more about this article">
+              <button>Read More...</button>
+            </a>
           </Link>
           <Action>
             <Avatar src={author_image} alt={author} width={30} height={30} />

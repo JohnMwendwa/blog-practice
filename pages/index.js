@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { getFeaturedPosts } from "../helpers/posts_utils";
 import FeaturedPosts from "../components/homepage/FeaturedPosts";
+import { SearchContextProvider } from "../components/contexts/searchContext";
 
 export default function Home({ posts }) {
   if (!posts.length)
@@ -25,7 +26,9 @@ export default function Home({ posts }) {
           content="Find articles about javascript, reactjs, nextjs, nodejs, mongodb and more..."
         />
       </Head>
-      <FeaturedPosts posts={posts} />
+      <SearchContextProvider>
+        <FeaturedPosts posts={posts} />
+      </SearchContextProvider>
     </>
   );
 }

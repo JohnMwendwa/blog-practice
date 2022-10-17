@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { getAllPosts } from "../../helpers/posts_utils";
 import AllPosts from "../../components/posts/AllPosts";
+import { SearchContextProvider } from "../../components/contexts/searchContext";
 
 export default function AllBlogPosts({ posts }) {
   const postTitles = posts.map((post) => ` ${post.title.toLowerCase()}`);
@@ -28,7 +29,9 @@ export default function AllBlogPosts({ posts }) {
           content="HTML, CSS, JavaScript, Reactjs, Nextjs, React Native, react"
         ></meta>
       </Head>
-      <AllPosts posts={posts} />
+      <SearchContextProvider>
+        <AllPosts posts={posts} />
+      </SearchContextProvider>
     </>
   );
 }

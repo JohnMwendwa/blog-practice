@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
 import Search from "../search/Search";
+import { SearchContextProvider } from "../../contexts/searchContext";
 
 const Header = styled.header`
   display: flex;
@@ -79,8 +80,6 @@ const Logo = styled.div`
 `;
 
 export default function Navbar() {
-  const [searchTerm, setSearchTerm] = useState(null);
-
   return (
     <Header>
       <NavigationItems>
@@ -90,7 +89,9 @@ export default function Navbar() {
           </Link>
         </Logo>
         <SearchContainer>
-          <Search searchTerm={setSearchTerm} />
+          <SearchContextProvider>
+            <Search />
+          </SearchContextProvider>
         </SearchContainer>
       </NavigationItems>
       <nav>

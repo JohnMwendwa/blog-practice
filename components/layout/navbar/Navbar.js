@@ -3,7 +3,6 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import Search from "../search/Search";
-import { SearchContextProvider } from "../../contexts/searchContext";
 
 const Header = styled.header`
   display: flex;
@@ -89,9 +88,7 @@ export default function Navbar() {
           </Link>
         </Logo>
         <SearchContainer>
-          <SearchContextProvider>
-            <Search />
-          </SearchContextProvider>
+          <Search />
         </SearchContainer>
       </NavigationItems>
       <nav>

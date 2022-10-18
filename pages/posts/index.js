@@ -29,9 +29,7 @@ export default function AllBlogPosts({ posts }) {
           content="HTML, CSS, JavaScript, Reactjs, Nextjs, React Native, react"
         ></meta>
       </Head>
-      <SearchContextProvider>
-        <AllPosts posts={posts} />
-      </SearchContextProvider>
+      <AllPosts posts={posts} />
     </>
   );
 }

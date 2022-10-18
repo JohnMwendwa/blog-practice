@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useMemo } from "react";
 import styled from "styled-components";
 
 import PostItem from "../posts/PostItem";
@@ -20,21 +20,19 @@ const PostsContainer = styled.div`
 export default function FeaturedPosts({ posts }) {
   const { searchTerm } = useContext(SearchContext);
 
+  const filteredPosts = useMemo(() => {
+    return posts.filter((post) => {
+      return post.title.toLowerCase().includes(searchTerm.trim().toLowerCase());
+    });
+  }, [searchTerm, posts]);
+
   return (
     <>
       <Title>Featured Posts</Title>
       <PostsContainer>
-        {posts
-          .filter((val) => {
-            return searchTerm.trim().toLowerCase() === ""
-              ? val
-              : val.title
-                  .toLowerCase()
-                  .includes(searchTerm.trim().toLowerCase());
-          })
-          .map((post) => (
-            <PostItem key={post.slug} post={post} />
-          ))}
+        {filteredPosts.map((post) => (
+          <PostItem key={post.slug} post={post} />
+        ))}
       </PostsContainer>
     </>
   );

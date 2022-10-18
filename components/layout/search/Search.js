@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
+import { SearchContext } from "../../contexts/searchContext";
 
 const SearchForm = styled.form``;
 const SearchInput = styled.input`
@@ -14,24 +15,24 @@ const SearchInput = styled.input`
   }
 `;
 
-export default function Search({ searchTerm }) {
-  const [searchQuery, setSearchQuery] = useState("");
+export default function Search() {
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
 
   useEffect(() => {
-    searchTerm(searchQuery);
-  }, [searchQuery, searchTerm]);
+    setSearchTerm(searchTerm);
+  }, [searchTerm, setSearchTerm]);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    searchTerm(searchQuery);
+    setSearchTerm(searchTerm);
   };
 
   return (
     <SearchForm onSubmit={handleSearch}>
       <SearchInput
         type="search"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search article..."
       />
     </SearchForm>

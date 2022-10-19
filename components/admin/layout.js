@@ -14,12 +14,12 @@ const Sidebar = styled.div`
     margin: 15px auto;
   }
 `;
-const Main = styled.main`
+const Main = styled.section`
   display: flex;
   flex: 1;
   flex-direction: column;
 
-  & h1 {
+  & h2 {
     text-align: center;
   }
 `;
@@ -39,7 +39,6 @@ export default function Layout() {
         </nav>
       </Sidebar>
       <Main>
-        <h1>Notifications</h1>
         <Messages />
       </Main>
     </Container>

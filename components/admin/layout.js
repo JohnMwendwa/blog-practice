@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Messages from "./Messages";
 
 const Container = styled.div`
   display: flex;
@@ -39,6 +40,7 @@ export default function Layout() {
       </Sidebar>
       <Main>
         <h1>Notifications</h1>
+        <Messages />
       </Main>
     </Container>
   );

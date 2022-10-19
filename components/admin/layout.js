@@ -18,6 +18,7 @@ const Main = styled.section`
   display: flex;
   flex: 1;
   flex-direction: column;
+  overflow-y: scroll;
 
   & h2 {
     text-align: center;

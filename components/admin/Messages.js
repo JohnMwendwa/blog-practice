@@ -27,6 +27,7 @@ const Card = styled.div`
 export default function Messages() {
   return (
     <>
+      <h2>Notifications</h2>
       <TopBar>
         <span>All </span>
         <span>mark all as read</span>

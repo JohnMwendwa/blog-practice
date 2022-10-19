@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { getAllPosts } from "../../helpers/posts_utils";
 import AllPosts from "../../components/posts/AllPosts";
-import { SearchContextProvider } from "../../components/contexts/searchContext";
 
 export default function AllBlogPosts({ posts }) {
   const postTitles = posts.map((post) => ` ${post.title.toLowerCase()}`);

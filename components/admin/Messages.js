@@ -24,6 +24,15 @@ const Card = styled.div`
   }
 `;
 
+const Btn = styled.button`
+  padding: 10px;
+  width: 100px;
+  margin: 20px auto;
+  border: none;
+  cursor: pointer;
+  outline: 1px solid ${(c) => c.theme.colors.ui.secondary};
+`;
+
 export default function Messages() {
   return (
     <>
@@ -40,6 +49,8 @@ export default function Messages() {
         <h4>John Mwendwa</h4>
         <p>This is a message to you John</p>
       </Card>
+
+      <Btn>Load more...</Btn>
     </>
   );
 }

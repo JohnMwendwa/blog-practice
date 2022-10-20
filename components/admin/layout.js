@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 import Messages from "./Messages";
 
@@ -31,11 +32,21 @@ export default function Layout() {
       <Sidebar>
         <nav>
           <ul>
-            <li>Messages</li>
-            <li>Users</li>
-            <li>Articles</li>
-            <li>Settings</li>
-            <li>Logout</li>
+            <li>
+              <Link href="/admin/messages">Messages</Link>
+            </li>
+            <li>
+              <Link href="/admin/users">Users</Link>
+            </li>
+            <li>
+              <Link href="/admin/articles">Articles</Link>
+            </li>
+            <li>
+              <Link href="/admin/settings">Settings</Link>
+            </li>
+            <li>
+              <Link href="/admin/logout">Logout</Link>
+            </li>
           </ul>
         </nav>
       </Sidebar>

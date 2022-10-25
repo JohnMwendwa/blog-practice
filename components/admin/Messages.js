@@ -7,6 +7,10 @@ const TopBar = styled.div`
   font-weight: 600;
   color: blue;
   margin-bottom: 20px;
+
+  & span {
+    cursor: pointer;
+  }
 `;
 
 const Card = styled.div`

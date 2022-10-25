@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styled from "styled-components";
-import Messages from "./Messages";
 
 const Container = styled.div`
   display: flex;
@@ -20,13 +19,14 @@ const Main = styled.section`
   flex: 1;
   flex-direction: column;
   overflow-y: scroll;
+  padding: 0 20px;
 
   & h2 {
     text-align: center;
   }
 `;
 
-export default function Layout() {
+export default function Layout({ children }) {
   return (
     <Container>
       <Sidebar>
@@ -50,9 +50,7 @@ export default function Layout() {
           </ul>
         </nav>
       </Sidebar>
-      <Main>
-        <Messages />
-      </Main>
+      <Main>{children}</Main>
     </Container>
   );
 }

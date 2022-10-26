@@ -5,11 +5,22 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   firstName: {
     type: String,
-    required: true,
+    required: [true, "First name is required"],
   },
   lastName: {
     type: String,
-    required: true,
+    required: [true, "Last name is required"],
+  },
+  email: {
+    type: String,
+    required: [true, "Email is required"],
+    unique: true,
+    lowercase: true,
+    validate(value) {
+      if (!validator.isEmail(value)) {
+        throw new Error("Email is invalid!");
+      }
+    },
   },
   createdOn: { type: Date, default: Date.now },
   isAdmin: {
@@ -22,18 +33,7 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true,
-    validate(value) {
-      if (!validator.isEmail(value)) {
-        throw new Error("Email is invalid!");
-      }
-    },
+    required: [true, "Password is required"],
   },
 });
 

@@ -9,6 +9,7 @@
     "start": "SET NODE_ENV=production && node server.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "gray-matter": "^4.0.3",
     "mongodb": "^4.9.1",
     "mongoose": "^6.7.0",

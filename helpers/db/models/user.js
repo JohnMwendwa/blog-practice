@@ -45,6 +45,14 @@ userSchema.post("save", function (error, doc, next) {
   }
 });
 
+userSchema.post("update", function (error, res, next) {
+  if (error.name === "MongoServerError" && error.code === 11000) {
+    next(new Error("Email already exists!"));
+  } else {
+    next();
+  }
+});
+
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;

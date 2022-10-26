@@ -12,8 +12,14 @@ const userSchema = new Schema({
     required: true,
   },
   createdOn: { type: Date, default: Date.now },
-  isAdmin: Boolean,
-  isAuthenticated: Boolean,
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  isAuthenticated: {
+    type: Boolean,
+    default: false,
+  },
   password: {
     type: String,
     required: true,

@@ -9,3 +9,13 @@ export const connectToDatabase = () => {
     console.log(error);
   }
 };
+
+export const closeConnection = () => {
+  try {
+    mongoose.disconnect(process.env.local_db);
+
+    console.log("Closed connection successfully");
+  } catch (error) {
+    console.log(error);
+  }
+};

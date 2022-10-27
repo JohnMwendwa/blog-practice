@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { signOut } from "next-auth/react";
 
 const Container = styled.div`
   display: flex;
@@ -27,6 +28,10 @@ const Main = styled.section`
 `;
 
 export default function Layout({ children }) {
+  const logoutHandler = () => {
+    signOut();
+  };
+
   return (
     <Container>
       <Sidebar>
@@ -44,7 +49,7 @@ export default function Layout({ children }) {
             <li>
               <Link href="/admin/settings">Settings</Link>
             </li>
-            <li>
+            <li onClick={logoutHandler}>
               <Link href="/admin/logout">Logout</Link>
             </li>
           </ul>

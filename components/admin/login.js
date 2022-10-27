@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 const FormWrapper = styled.div`
@@ -7,6 +8,11 @@ const FormWrapper = styled.div`
   justify-content: center;
   margin: 0 auto;
   height: 60vh;
+
+  & a {
+    font-weight: 900;
+    color: ${(c) => c.theme.colors.ui.secondary};
+  }
 
   & h2 {
     font-size: 2.5rem;
@@ -35,6 +41,7 @@ const Btn = styled.button`
   font-size: 1.2rem;
   background-color: ${(c) => c.theme.colors.ui.secondary};
   color: white;
+  margin-bottom: 0;
 `;
 
 export default function Login() {
@@ -42,10 +49,13 @@ export default function Login() {
     <FormWrapper>
       <h2>Login</h2>
       <Form>
-        <Input type="email" />
-        <Input type="password" />
+        <Input type="email" placeholder="Email" required />
+        <Input type="password" placeholder="Password" required />
         <Btn>Login</Btn>
       </Form>
+      <p>
+        Don&apos;t have an account? <Link href="/admin/signup">Signup</Link>
+      </p>
     </FormWrapper>
   );
 }

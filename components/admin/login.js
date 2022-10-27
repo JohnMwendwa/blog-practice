@@ -1,4 +1,7 @@
+import React, { useRef, useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const FormWrapper = styled.div`
@@ -42,15 +45,47 @@ const Btn = styled.button`
   background-color: ${(c) => c.theme.colors.ui.secondary};
   color: white;
   margin-bottom: 0;
+  cursor: pointer;
 `;
 
 export default function Login() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      router.push("/admin/messages");
+    }
+  }, [router, session]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    const result = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+
+    console.log(result);
+  };
+
   return (
     <FormWrapper>
       <h2>Login</h2>
-      <Form>
-        <Input type="email" placeholder="Email" required />
-        <Input type="password" placeholder="Password" required />
+      <Form onSubmit={handleSubmit}>
+        <Input type="email" placeholder="Email" required ref={emailRef} />
+        <Input
+          type="password"
+          placeholder="Password"
+          required
+          ref={passwordRef}
+        />
         <Btn>Login</Btn>
       </Form>
       <p>

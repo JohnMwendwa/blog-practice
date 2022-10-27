@@ -19,21 +19,21 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <link rel="icon" href="/favicon.png" type="image/png" />
       </Head>
       <SearchContextProvider>
-        <Layout>
-          {router.pathname === "/admin/messages" ||
-          router.pathname === "/admin/users" ||
-          router.pathname === "/admin/articles" ||
-          router.pathname === "/admin/settings" ||
-          router.pathname === "/admin/logout" ? (
-            <SessionProvider session={session}>
+        <SessionProvider session={session}>
+          <Layout>
+            {router.pathname === "/admin/messages" ||
+            router.pathname === "/admin/users" ||
+            router.pathname === "/admin/articles" ||
+            router.pathname === "/admin/settings" ||
+            router.pathname === "/admin/logout" ? (
               <AdminLayout>
                 <Component {...pageProps} />
               </AdminLayout>
-            </SessionProvider>
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </Layout>
+            ) : (
+              <Component {...pageProps} />
+            )}
+          </Layout>
+        </SessionProvider>
       </SearchContextProvider>
     </ThemeProvider>
   );

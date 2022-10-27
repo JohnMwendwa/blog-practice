@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -62,15 +63,39 @@ async function createUser(firstName, lastName, email, password) {
 }
 
 export default function Signup() {
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <FormWrapper>
       <h2>Signup</h2>
-      <Form>
-        <Input type="text" placeholder="First name" required />
-        <Input type="text" placeholder="Last name" required />
-        <Input type="email" placeholder="Email" required />
-        <Input type="password" placeholder="Enter password" required />
-        <Input type="password" placeholder="Confirm password" required />
+      <Form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          placeholder="First name"
+          required
+          ref={firstNameRef}
+        />
+        <Input type="text" placeholder="Last name" required ref={lastNameRef} />
+        <Input type="email" placeholder="Email" required ref={emailRef} />
+        <Input
+          type="password"
+          placeholder="Enter password"
+          required
+          ref={passwordRef}
+        />
+        <Input
+          type="password"
+          placeholder="Confirm password"
+          required
+          ref={confirmPasswordRef}
+        />
         <Btn>Signup</Btn>
       </Form>
       <p>

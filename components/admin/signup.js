@@ -43,6 +43,7 @@ const Btn = styled.button`
   background-color: ${(c) => c.theme.colors.ui.secondary};
   color: white;
   margin-bottom: 0;
+  cursor: pointer;
 `;
 
 async function createUser(firstName, lastName, email, password) {
@@ -69,8 +70,28 @@ export default function Signup() {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const firstName = firstNameRef.current.value;
+    const lastName = lastNameRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const confirmPassword = confirmPasswordRef.current.value;
+
+    try {
+      const result = await createUser(
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword
+      );
+
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <FormWrapper>

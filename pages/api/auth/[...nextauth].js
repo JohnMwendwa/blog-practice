@@ -6,7 +6,7 @@ import { verifyPassword } from "../../../helpers/db/auth";
 
 export default NextAuth({
   session: {
-    jwt: true,
+    strategy: "jwt",
     maxAge: 60 * 60,
   },
   providers: [

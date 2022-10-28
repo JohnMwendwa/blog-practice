@@ -77,7 +77,7 @@ export default function Signup() {
 
   useEffect(() => {
     if (session) {
-      router.push("/admin/messages");
+      router.replace("/admin/messages");
     }
   }, [router, session]);
 

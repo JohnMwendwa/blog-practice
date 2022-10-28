@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-import Users from "../../components/admin/users";
+import Users from "../../components/admin/users/index";
 
 export default function UsersPage() {
   return <Users />;

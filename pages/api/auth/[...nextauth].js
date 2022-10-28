@@ -12,7 +12,7 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        connectToDatabase();
+        await connectToDatabase();
 
         const user = await User.findOne({ email: credentials.email });
 

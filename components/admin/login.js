@@ -56,7 +56,7 @@ export default function Login() {
 
   useEffect(() => {
     if (session) {
-      router.push("/admin/messages");
+      router.replace("/admin/messages");
     }
   }, [router, session]);
 

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 import styled from "styled-components";
 
 const TopBar = styled.div`
@@ -38,23 +40,32 @@ const Btn = styled.button`
 `;
 
 export default function Messages() {
-  return (
-    <>
-      <h2>Notifications</h2>
-      <TopBar>
-        <span>All </span>
-        <span>mark all as read</span>
-      </TopBar>
-      <Card>
-        <h4>John Mwendwa</h4>
-        <p>This is a message to you John</p>
-      </Card>
-      <Card>
-        <h4>John Mwendwa</h4>
-        <p>This is a message to you John</p>
-      </Card>
+  const { data: session } = useSession();
 
-      <Btn>Load more...</Btn>
-    </>
-  );
+  useEffect(() => {
+    if (!session) {
+      window.location.href = "/admin/login";
+    }
+  }, [session]);
+
+  if (session)
+    return (
+      <>
+        <h2>Notifications</h2>
+        <TopBar>
+          <span>All </span>
+          <span>mark all as read</span>
+        </TopBar>
+        <Card>
+          <h4>John Mwendwa</h4>
+          <p>This is a message to you John</p>
+        </Card>
+        <Card>
+          <h4>John Mwendwa</h4>
+          <p>This is a message to you John</p>
+        </Card>
+
+        <Btn>Load more...</Btn>
+      </>
+    );
 }

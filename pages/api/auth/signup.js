@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    connectToDatabase();
+    await connectToDatabase();
 
     const hashedPassword = await hashPassword(password);
 
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       message: "User created successfully",
     });
 
-    closeConnection();
+    await closeConnection();
   } catch (err) {
     res.status(500).json({
       message: err.message,

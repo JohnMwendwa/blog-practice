@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import User from "./user";
+import Link from "next/link";
 
 const Wrapper = styled.div``;
 
@@ -10,7 +10,13 @@ export default function Users({ users = [] }) {
 
       <ol>
         {users.map((user) => (
-          <User user={user} key={user._id} />
+          <li key={user._id}>
+            <Link href={`/admin/users/${user._id}`}>
+              <a>
+                {user.firstName} {user.lastName}
+              </a>
+            </Link>
+          </li>
         ))}
       </ol>
     </Wrapper>

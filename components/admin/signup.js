@@ -1,6 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import { useSession, signIn } from "next-auth/react";
 
 const FormWrapper = styled.div`
   display: flex;
@@ -70,6 +72,15 @@ export default function Signup() {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
 
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      router.push("/admin/messages");
+    }
+  }, [router, session]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -88,11 +99,15 @@ export default function Signup() {
         confirmPassword
       );
 
-      console.log(result);
+      await signIn("credentials", {
+        email,
+        password,
+      });
     } catch (e) {
       console.log(e);
     }
   };
+
   return (
     <FormWrapper>
       <h2>Signup</h2>

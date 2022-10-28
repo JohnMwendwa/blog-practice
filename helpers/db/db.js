@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-export const connectToDatabase = () => {
+export const connectToDatabase = async () => {
   try {
-    mongoose.connect(process.env.local_db);
+    await mongoose.connect(process.env.local_db);
 
     console.log("Connected to db  successfully");
   } catch (error) {
@@ -10,9 +10,9 @@ export const connectToDatabase = () => {
   }
 };
 
-export const closeConnection = () => {
+export const closeConnection = async () => {
   try {
-    mongoose.disconnect(process.env.local_db);
+    await mongoose.disconnect(process.env.local_db);
 
     console.log("Closed connection successfully");
   } catch (error) {

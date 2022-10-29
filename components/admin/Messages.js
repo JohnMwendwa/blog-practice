@@ -47,7 +47,7 @@ export default function Messages() {
     const fetchMessages = async () => {
       const response = await fetch(`/api/contact`);
       const data = await response.json();
-      console.log(data);
+
       if (mounted) {
         setMessages(data);
       }

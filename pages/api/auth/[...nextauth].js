@@ -35,8 +35,11 @@ export default NextAuth({
 
         return {
           email: user.email,
-          isAdmin: user.isAdmin,
-          firstName: user.firstName,
+          name: {
+            isAdmin: user.isAdmin,
+            isAuthenticated: user.isAuthenticated,
+            firstName: user.firstName,
+          },
         };
       },
     }),

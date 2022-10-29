@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const Container = styled.div`
   display: flex;
@@ -28,6 +28,8 @@ const Main = styled.section`
 `;
 
 export default function Layout({ children }) {
+  const { data: session } = useSession();
+
   const logoutHandler = () => {
     signOut();
   };
@@ -40,9 +42,11 @@ export default function Layout({ children }) {
             <li>
               <Link href="/admin/messages">Messages</Link>
             </li>
-            <li>
-              <Link href="/admin/users">Users</Link>
-            </li>
+            {session.user?.name.isAdmin && (
+              <li>
+                <Link href="/admin/users">Users</Link>
+              </li>
+            )}
             <li>
               <Link href="/admin/articles">Articles</Link>
             </li>

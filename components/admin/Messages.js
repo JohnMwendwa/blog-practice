@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const TopBar = styled.div`
@@ -38,6 +39,27 @@ const Btn = styled.button`
 `;
 
 export default function Messages() {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchMessages = async () => {
+      const response = await fetch(`/api/contact`);
+      const data = await response.json();
+      console.log(data);
+      if (mounted) {
+        setMessages(data);
+      }
+    };
+
+    fetchMessages();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
     <>
       <h2>Notifications</h2>
@@ -45,14 +67,15 @@ export default function Messages() {
         <span>All </span>
         <span>mark all as read</span>
       </TopBar>
-      <Card>
-        <h4>John Mwendwa</h4>
-        <p>This is a message to you John</p>
-      </Card>
-      <Card>
-        <h4>John Mwendwa</h4>
-        <p>This is a message to you John</p>
-      </Card>
+
+      {messages.map((message) => {
+        return (
+          <Card key={message._id}>
+            <h4>{message.name}</h4>
+            <p>{message.message}</p>
+          </Card>
+        );
+      })}
 
       <Btn>Load more...</Btn>
     </>

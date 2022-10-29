@@ -70,7 +70,7 @@ export default function User() {
     };
   }, [id]);
 
-  const date = new Date(user?.createdOn).toDateString();
+  const date = new Date(user?.createdAt).toDateString();
 
   return (
     <Wrapper>

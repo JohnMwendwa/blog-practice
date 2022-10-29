@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           <Layout>
             {router.pathname === "/admin/messages" ||
             router.pathname === "/admin/users" ||
+            router.pathname === "/admin/users/[id]" ||
             router.pathname === "/admin/articles" ||
             router.pathname === "/admin/settings" ||
             router.pathname === "/admin/logout" ? (

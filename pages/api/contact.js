@@ -53,19 +53,20 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const session = getSession({ req });
-
-    if (!session.user.name.isAdmin) {
-      return res.status(401).json({
-        message: "Unauthorized access",
-      });
-    }
-
     try {
       await connectToDatabase();
     } catch (e) {
       res.status(500).json({
         error: "Failed to connect to the database!",
+      });
+    }
+
+    const session = await getSession({ req });
+
+    if (!session.user.name.isAdmin) {
+      await closeConnection();
+      return res.status(401).json({
+        message: "Unauthorized access",
       });
     }
 

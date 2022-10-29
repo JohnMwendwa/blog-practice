@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   & h2 {
@@ -44,13 +46,36 @@ const Table = styled.table`
   }
 `;
 
-export default function User({ user = {} }) {
-  const date = new Date(user.createdOn).toDateString();
+export default function User() {
+  const [user, setUser] = useState({});
+  const router = useRouter();
+  const { id } = router.query;
+
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchUser = async () => {
+      const response = await fetch(`/api/users/${id}`);
+      const data = await response.json();
+
+      if (mounted) {
+        setUser(data);
+      }
+    };
+
+    fetchUser();
+
+    return () => {
+      mounted = false;
+    };
+  }, [id]);
+
+  const date = new Date(user?.createdOn).toDateString();
 
   return (
     <Wrapper>
       <h2>
-        {user.firstName} {user.lastName}
+        {user?.firstName} {user?.lastName}
       </h2>
       <Table>
         <thead>
@@ -63,21 +88,21 @@ export default function User({ user = {} }) {
         <tbody>
           <tr>
             <td>Email</td>
-            <td>{user.email}</td>
+            <td>{user?.email}</td>
             <td>
               <button>Edit</button>
             </td>
           </tr>
           <tr>
             <td>isAdmin</td>
-            <td>{user.isAdmin ? "True" : "False"} </td>
+            <td>{user?.isAdmin ? "True" : "False"} </td>
             <td>
               <button>Edit</button>
             </td>
           </tr>
           <tr>
             <td>isAuthenticated</td>
-            <td>{user.isAuthenticated ? "True" : "False"}</td>
+            <td>{user?.isAuthenticated ? "True" : "False"}</td>
             <td>
               <button>Edit</button>
             </td>

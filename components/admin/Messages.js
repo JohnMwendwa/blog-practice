@@ -42,23 +42,15 @@ export default function Messages() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    let mounted = true;
-
-    const fetchMessages = async () => {
-      const response = await fetch(`/api/contact`);
-      const data = await response.json();
-
-      if (mounted) {
-        setMessages(data);
-      }
-    };
-
     fetchMessages();
-
-    return () => {
-      mounted = false;
-    };
   }, []);
+
+  const fetchMessages = async () => {
+    const response = await fetch(`/api/contact`);
+    const data = await response.json();
+
+    setMessages(data);
+  };
 
   return (
     <>
@@ -77,7 +69,7 @@ export default function Messages() {
         );
       })}
 
-      <Btn>Load more...</Btn>
+      <Btn onClick={fetchMessages}>Load more...</Btn>
     </>
   );
 }

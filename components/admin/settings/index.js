@@ -78,6 +78,20 @@ export default function Settings() {
         </Sidenav>
         <Details>
           <h2>Account Settings</h2>
+          <form>
+            <label htmlFor="firstname">
+              First name
+              <input type="text" placeholder="John" />
+            </label>
+            <label htmlFor="lastname">
+              Last name
+              <input type="text" placeholder="Mwendwa" />
+            </label>
+            <label htmlFor="email">
+              Email
+              <input type="text" placeholder="john@gmail.me" />
+            </label>
+          </form>
         </Details>
       </Card>
     </Container>

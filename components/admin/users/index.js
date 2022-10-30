@@ -44,7 +44,7 @@ export default function Users() {
           </li>
         ))}
       </ol>
-      <Btn>Load more...</Btn>
+      <Btn onClick={fetchUsers}>Load more...</Btn>
     </Wrapper>
   );
 }

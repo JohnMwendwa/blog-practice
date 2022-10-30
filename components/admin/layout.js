@@ -28,7 +28,9 @@ const Details = styled.div`
     color: yellow;
   }
 `;
-const Avatar = styled(Image)`
+const Avatar = styled.img`
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: #fff;
 `;
@@ -43,14 +45,34 @@ const Container = styled.div`
   height: 80vh;
 `;
 
-const Sidebar = styled.div`
+const Sidebar = styled.nav`
   background-color: white;
-  width: 150px;
   color: black;
   box-shadow: 0px 0px 5px;
 
-  & li {
-    margin: 15px auto;
+  & ul {
+    margin: 0;
+    padding: 0;
+    width: 150px;
+
+    & li {
+      list-style: none;
+      color: black;
+
+      &:hover {
+        color: blue;
+      }
+
+      & a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 10px 30px;
+      }
+    }
+    & li:first-child {
+      margin-top: 10px;
+    }
   }
 `;
 const Main = styled.section`
@@ -94,30 +116,28 @@ export default function Layout({ children }) {
 
       <Container>
         <Sidebar>
-          <nav>
-            <ul>
+          <ul>
+            <li>
+              <Link href="/admin/dashbord">Dashboard</Link>
+            </li>
+            <li>
+              <Link href="/admin/messages">Messages</Link>
+            </li>
+            {session.user?.name.isAdmin && (
               <li>
-                <Link href="/admin/dashbord">Dashboard</Link>
+                <Link href="/admin/users">Users</Link>
               </li>
-              <li>
-                <Link href="/admin/messages">Messages</Link>
-              </li>
-              {session.user?.name.isAdmin && (
-                <li>
-                  <Link href="/admin/users">Users</Link>
-                </li>
-              )}
-              <li>
-                <Link href="/admin/articles">Articles</Link>
-              </li>
-              <li>
-                <Link href="/admin/settings">Settings</Link>
-              </li>
-              <li onClick={logoutHandler}>
-                <Link href="/admin/logout">Logout</Link>
-              </li>
-            </ul>
-          </nav>
+            )}
+            <li>
+              <Link href="/admin/articles">Articles</Link>
+            </li>
+            <li>
+              <Link href="/admin/settings">Settings</Link>
+            </li>
+            <li onClick={logoutHandler}>
+              <Link href="/admin/logout">Logout</Link>
+            </li>
+          </ul>
         </Sidebar>
         <Main>{children}</Main>
       </Container>

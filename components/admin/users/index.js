@@ -2,7 +2,19 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`;
+const Btn = styled.button`
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 20px;
+  border: none;
+  cursor: pointer;
+  outline: 1px solid ${(c) => c.theme.colors.ui.secondary};
+`;
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -32,6 +44,7 @@ export default function Users() {
           </li>
         ))}
       </ol>
+      <Btn>Load more...</Btn>
     </Wrapper>
   );
 }

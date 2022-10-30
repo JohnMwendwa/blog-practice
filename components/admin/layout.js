@@ -7,21 +7,35 @@ import Footer from "../layout/footer/Footer";
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: ${(c) => c.theme.colors.ui.primary};
+  color:white;
   padding: 20px 30px;
+  color
 `;
-const Profile = styled.div``;
+const Profile = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const Details = styled.div`
+  margin-left: 10px;
+  margin-right: 20px;
+  & p {
+    margin: 0;
+  }
+  & p:last-child {
+    font-size: 12px;
+    color: yellow;
+  }
+`;
 const Avatar = styled(Image)`
-  width: 80px;
-  height: 80px;
   border-radius: 50%;
-  background-color: #333;
+  background-color: #fff;
 `;
 
 const Logo = styled.h2`
   font-family: jokerman;
   font-size: 2.5rem;
-  color: white;
   margin: 0;
 `;
 const Container = styled.div`
@@ -30,9 +44,10 @@ const Container = styled.div`
 `;
 
 const Sidebar = styled.div`
-  background-color: grey;
+  background-color: white;
   width: 150px;
-  color: white;
+  color: black;
+  box-shadow: 0px 0px 5px;
 
   & li {
     margin: 15px auto;
@@ -62,7 +77,18 @@ export default function Layout({ children }) {
       <Header>
         <Logo>TECHme</Logo>
         <Profile>
-          <h3>John Mwendwa</h3>
+          <>
+            <Avatar
+              src=""
+              alt={session.user.name.firstName}
+              width={50}
+              height={50}
+            />
+          </>
+          <Details>
+            <p>{session.user.name.firstName}</p>
+            <p>{session.user.name.isAdmin ? "Admin" : "User"}</p>
+          </Details>
         </Profile>
       </Header>
 

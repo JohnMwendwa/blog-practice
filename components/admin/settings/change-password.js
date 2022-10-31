@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -29,18 +30,37 @@ const Container = styled.div`
 `;
 
 export default function ChangePassword({ user }) {
+  const oldPasswordRef = useRef();
+  const newPasswordRef = useRef();
+  const confirmPasswordRef = useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Container>
       <h2>Change Password</h2>
-      <form>
+
+      <form onSubmit={handleSubmit}>
         <label htmlFor="oldPassword">
           Old password
-          <input type="password" placeholder="old passord" id="oldPassword" />
+          <input
+            type="password"
+            placeholder="old passord"
+            id="oldPassword"
+            ref={oldPasswordRef}
+          />
         </label>
 
         <label htmlFor="newPassword">
           New password
-          <input type="password" placeholder="new password" id="newPassword" />
+          <input
+            type="password"
+            placeholder="new password"
+            id="newPassword"
+            ref={newPasswordRef}
+          />
         </label>
 
         <label htmlFor="consfirmPassword">
@@ -49,6 +69,7 @@ export default function ChangePassword({ user }) {
             type="password"
             placeholder="confirm new password"
             id="confirmPassword"
+            ref={confirmPasswordRef}
           />
         </label>
 

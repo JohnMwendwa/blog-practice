@@ -31,8 +31,8 @@ const Details = styled.div`
 
 export default function AccountSettings({ user }) {
   const [firstName, setFirstName] = useState(`${user.firstName}`);
-  const [lastName, setLastName] = useState(`${user.firstName}`);
-  const [email, setEmail] = useState(`${user.firstName}`);
+  const [lastName, setLastName] = useState(`${user.lastName}`);
+  const [email, setEmail] = useState(`${user.email}`);
 
   return (
     <Details>

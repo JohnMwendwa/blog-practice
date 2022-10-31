@@ -35,6 +35,7 @@ export default NextAuth({
 
         return {
           email: user.email,
+          image: user.avatar,
           name: {
             isAdmin: user.isAdmin,
             isAuthenticated: user.isAuthenticated,

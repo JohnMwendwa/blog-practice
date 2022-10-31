@@ -28,8 +28,8 @@ const Container = styled.div`
   }
 `;
 
-export default function ChangePassword() {
-  recurn(
+export default function ChangePassword({ user }) {
+  return (
     <Container>
       <h2>Change Password</h2>
       <form>

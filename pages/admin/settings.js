@@ -18,10 +18,6 @@ export async function getServerSideProps(context) {
   } else {
     return {
       props: { session },
-      redirect: {
-        destination: "/admin/settings",
-        permanent: true,
-      },
     };
   }
 }

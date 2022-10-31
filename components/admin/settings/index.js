@@ -55,6 +55,26 @@ const Sidenav = styled.nav`
 
 const Details = styled.div`
   padding-left: 20px;
+  margin: 0 auto;
+
+  & label {
+    display: block;
+
+    & input {
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      display: block;
+    }
+  }
+
+  & button {
+    width: 100%;
+    padding: 8px 0;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
 `;
 
 export default function Settings() {
@@ -83,16 +103,17 @@ export default function Settings() {
           <form>
             <label htmlFor="firstname">
               First name
-              <input type="text" placeholder="John" />
+              <input type="text" placeholder="John" id="firstname" />
             </label>
             <label htmlFor="lastname">
               Last name
-              <input type="text" placeholder="Mwendwa" />
+              <input type="text" placeholder="Mwendwa" id="lastname" />
             </label>
             <label htmlFor="email">
               Email
-              <input type="text" placeholder="john@gmail.me" />
+              <input type="email" id="email" placeholder="john@gmail.me" />
             </label>
+            <button>Update</button>
           </form>
         </Details>
       </Card>

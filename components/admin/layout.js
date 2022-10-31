@@ -119,13 +119,16 @@ export default function Layout({ children }) {
             <li>
               <Link href="/admin/dashbord">Dashboard</Link>
             </li>
-            <li>
-              <Link href="/admin/messages">Messages</Link>
-            </li>
+
             {session.user?.name.isAdmin && (
-              <li>
-                <Link href="/admin/users">Users</Link>
-              </li>
+              <>
+                <li>
+                  <Link href="/admin/messages">Messages</Link>
+                </li>
+                <li>
+                  <Link href="/admin/users">Users</Link>
+                </li>
+              </>
             )}
             <li>
               <Link href="/admin/articles">Articles</Link>

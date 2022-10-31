@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import AccountSettings from "./account-settings";
+import ChangePassword from "./change-password";
 
 const Container = styled.div``;
 const Banner = styled.div`
@@ -79,36 +80,6 @@ const Sidenav = styled.nav`
   }
 `;
 
-const Details = styled.div`
-  padding-left: 20px;
-  margin: 0 auto;
-
-  & label {
-    display: block;
-
-    & input {
-      padding: 5px 10px;
-      margin-bottom: 10px;
-      display: block;
-      border: none;
-      outline: 1px solid;
-    }
-  }
-
-  & button {
-    width: 100%;
-    padding: 8px 0;
-    margin-top: 5px;
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-`;
-
-const ChangePassword = styled(Details)``;
-
 export default function Settings() {
   const [user, setUser] = useState({});
 
@@ -171,43 +142,9 @@ export default function Settings() {
           </ul>
         </Sidenav>
 
-        {isAccount && <AccountSettings />}
+        {isAccount && <AccountSettings user={user} />}
 
-        {isPassword && (
-          <ChangePassword>
-            <h2>Change Password</h2>
-            <form>
-              <label htmlFor="oldPassword">
-                Old password
-                <input
-                  type="password"
-                  placeholder="old passord"
-                  id="oldPassword"
-                />
-              </label>
-
-              <label htmlFor="newPassword">
-                New password
-                <input
-                  type="password"
-                  placeholder="new password"
-                  id="newPassword"
-                />
-              </label>
-
-              <label htmlFor="consfirmPassword">
-                Confirm new password
-                <input
-                  type="password"
-                  placeholder="confirm new password"
-                  id="confirmPassword"
-                />
-              </label>
-
-              <button>Update</button>
-            </form>
-          </ChangePassword>
-        )}
+        {isPassword && <ChangePassword user={user} />}
       </Card>
     </Container>
   );

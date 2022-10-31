@@ -28,7 +28,7 @@ const Details = styled.div`
   }
 `;
 
-export default function AccountSettings() {
+export default function AccountSettings({ user }) {
   return (
     <Details>
       <h2>Account Settings</h2>

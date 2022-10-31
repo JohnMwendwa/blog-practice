@@ -58,6 +58,7 @@ export default function ChangePassword({ user }) {
             type="password"
             placeholder="old passord"
             id="oldPassword"
+            required
             ref={oldPasswordRef}
           />
         </label>
@@ -68,6 +69,7 @@ export default function ChangePassword({ user }) {
             type="password"
             placeholder="new password"
             id="newPassword"
+            required
             ref={newPasswordRef}
           />
         </label>
@@ -77,6 +79,7 @@ export default function ChangePassword({ user }) {
           <input
             type="password"
             placeholder="confirm new password"
+            required
             id="confirmPassword"
             ref={confirmPasswordRef}
           />

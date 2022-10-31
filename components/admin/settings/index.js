@@ -18,6 +18,8 @@ const Banner = styled.div`
 const Card = styled.div`
   display: flex;
   width: 90%;
+  max-width: 700px;
+  min-width: 350px;
   height: 300px;
   border-radius: 5px;
   margin-top: -30px;

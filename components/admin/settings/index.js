@@ -101,6 +101,7 @@ const Details = styled.div`
     color: white;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
   }
 `;
 

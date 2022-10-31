@@ -153,15 +153,15 @@ export default function Settings() {
           <form>
             <label htmlFor="firstname">
               First name
-              <input type="text" placeholder={user.firstName} id="firstname" />
+              <input type="text" value={user.firstName} id="firstname" />
             </label>
             <label htmlFor="lastname">
               Last name
-              <input type="text" placeholder={user.lastName} id="lastname" />
+              <input type="text" value={user.lastName} id="lastname" />
             </label>
             <label htmlFor="email">
               Email
-              <input type="email" id="email" placeholder={user.email} />
+              <input type="email" id="email" value={user.email} />
             </label>
             <button>Update</button>
           </form>

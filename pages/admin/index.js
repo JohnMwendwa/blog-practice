@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
     return {
       props: { session },
       redirect: {
-        destination: "/admin/messages",
+        destination: "/admin/dashboard",
         permanent: true,
       },
     };

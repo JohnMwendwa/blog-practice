@@ -39,17 +39,41 @@ const Sidenav = styled.nav`
   display: flex;
   flex-direction: column;
   width: 200px;
-  padding: 20px;
-  border-right: 1px solid black;
+  padding: 20px 0;
+  border-right: 1px solid #ddd;
 
   & p {
     font-size: 1.15rem;
-    text-align: center;
     margin: 3px 0;
+    padding-left: 20px;
   }
 
   & ul {
     margin: 0;
+    padding: 0;
+
+    & li:first-child {
+      border-top: 1px solid #ddd;
+      margin-top: 10px;
+    }
+
+    & li {
+      list-style: none;
+
+      border-bottom: 1px solid #ddd;
+
+      & :hover {
+        background-color: #ddd;
+      }
+
+      & a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 10px 0;
+        padding-left: 20px;
+      }
+    }
   }
 `;
 
@@ -64,6 +88,8 @@ const Details = styled.div`
       padding: 5px 10px;
       margin-bottom: 10px;
       display: block;
+      border: none;
+      outline: 1px solid;
     }
   }
 

@@ -115,6 +115,8 @@ export default function Settings() {
     setIsAccount(false);
   };
 
+  const isUser = Object.keys(user).length !== 0;
+
   return (
     <Container>
       <Banner>
@@ -142,7 +144,7 @@ export default function Settings() {
           </ul>
         </Sidenav>
 
-        {isAccount && <AccountSettings user={user} />}
+        {isAccount && isUser && <AccountSettings user={user} />}
 
         {isPassword && <ChangePassword user={user} />}
       </Card>

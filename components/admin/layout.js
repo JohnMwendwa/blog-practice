@@ -118,7 +118,7 @@ export default function Layout({ children }) {
         <Sidebar>
           <ul>
             <li>
-              <Link href="/admin/dashbord">Dashboard</Link>
+              <Link href="/admin/dashboard">Dashboard</Link>
             </li>
 
             {session.user?.name.isAdmin && (

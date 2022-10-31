@@ -93,6 +93,7 @@ export default function Layout({ children }) {
   const logoutHandler = () => {
     signOut();
   };
+
   return (
     <>
       <Header>
@@ -100,7 +101,7 @@ export default function Layout({ children }) {
         <Profile>
           <>
             <Avatar
-              src={session.user.image}
+              src={session.user.image.data[0]}
               alt={session.user.name.firstName}
               width={50}
               height={50}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
@@ -104,6 +105,27 @@ const Details = styled.div`
 `;
 
 export default function Settings() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchUser = async () => {
+      const response = await fetch(`/api/users/user`);
+      const data = await response.json();
+
+      if (mounted) {
+        setUser(data);
+      }
+    };
+
+    fetchUser();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
     <Container>
       <Banner>
@@ -112,7 +134,7 @@ export default function Settings() {
       <Card>
         <Sidenav>
           <>
-            <Avatar src="" alt="user" width={80} height={80} />
+            <Avatar src="" alt={user.firstName} width={80} height={80} />
             <p>John Mwendwa</p>
           </>
           <ul>

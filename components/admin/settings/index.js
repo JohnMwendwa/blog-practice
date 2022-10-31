@@ -97,6 +97,7 @@ const Details = styled.div`
   & button {
     width: 100%;
     padding: 8px 0;
+    margin-top: 5px;
     background-color: blue;
     color: white;
     border: none;
@@ -142,10 +143,10 @@ export default function Settings() {
           </>
           <ul>
             <li>
-              <Link href="">Account</Link>
+              <Link href="/admin/settings/#account">Account</Link>
             </li>
             <li>
-              <Link href="">Password</Link>
+              <Link href="/admin/settings/#password">Password</Link>
             </li>
           </ul>
         </Sidenav>

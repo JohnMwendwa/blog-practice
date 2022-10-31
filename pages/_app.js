@@ -20,12 +20,12 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       </Head>
       <SearchContextProvider>
         <SessionProvider session={session}>
-          {router.pathname === "/admin/messages" ||
+          {router.pathname === "/admin/dashboard" ||
+          router.pathname === "/admin/messages" ||
           router.pathname === "/admin/users" ||
           router.pathname === "/admin/users/[id]" ||
           router.pathname === "/admin/articles" ||
-          router.pathname === "/admin/settings" ||
-          router.pathname === "/admin/logout" ? (
+          router.pathname === "/admin/settings" ? (
             <AdminLayout>
               <Component {...pageProps} />
             </AdminLayout>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import AccountSettings from "./account-settings";
 
 const Container = styled.div``;
 const Banner = styled.div`
@@ -110,6 +111,7 @@ const ChangePassword = styled(Details)``;
 
 export default function Settings() {
   const [user, setUser] = useState({});
+
   const [isAccount, setIsAccount] = useState(true);
   const [isPassword, setIsPassword] = useState(false);
 
@@ -169,26 +171,7 @@ export default function Settings() {
           </ul>
         </Sidenav>
 
-        {isAccount && (
-          <Details>
-            <h2>Account Settings</h2>
-            <form>
-              <label htmlFor="firstname">
-                First name
-                <input type="text" value={user.firstName} id="firstname" />
-              </label>
-              <label htmlFor="lastname">
-                Last name
-                <input type="text" value={user.lastName} id="lastname" />
-              </label>
-              <label htmlFor="email">
-                Email
-                <input type="email" id="email" value={user.email} />
-              </label>
-              <button>Update</button>
-            </form>
-          </Details>
-        )}
+        {isAccount && <AccountSettings />}
 
         {isPassword && (
           <ChangePassword>

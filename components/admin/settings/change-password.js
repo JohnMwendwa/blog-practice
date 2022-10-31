@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -33,9 +33,18 @@ export default function ChangePassword({ user }) {
   const oldPasswordRef = useRef();
   const newPasswordRef = useRef();
   const confirmPasswordRef = useRef();
+  const [error, setError] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const oldPassword = oldPasswordRef.current.value;
+    const newPassword = newPasswordRef.current.value;
+    const confirmPassword = confirmPasswordRef.current.value;
+
+    if (newPassword !== confirmPassword) {
+      setError("New password and confirm password don't match!");
+      return;
+    }
   };
 
   return (

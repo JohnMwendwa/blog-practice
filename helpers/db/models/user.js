@@ -35,7 +35,11 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Password is required"],
     },
-    avatar: Buffer,
+
+    avatar: {
+      type: Buffer,
+      default: "",
+    },
   },
   { timestamps: true }
 );

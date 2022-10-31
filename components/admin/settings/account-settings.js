@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Details = styled.div`
@@ -29,23 +30,42 @@ const Details = styled.div`
 `;
 
 export default function AccountSettings({ user }) {
+  const [firstName, setFirstName] = useState(`${user.firstName}`);
+  const [lastName, setLastName] = useState(`${user.firstName}`);
+  const [email, setEmail] = useState(`${user.firstName}`);
+
   return (
     <Details>
       <h2>Account Settings</h2>
       <form>
         <label htmlFor="firstname">
           First name
-          <input type="text" value={user.firstName} id="firstname" />
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            id="firstname"
+          />
         </label>
 
         <label htmlFor="lastname">
           Last name
-          <input type="text" value={user.lastName} id="lastname" />
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            id="lastname"
+          />
         </label>
 
         <label htmlFor="email">
           Email
-          <input type="email" id="email" value={user.email} />
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </label>
 
         <button>Update</button>

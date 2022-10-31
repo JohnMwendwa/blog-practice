@@ -125,7 +125,12 @@ export default function Settings() {
       <Card>
         <Sidenav>
           <>
-            <Avatar src="" alt={user.firstName} width={80} height={80} />
+            <Avatar
+              src={user.avatar}
+              alt={user.firstName}
+              width={80}
+              height={80}
+            />
             <p>
               {user.firstName} {user.lastName}
             </p>

@@ -135,7 +135,9 @@ export default function Settings() {
         <Sidenav>
           <>
             <Avatar src="" alt={user.firstName} width={80} height={80} />
-            <p>John Mwendwa</p>
+            <p>
+              {user.firstName} {user.lastName}
+            </p>
           </>
           <ul>
             <li>
@@ -151,15 +153,15 @@ export default function Settings() {
           <form>
             <label htmlFor="firstname">
               First name
-              <input type="text" placeholder="John" id="firstname" />
+              <input type="text" placeholder={user.firstName} id="firstname" />
             </label>
             <label htmlFor="lastname">
               Last name
-              <input type="text" placeholder="Mwendwa" id="lastname" />
+              <input type="text" placeholder={user.lastName} id="lastname" />
             </label>
             <label htmlFor="email">
               Email
-              <input type="email" id="email" placeholder="john@gmail.me" />
+              <input type="email" id="email" placeholder={user.email} />
             </label>
             <button>Update</button>
           </form>

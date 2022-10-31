@@ -106,8 +106,12 @@ const Details = styled.div`
   }
 `;
 
+const ChangePassword = styled(Details)``;
+
 export default function Settings() {
   const [user, setUser] = useState({});
+  const [isAccount, setIsAccount] = useState(true);
+  const [isPassword, setIsPassword] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -128,6 +132,16 @@ export default function Settings() {
     };
   }, []);
 
+  const AccountHandler = () => {
+    setIsAccount(true);
+    setIsPassword(false);
+  };
+
+  const passwordHandler = () => {
+    setIsPassword(true);
+    setIsAccount(false);
+  };
+
   return (
     <Container>
       <Banner>
@@ -142,32 +156,75 @@ export default function Settings() {
             </p>
           </>
           <ul>
-            <li>
-              <Link href="/admin/settings/#account">Account</Link>
+            <li onClick={AccountHandler}>
+              <Link href="" scroll={false}>
+                Account
+              </Link>
             </li>
-            <li>
-              <Link href="/admin/settings/#password">Password</Link>
+            <li onClick={passwordHandler}>
+              <Link href="" scroll={false}>
+                Password
+              </Link>
             </li>
           </ul>
         </Sidenav>
-        <Details>
-          <h2>Account Settings</h2>
-          <form>
-            <label htmlFor="firstname">
-              First name
-              <input type="text" value={user.firstName} id="firstname" />
-            </label>
-            <label htmlFor="lastname">
-              Last name
-              <input type="text" value={user.lastName} id="lastname" />
-            </label>
-            <label htmlFor="email">
-              Email
-              <input type="email" id="email" value={user.email} />
-            </label>
-            <button>Update</button>
-          </form>
-        </Details>
+
+        {isAccount && (
+          <Details>
+            <h2>Account Settings</h2>
+            <form>
+              <label htmlFor="firstname">
+                First name
+                <input type="text" value={user.firstName} id="firstname" />
+              </label>
+              <label htmlFor="lastname">
+                Last name
+                <input type="text" value={user.lastName} id="lastname" />
+              </label>
+              <label htmlFor="email">
+                Email
+                <input type="email" id="email" value={user.email} />
+              </label>
+              <button>Update</button>
+            </form>
+          </Details>
+        )}
+
+        {isPassword && (
+          <ChangePassword>
+            <h2>Change Password</h2>
+            <form>
+              <label htmlFor="oldPassword">
+                Old password
+                <input
+                  type="password"
+                  placeholder="old passord"
+                  id="oldPassword"
+                />
+              </label>
+
+              <label htmlFor="newPassword">
+                New password
+                <input
+                  type="password"
+                  placeholder="new password"
+                  id="newPassword"
+                />
+              </label>
+
+              <label htmlFor="consfirmPassword">
+                Confirm new password
+                <input
+                  type="password"
+                  placeholder="confirm new password"
+                  id="confirmPassword"
+                />
+              </label>
+
+              <button>Update</button>
+            </form>
+          </ChangePassword>
+        )}
       </Card>
     </Container>
   );

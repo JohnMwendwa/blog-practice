@@ -60,6 +60,16 @@ userSchema.post("update", function (error, res, next) {
   }
 });
 
+// Hide private and sensitive data
+userSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject();
+
+  delete userObject.password;
+
+  return userObject;
+};
+
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;

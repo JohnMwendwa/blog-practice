@@ -71,8 +71,6 @@ export default function Login() {
       email,
       password,
     });
-
-    console.log(result);
   };
 
   return (

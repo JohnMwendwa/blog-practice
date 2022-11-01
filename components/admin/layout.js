@@ -90,8 +90,8 @@ const Main = styled.section`
 export default function Layout({ children }) {
   const { data: session } = useSession();
 
-  const logoutHandler = () => {
-    signOut();
+  const logoutHandler = async () => {
+    await signOut();
   };
 
   return (
@@ -138,7 +138,7 @@ export default function Layout({ children }) {
               <Link href="/admin/settings">Settings</Link>
             </li>
             <li onClick={logoutHandler}>
-              <Link href="/admin/logout">Logout</Link>
+              <Link href="">Logout</Link>
             </li>
           </ul>
         </Sidebar>

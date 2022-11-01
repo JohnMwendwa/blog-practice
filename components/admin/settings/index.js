@@ -126,7 +126,7 @@ export default function Settings() {
         <Sidenav>
           <>
             <Avatar
-              src={user.avatar}
+              src={user.avatar || null}
               alt={user.firstName}
               width={80}
               height={80}

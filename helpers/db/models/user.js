@@ -65,6 +65,10 @@ userSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
 
+  if (!userObject.isAdmin) {
+    delete userObject.isAdmin;
+  }
+
   delete userObject.password;
 
   return userObject;

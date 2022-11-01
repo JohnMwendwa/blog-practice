@@ -5,7 +5,7 @@ import AccountSettings from "./account-settings";
 import ChangePassword from "./change-password";
 
 const Container = styled.div``;
-const Banner = styled.div`
+export const Banner = styled.div`
   height: 120px;
   background-color: blue;
   width: calc(100% + 40px);

@@ -17,6 +17,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       <Head>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <title>John Mwendwa Blog - A blog for curious developers</title>
+        <meta
+          name="description"
+          content="Find articles about javascript, reactjs, nextjs, nodejs, mongodb and more..."
+        />
       </Head>
       <SearchContextProvider>
         <SessionProvider session={session}>

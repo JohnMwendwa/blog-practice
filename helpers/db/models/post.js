@@ -5,7 +5,7 @@ import { JSDOM } from "jsdom";
 
 const { Schema } = mongoose;
 const window = new JSDOM("").window;
-const purify = DOMPurify.addHook(window);
+const purify = DOMPurify(window);
 
 const postSchema = new Schema({
   title: {

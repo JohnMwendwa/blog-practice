@@ -131,9 +131,18 @@ export default function Layout({ children }) {
                 </li>
               </>
             )}
-            <li>
-              <Link href="/admin/articles">Articles</Link>
-            </li>
+
+            {session.user.name.isAuthenticated && (
+              <>
+                <li>
+                  <Link href="/admin/articles">Articles</Link>
+                </li>
+                <li>
+                  <Link href="/admin/comments">Comments</Link>
+                </li>
+              </>
+            )}
+
             <li>
               <Link href="/admin/settings">Settings</Link>
             </li>

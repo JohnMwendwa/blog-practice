@@ -44,6 +44,16 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
+// DELETE user comments after a user deletes their account
+userSchema.pre("remove", async function (next) {
+  const user = this;
+  const Comment = mongoose.model("Comment");
+
+  await Comment.deleteMany({ author: user._id });
+
+  next();
+});
+
 userSchema.post("save", function (error, doc, next) {
   if (error.name === "MongoServerError" && error.code === 11000) {
     next(new Error("Email already exists!"));

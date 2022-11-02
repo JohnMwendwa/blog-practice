@@ -23,8 +23,14 @@ const postSchema = new Schema({
     type: String,
     required: [true, "Your article body can't be empty"],
   },
-  nLikes: Number,
-  nComments: Number,
+  nLikes: {
+    type: Number,
+    default: 0,
+  },
+  nComments: {
+    type: Number,
+    default: 0,
+  },
 });
 
 postSchema.pre("validate", async function (next) {

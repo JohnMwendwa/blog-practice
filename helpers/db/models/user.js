@@ -49,6 +49,13 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
+//Create a virtual field for posts
+userSchema.virtual("posts", {
+  ref: "Post",
+  localField: "_id",
+  foreignField: "author",
+});
+
 userSchema.pre("validate", function (next) {
   this.firstName = purify.sanitize(this.firstName);
   this.lastName = purify.sanitize(this.lastName);

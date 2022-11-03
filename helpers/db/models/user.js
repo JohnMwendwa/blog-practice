@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import DOMPurify from "dompurify";
+import { JSDOM } from "jsdom";
+
+const window = new JSDOM("").window;
+const purify = DOMPurify(window);
 const { Schema } = mongoose;
 
 const userSchema = new Schema(
@@ -43,6 +48,13 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
+userSchema.pre("validate", function (next) {
+  this.firstName = purify.sanitize(this.firstName);
+  this.lastName = purify.sanitize(this.lastName);
+  this.email = purify.sanitize(this.email);
+  next();
+});
 
 // DELETE user comments after a user deletes their account
 userSchema.pre("remove", async function (next) {

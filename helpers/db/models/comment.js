@@ -21,6 +21,11 @@ const commentSchema = new Schema(
       type: String,
       required: [true, "Name is required"],
     },
+    post: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "Post",
+    },
   },
   {
     timestamps: {

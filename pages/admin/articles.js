@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-import Articles from "../../components/admin/articles";
+import Articles from "../../components/admin/articles/index";
 
 export default function articles() {
   return <Articles />;

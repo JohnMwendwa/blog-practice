@@ -35,9 +35,9 @@ const postSchema = new Schema({
 
 postSchema.pre("validate", async function (next) {
   const post = this;
-  if (post.markdown) {
-    post.markdown = purify.sanitize(marked.parse(post.markdown));
-  }
+  post.title = purify.sanitize(post.title);
+  post.description = purify.sanitize(post.title);
+  post.markdown = purify.sanitize(post.markdown);
   next();
 });
 

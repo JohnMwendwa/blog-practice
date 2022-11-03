@@ -22,7 +22,13 @@ const replySchema = new Schema(
       type: String,
       required: [true, "Name is required"],
     },
+    comment: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "Comment",
+    },
   },
+
   {
     timestamps: {
       createdAt: "date_uploaded",

@@ -6,31 +6,43 @@ const { Schema } = mongoose;
 const window = new JSDOM("").window;
 const purify = DOMPurify(window);
 
-const postSchema = new Schema({
-  title: {
-    type: String,
-    required: [true, "Your article must have a title"],
-    trim: true,
-    unique: true,
+const postSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: [true, "Your article must have a title"],
+      trim: true,
+      unique: true,
+    },
+    description: {
+      type: String,
+      required: [true, "Your article must have a desription"],
+      trim: true,
+    },
+    markdown: {
+      type: String,
+      required: [true, "Your article body can't be empty"],
+    },
+    category: {
+      type: String,
+      required: [true, "Please add article category"],
+    },
+    nLikes: {
+      type: Number,
+      default: 0,
+    },
+    nComments: {
+      type: Number,
+      default: 0,
+    },
   },
-  description: {
-    type: String,
-    required: [true, "Your article must have a desription"],
-    trim: true,
-  },
-  markdown: {
-    type: String,
-    required: [true, "Your article body can't be empty"],
-  },
-  nLikes: {
-    type: Number,
-    default: 0,
-  },
-  nComments: {
-    type: Number,
-    default: 0,
-  },
-});
+  {
+    timestamps: {
+      createdAt: "date_uploaded",
+      updatedAt: "date_modified",
+    },
+  }
+);
 
 postSchema.pre("validate", async function (next) {
   const post = this;

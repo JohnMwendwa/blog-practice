@@ -49,6 +49,12 @@ const postSchema = new Schema(
   }
 );
 
+postSchema.virtual("comments", {
+  ref: "Comment",
+  localField: "_id",
+  foreignField: "post",
+});
+
 postSchema.pre("validate", async function (next) {
   const post = this;
   post.title = purify.sanitize(post.title);

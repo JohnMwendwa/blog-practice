@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const Btn = styled.button`
+export const Btn = styled.button`
   padding: 5px 10px;
   margin-bottom: 20px;
   border: none;

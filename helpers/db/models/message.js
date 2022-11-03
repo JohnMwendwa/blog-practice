@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import DOMPurify from "dompurify";
+import { JSDOM } from "jsdom";
+
 const { Schema } = mongoose;
+const window = new JSDOM("").window;
+const purify = DOMPurify(window);
 
 const messageSchema = new Schema(
   {
@@ -34,6 +39,13 @@ const messageSchema = new Schema(
   },
   { timestamps: true }
 );
+
+messageSchema.pre("validate", function (next) {
+  this.email = purify.sanitize(this.email);
+  this.name = purify.sanitize(this.name);
+  this.message = purify.sanitize(this.message);
+  next();
+});
 
 const Message =
   mongoose.models.Message || mongoose.model("Message", messageSchema);

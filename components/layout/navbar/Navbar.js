@@ -108,6 +108,11 @@ export default function Navbar() {
               <a title="Go to contact page"> Contact</a>
             </Link>
           </ListItem>
+          <ListItem>
+            <Link href="/admin">
+              <a title="Go to admin page"> Admin</a>
+            </Link>
+          </ListItem>
         </ListItems>
       </nav>
     </Header>

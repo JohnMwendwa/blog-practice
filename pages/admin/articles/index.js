@@ -15,6 +15,13 @@ export async function getServerSideProps(context) {
         permanent: false,
       },
     };
+  } else if (!session.user.name.isAuthenticated) {
+    return {
+      redirect: {
+        destination: "/admin/dashboard",
+        permanent: false,
+      },
+    };
   } else {
     return {
       props: { session },

@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
+import DOMPurify from "dompurify";
+import { JSDOM } from "jsdom";
+
 const { Schema } = mongoose;
+const window = new JSDOM("").window;
+const purify = DOMPurify(window);
 
 const replySchema = new Schema(
   {
@@ -25,6 +30,13 @@ const replySchema = new Schema(
     },
   }
 );
+
+replySchema.pre("validate", function (next) {
+  this.email = purify.sanitize(this.email);
+  this.name = purify.sanitize(this.name);
+  this.text = purify.sanitize(this.text);
+  next();
+});
 
 const Reply = mongoose.models.Reply || mongoose.model("Reply", replySchema);
 

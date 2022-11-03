@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -22,6 +23,24 @@ export const Btn = styled.button`
 `;
 
 export default function Articles() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      fethPosts();
+    }
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const fethPosts = async () => {
+    const res = await fetch("/api/posts");
+    const data = await res.json();
+    setPosts(data);
+  };
+
   return (
     <Wrapper>
       <h2>My Articles</h2>

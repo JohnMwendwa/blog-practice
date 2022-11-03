@@ -35,6 +35,12 @@ const commentSchema = new Schema(
   }
 );
 
+commentSchema.virtual("replies", {
+  ref: "Reply",
+  localField: "_id",
+  foreignField: "comment",
+});
+
 commentSchema.pre("validate", function (next) {
   this.text = purify.sanitize(this.text);
   this.email = purify.sanitize(this.email);

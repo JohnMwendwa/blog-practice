@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
+import { JSDOM } from "jsdom";
+
 const { Schema } = mongoose;
+const window = new JSDOM("").window;
+const purify = DOMPurify(window);
 
 const commentSchema = new Schema(
   {
@@ -25,6 +29,13 @@ const commentSchema = new Schema(
     },
   }
 );
+
+commentSchema.pre("validate", function (next) {
+  this.text = purify.sanitize(this.text);
+  this.email = purify.sanitize(this.email);
+  this.name = purify.sanitize(this.name);
+  next();
+});
 
 const Comment =
   mongoose.models.Comment || mongoose.model("Comment", commentSchema);

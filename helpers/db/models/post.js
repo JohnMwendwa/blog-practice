@@ -23,6 +23,11 @@ const postSchema = new Schema(
       type: String,
       required: [true, "Your article body can't be empty"],
     },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: [true, "Author is required"],
+      ref: "User",
+    },
     category: {
       type: String,
       required: [true, "Please add article category"],

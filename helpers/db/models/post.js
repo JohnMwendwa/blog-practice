@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { marked } from "marked";
 import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
 

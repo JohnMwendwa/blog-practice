@@ -14,6 +14,23 @@ const Form = styled.form`
     margin-bottom: 20px;
     width: 100%;
   }
+
+  & label:first-child {
+    & div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 300px;
+      height: 170px;
+      outline: 2px dashed #ddd;
+      margin: 0 auto;
+    }
+
+    & input {
+      display: none;
+    }
+  }
+
   & input {
     display: block;
     width: 100%;
@@ -48,6 +65,8 @@ const Button = styled(Btn)`
 `;
 const CancelBtn = styled(Button)`
   background-color: grey;
+  margin-right: 10px;
+  font-size: 1rem;
 `;
 
 export default function NewArticle() {
@@ -55,6 +74,11 @@ export default function NewArticle() {
     <Wrapper>
       <h2>New Article</h2>
       <Form>
+        <label htmlFor="image">
+          <div>
+            <input type="file" id="image" />
+          </div>
+        </label>
         <label htmlFor="title">
           Title
           <input type="text" placeholder="Title" />

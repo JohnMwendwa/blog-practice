@@ -106,16 +106,21 @@ export default function NewArticle() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Wrapper>
       <h2>New Article</h2>
 
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <label htmlFor="image">
           <div>
             {photo && <img src={photo} alt="me" width={300} height={170} />}
           </div>
           <input
+            required
             type="file"
             id="image"
             accept="image/*"
@@ -124,7 +129,7 @@ export default function NewArticle() {
         </label>
         <label htmlFor="title">
           Title
-          <input type="text" placeholder="Title" />
+          <input type="text" placeholder="Title" required />
         </label>
         <label htmlFor="desc">
           Description
@@ -133,10 +138,12 @@ export default function NewArticle() {
             cols="30"
             rows="3"
             placeholder="Description"
+            required
           ></textarea>
         </label>
         <label htmlFor="markdown">
-          Markdown <textarea id="markdown" cols="60" rows="10"></textarea>
+          Markdown{" "}
+          <textarea id="markdown" cols="60" rows="10" required></textarea>
         </label>
         <Link href="/admin/articles">
           <a>

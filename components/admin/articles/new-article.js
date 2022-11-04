@@ -2,6 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { Btn } from ".";
+import Image from "next/image";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -17,10 +18,10 @@ const Form = styled.form`
   }
 
   & label:first-child {
+    width: 300px;
+    height: 170px;
+
     & div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       width: 300px;
       height: 170px;
       outline: 2px dashed #ddd;
@@ -87,20 +88,7 @@ export default function NewArticle() {
     let file = e.target.files;
 
     if (file.length) {
-      let imgSrc = URL.createObjectURL(file[0]);
-
-      if (window.onload) {
-        console.log("reloaded");
-        URL.revokeObjectURL(imgSrc);
-      }
-
-      console.log(imgSrc);
-      setPhoto(imgSrc);
-
-      const fd = new FormData();
-      fd.append("image", file[0], file[0].name);
-
-      console.log(fd);
+      setPhoto(file[0]);
     } else {
       setPhoto(null);
     }
@@ -108,6 +96,9 @@ export default function NewArticle() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const fd = new FormData();
+    fd.append("image", photo, photo.name);
   };
 
   return (
@@ -117,7 +108,14 @@ export default function NewArticle() {
       <Form onSubmit={handleSubmit}>
         <label htmlFor="image">
           <div>
-            {photo && <img src={photo} alt="me" width={300} height={170} />}
+            {photo && (
+              <Image
+                src={window.URL.createObjectURL(photo)}
+                alt={photo.name}
+                width={300}
+                height={170}
+              />
+            )}
           </div>
           <input
             required
@@ -127,10 +125,12 @@ export default function NewArticle() {
             onChange={handleFileUpload}
           />
         </label>
+
         <label htmlFor="title">
           Title
           <input type="text" placeholder="Title" required />
         </label>
+
         <label htmlFor="desc">
           Description
           <textarea
@@ -141,15 +141,18 @@ export default function NewArticle() {
             required
           ></textarea>
         </label>
+
         <label htmlFor="markdown">
           Markdown{" "}
           <textarea id="markdown" cols="60" rows="10" required></textarea>
         </label>
+
         <Link href="/admin/articles">
           <a>
             <CancelBtn>Cancel</CancelBtn>
           </a>
         </Link>
+
         <Button type="submit">Save</Button>
       </Form>
     </Wrapper>

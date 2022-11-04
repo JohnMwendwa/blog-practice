@@ -8,6 +8,10 @@ const purify = DOMPurify(window);
 
 const postSchema = new Schema(
   {
+    image: {
+      type: Buffer,
+      required: [true, "You must upload an image for your article"],
+    },
     title: {
       type: String,
       required: [true, "Your article must have a title"],
@@ -28,6 +32,7 @@ const postSchema = new Schema(
       required: [true, "Author is required"],
       ref: "User",
     },
+
     category: {
       type: String,
       required: [true, "Please add article category"],

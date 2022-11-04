@@ -80,6 +80,7 @@ const CancelBtn = styled(Button)`
 
 export default function NewArticle() {
   const [photo, setPhoto] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleFileUpload = (e) => {
     console.log(e.target.files[0]);

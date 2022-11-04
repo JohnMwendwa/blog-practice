@@ -27,7 +27,15 @@ const Form = styled.form`
     }
 
     & input {
-      display: none;
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+    }
+
+    & input:is(:focus, :focus-within) + label {
+      outline: thin dotted;
     }
   }
 
@@ -73,11 +81,11 @@ export default function NewArticle() {
   return (
     <Wrapper>
       <h2>New Article</h2>
+
       <Form>
         <label htmlFor="image">
-          <div>
-            <input type="file" id="image" />
-          </div>
+          <div></div>
+          <input type="file" id="image" accept="image/*" />
         </label>
         <label htmlFor="title">
           Title

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { Btn } from ".";
@@ -78,14 +79,47 @@ const CancelBtn = styled(Button)`
 `;
 
 export default function NewArticle() {
+  const [photo, setPhoto] = useState(null);
+
+  const handleFileUpload = (e) => {
+    console.log(e.target.files[0]);
+    let file = e.target.files;
+
+    if (file.length) {
+      let imgSrc = URL.createObjectURL(file[0]);
+
+      if (window.onload) {
+        console.log("reloaded");
+        URL.revokeObjectURL(imgSrc);
+      }
+
+      console.log(imgSrc);
+      setPhoto(imgSrc);
+
+      const fd = new FormData();
+      fd.append("image", file[0], file[0].name);
+
+      console.log(fd);
+    } else {
+      setPhoto(null);
+    }
+  };
+
   return (
     <Wrapper>
       <h2>New Article</h2>
 
       <Form>
         <label htmlFor="image">
-          <div></div>
-          <input type="file" id="image" accept="image/*" />
+          <div>
+            {photo && <img src={photo} alt="me" width={300} height={170} />}
+          </div>
+          <input
+            type="file"
+            id="image"
+            accept="image/*"
+            onChange={handleFileUpload}
+          />
         </label>
         <label htmlFor="title">
           Title

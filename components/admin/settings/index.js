@@ -178,7 +178,7 @@ export default function Settings() {
 
   const changeProfile = async (e) => {
     const fd = new FormData();
-    fd.append("image", photo);
+    fd.append("avatar", photo);
 
     await fetch("/api/users/profile", {
       method: "POST",

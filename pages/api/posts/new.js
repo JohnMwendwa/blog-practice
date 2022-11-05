@@ -35,6 +35,7 @@ const handler = nextConnect({
       }
 
       if (!session.user.name.isAuthenticated) {
+        await closeConnection();
         res.status(401).json({ message: "Unauthaurized access!" });
         return;
       }

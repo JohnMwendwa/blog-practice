@@ -108,6 +108,23 @@ const Sidenav = styled.nav`
     }
   }
 `;
+const ActionBtns = styled.div`
+  margin: 5px auto 3px;
+
+  & button {
+    margin-right: 5px;
+    padding: 3px 8px;
+    border: none;
+    outline: 1px solid;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  & button:last-child {
+    background-color: blue;
+  }
+`;
 
 export default function Settings() {
   const [user, setUser] = useState({});
@@ -203,10 +220,10 @@ export default function Settings() {
             </label>
           </AvatarContainer>
           {photo && (
-            <>
-              <button onClick={changeProfile}>Update Photo</button>
-              <button onClick={removePreview}>Cancel</button>{" "}
-            </>
+            <ActionBtns>
+              <button onClick={removePreview}>Cancel</button>
+              <button onClick={changeProfile}>Update</button>{" "}
+            </ActionBtns>
           )}
           <p>
             {user.firstName} {user.lastName}

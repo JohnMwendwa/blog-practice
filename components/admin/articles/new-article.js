@@ -15,6 +15,12 @@ const Form = styled.form`
     margin: 0 auto;
     margin-bottom: 20px;
     width: 100%;
+
+    & select {
+      padding: 5px 20px;
+      border: none;
+      outline: 1px solid #0f2648;
+    }
   }
 
   & label:first-child {
@@ -110,7 +116,7 @@ export default function NewArticle() {
       method: "POST",
       body: fd,
     });
-    // const data = await res.json();
+    const data = await res.json();
   };
 
   return (
@@ -155,10 +161,21 @@ export default function NewArticle() {
           ></textarea>
         </label>
 
+        <label htmlFor="markdown">
+          Markdown{" "}
+          <textarea
+            id="markdown"
+            cols="60"
+            rows="10"
+            required
+            ref={markdown}
+          ></textarea>
+        </label>
+
         <label htmlFor="select">
           Category :{" "}
           <select id="select" ref={categoryRef}>
-            <option selected disabled>
+            <option value="" disabled>
               None
             </option>
             <option value="HTML">HTML</option>
@@ -172,17 +189,6 @@ export default function NewArticle() {
             <option value="MySQL">MYSQL</option>
             <option value="Python">PYTHON</option>
           </select>
-        </label>
-
-        <label htmlFor="markdown">
-          Markdown{" "}
-          <textarea
-            id="markdown"
-            cols="60"
-            rows="10"
-            required
-            ref={markdown}
-          ></textarea>
         </label>
 
         <Link href="/admin/articles">

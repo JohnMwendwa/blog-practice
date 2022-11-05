@@ -185,6 +185,17 @@ export default function Settings() {
       body: fd,
     });
   };
+
+  useEffect(() => {
+    const fetchAvatar = async () => {
+      const res = await fetch("/api/users/profile");
+      const data = await res.json();
+      console.log(data);
+    };
+
+    fetchAvatar();
+  }, []);
+
   const isUser = Object.keys(user).length !== 0;
   return (
     <Container>

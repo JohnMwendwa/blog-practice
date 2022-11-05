@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { Btn } from ".";
@@ -81,10 +81,12 @@ const CancelBtn = styled(Button)`
 
 export default function NewArticle() {
   const [photo, setPhoto] = useState(null);
+  const titleRef = useRef();
+  const descriptionRef = useRef();
+  const markdown = useRef();
   const [error, setError] = useState(null);
 
   const handleFileUpload = (e) => {
-    console.log(e.target.files[0]);
     let file = e.target.files;
 
     if (file.length) {
@@ -94,11 +96,20 @@ export default function NewArticle() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     const fd = new FormData();
-    fd.append("image", photo, photo.name);
+    fd.append("title", title.current.value);
+    fd.append("description", description.current.value);
+    fd.append("markdown", markdown.current.value);
+    fd.append("image", photo);
+    fd.append("category", "React");
+
+    const res = await fetch("/api/posts/new", {
+      method: "POST",
+      body: fd,
+    });
+    const data = await res.json();
   };
 
   return (
@@ -128,7 +139,7 @@ export default function NewArticle() {
 
         <label htmlFor="title">
           Title
-          <input type="text" placeholder="Title" required />
+          <input type="text" placeholder="Title" required ref={titleRef} />
         </label>
 
         <label htmlFor="desc">
@@ -139,12 +150,19 @@ export default function NewArticle() {
             rows="3"
             placeholder="Description"
             required
+            ref={descriptionRef}
           ></textarea>
         </label>
 
         <label htmlFor="markdown">
           Markdown{" "}
-          <textarea id="markdown" cols="60" rows="10" required></textarea>
+          <textarea
+            id="markdown"
+            cols="60"
+            rows="10"
+            required
+            ref={markdown}
+          ></textarea>
         </label>
 
         <Link href="/admin/articles">

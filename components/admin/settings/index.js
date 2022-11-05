@@ -31,12 +31,40 @@ const Card = styled.div`
   margin: -30px auto 0;
 `;
 
+const AvatarContainer = styled.div`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+
+  & label {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    & input {
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+    }
+
+    & input:is(:focus, :focus-within) + label {
+      outline: thin dotted;
+    }
+  }
+`;
+
 const Avatar = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 50%;
   background-color: black;
-  margin: 0 auto;
 `;
 const Sidenav = styled.nav`
   display: flex;
@@ -124,17 +152,20 @@ export default function Settings() {
       </Banner>
       <Card>
         <Sidenav>
-          <>
+          <AvatarContainer>
             <Avatar
               src={user.avatar || null}
               alt={user.firstName}
               width={80}
               height={80}
             />
-            <p>
-              {user.firstName} {user.lastName}
-            </p>
-          </>
+            <label htmlFor="avatar">
+              <input type="file" accept="image/*" id="avatar" />
+            </label>
+          </AvatarContainer>
+          <p>
+            {user.firstName} {user.lastName}
+          </p>
           <ul>
             <li onClick={AccountHandler}>
               <Link href="" scroll={false}>

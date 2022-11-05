@@ -1,4 +1,5 @@
 import nextConnect from "next-connect";
+import sharp from "sharp";
 import { getSession } from "next-auth/react";
 import { connectToDatabase, closeConnection } from "../../../helpers/db/db";
 import Post from "../../../helpers/db/models/post";
@@ -37,6 +38,11 @@ const handler = nextConnect({
         return;
       }
 
+      const image = await sharp(req.file.buffer)
+        .resize({ width: 300, height: 170 })
+        .png()
+        .toBuffer();
+
       const user = await User.findOne({ email: session.user.email });
 
       const { title, description, markdown, category } = req.body;
@@ -45,7 +51,7 @@ const handler = nextConnect({
         title,
         description,
         markdown,
-        image: req.file.buffer,
+        image,
         category,
         author: user._id,
       });

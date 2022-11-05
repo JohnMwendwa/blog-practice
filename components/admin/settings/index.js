@@ -37,6 +37,7 @@ const AvatarContainer = styled.div`
   border-radius: 50%;
   margin: 0 auto;
   position: relative;
+  background-color: black;
 
   & label {
     position: absolute !important;
@@ -110,6 +111,7 @@ const Sidenav = styled.nav`
 
 export default function Settings() {
   const [user, setUser] = useState({});
+  const [photo, setPhoto] = useState(null);
 
   const [isAccount, setIsAccount] = useState(true);
   const [isPassword, setIsPassword] = useState(false);
@@ -143,8 +145,30 @@ export default function Settings() {
     setIsAccount(false);
   };
 
-  const isUser = Object.keys(user).length !== 0;
+  const previewProfile = async (e) => {
+    let file = e.target.files;
 
+    if (file.length) {
+      setPhoto(file[0]);
+    } else {
+      setPhoto(null);
+    }
+  };
+
+  const removePreview = () => {
+    setPhoto(null);
+  };
+
+  const changeProfile = async (e) => {
+    const fd = new FormData();
+    fd.append("image", photo);
+
+    await fetch("/api/users/profile", {
+      method: "POST",
+      body: fd,
+    });
+  };
+  const isUser = Object.keys(user).length !== 0;
   return (
     <Container>
       <Banner>
@@ -153,16 +177,37 @@ export default function Settings() {
       <Card>
         <Sidenav>
           <AvatarContainer>
-            <Avatar
-              src={user.avatar || null}
-              alt={user.firstName}
-              width={80}
-              height={80}
-            />
+            {photo ? (
+              <Avatar
+                src={window.URL.createObjectURL(photo)}
+                alt={user.firstName}
+                width={80}
+                height={80}
+              />
+            ) : (
+              <Avatar
+                src={user.avatar || null}
+                alt={user.firstName}
+                width={80}
+                height={80}
+              />
+            )}
+
             <label htmlFor="avatar">
-              <input type="file" accept="image/*" id="avatar" />
+              <input
+                type="file"
+                accept="image/*"
+                id="avatar"
+                onChange={previewProfile}
+              />
             </label>
           </AvatarContainer>
+          {photo && (
+            <>
+              <button onClick={changeProfile}>Update Photo</button>
+              <button onClick={removePreview}>Cancel</button>{" "}
+            </>
+          )}
           <p>
             {user.firstName} {user.lastName}
           </p>

@@ -83,6 +83,7 @@ export default function NewArticle() {
   const [photo, setPhoto] = useState(null);
   const titleRef = useRef();
   const descriptionRef = useRef();
+  const categoryRef = useRef();
   const markdown = useRef();
   const [error, setError] = useState(null);
 
@@ -109,7 +110,7 @@ export default function NewArticle() {
       method: "POST",
       body: fd,
     });
-    const data = await res.json();
+    // const data = await res.json();
   };
 
   return (
@@ -152,6 +153,25 @@ export default function NewArticle() {
             required
             ref={descriptionRef}
           ></textarea>
+        </label>
+
+        <label htmlFor="select">
+          Category :{" "}
+          <select id="select" ref={categoryRef}>
+            <option selected disabled>
+              None
+            </option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="Javascript">JAVASCRIPT</option>
+            <option value="React">REACT</option>
+            <option value="Node.js">NODEJS</option>
+            <option value="Express">EXPRESSJS</option>
+            <option value="Mongoose">MONGOOSE</option>
+            <option value="MongoDB">MONGODB</option>
+            <option value="MySQL">MYSQL</option>
+            <option value="Python">PYTHON</option>
+          </select>
         </label>
 
         <label htmlFor="markdown">

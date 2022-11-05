@@ -29,6 +29,7 @@ const handler = nextConnect({
       const session = await getSession({ req });
 
       if (!session) {
+        await closeConnection();
         res.status(401).json({ message: "Unauthaurized access!" });
         return;
       }

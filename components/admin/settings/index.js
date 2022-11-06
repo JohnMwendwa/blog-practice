@@ -184,6 +184,8 @@ export default function Settings() {
       method: "POST",
       body: fd,
     });
+
+    setPhoto(null);
   };
 
   const isUser = Object.keys(user).length !== 0;

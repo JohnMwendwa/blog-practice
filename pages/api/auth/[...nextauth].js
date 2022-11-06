@@ -17,7 +17,7 @@ export default NextAuth({
         const user = await User.findOne({ email: credentials.email });
 
         if (!user) {
-          closeConnection();
+          await closeConnection();
           throw new Error("User doesn't exist");
         }
 
@@ -27,15 +27,14 @@ export default NextAuth({
         );
 
         if (!isMatch) {
-          closeConnection();
+          await closeConnection();
           throw new Error("Wrong password");
         }
 
-        closeConnection();
+        await closeConnection();
 
         return {
           email: user.email,
-          image: user.avatar,
           name: {
             isAdmin: user.isAdmin,
             isAuthenticated: user.isAuthenticated,

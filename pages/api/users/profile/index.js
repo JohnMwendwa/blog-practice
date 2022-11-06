@@ -50,27 +50,6 @@ const handler = nextConnect({
       console.log(e.message);
       res.status(500).json({ error: e.message });
     }
-  })
-  .get(async (req, res) => {
-    try {
-      await connectToDatabase();
-
-      const session = await getSession({ req });
-
-      if (!session) {
-        await closeConnection();
-        res.status(401).json({ message: "Unauthaurized access!" });
-        return;
-      }
-
-      const user = await User.findOne({ email: session.user.email });
-      res.setHeader("Content-Type", "image/jpg");
-      await closeConnection();
-      console.log(user.avatar);
-      res.send(user.avatar);
-    } catch (e) {
-      console.log(e.message);
-      res.status(404).json({ error: e.message });
-    }
   });
+
 export default handler;

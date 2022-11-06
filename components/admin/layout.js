@@ -101,7 +101,7 @@ export default function Layout({ children }) {
         <Profile>
           <>
             <Avatar
-              src={session.user.image?.data[0]}
+              src={session.user.image}
               alt={session.user.name?.firstName}
               width={50}
               height={50}

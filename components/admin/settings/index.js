@@ -186,17 +186,8 @@ export default function Settings() {
     });
   };
 
-  useEffect(() => {
-    const fetchAvatar = async () => {
-      const res = await fetch("/api/users/profile");
-      const data = await res.json();
-      console.log(data);
-    };
-
-    fetchAvatar();
-  }, []);
-
   const isUser = Object.keys(user).length !== 0;
+
   return (
     <Container>
       <Banner>
@@ -214,7 +205,7 @@ export default function Settings() {
               />
             ) : (
               <Avatar
-                src={user.avatar || null}
+                src={(user && `/api/users/profile/${user._id}/avatar`) || null}
                 alt={user.firstName}
                 width={80}
                 height={80}

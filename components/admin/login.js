@@ -61,6 +61,20 @@ export default function Login() {
     }
   }, [router, session]);
 
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

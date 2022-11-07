@@ -86,12 +86,11 @@ const Action = styled.div`
 `;
 
 export default function PostItem({ post = {} }) {
-  const { title, image, excerpt, slug, date, author, author_image, category } =
-    post;
+  const { title, description, category, date_uploaded, _id: postId } = post;
 
-  const imageSrc = `/images/posts/${slug}/${image}`;
+  const imageSrc = `/api/posts/${postId}/image/`;
 
-  const formatedDate = new Date(date).toLocaleDateString("en-us", {
+  const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -114,23 +113,23 @@ export default function PostItem({ post = {} }) {
       </TimeWrapper>
       <ContentWrapper>
         <Content>
-          <Link href={`/posts/${slug}`}>
+          <Link href={`/posts/${postId}`}>
             <a title="Read more about this article">
               <Title>{title}</Title>
             </a>
           </Link>
-          <p>{excerpt}</p>
+          <p>{description}</p>
         </Content>
 
         <Action>
-          <Link href={`/posts/${slug}`}>
+          <Link href={`/posts/${postId}`}>
             <a title="Read more about this article">
               <button>Read More...</button>
             </a>
           </Link>
           <Action>
-            <Avatar src={author_image} alt={author} width={30} height={30} />
-            <h3>{author}</h3>
+            {/* <Avatar src={author_image} alt={author} width={30} height={30} /> */}
+            <h3>John Mwendwa</h3>
           </Action>
         </Action>
       </ContentWrapper>

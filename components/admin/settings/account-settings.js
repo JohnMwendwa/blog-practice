@@ -57,6 +57,9 @@ export default function AccountSettings({ user }) {
           lastName,
           email,
         }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       const data = await response.json();

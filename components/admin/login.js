@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -52,6 +52,7 @@ export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const router = useRouter();
+  const [error, setError] = useState(null);
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -66,16 +67,25 @@ export default function Login() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+    try {
+      const response = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+
+      if (!response.ok) {
+        throw new Error(response.error);
+      }
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   return (
     <FormWrapper>
       <h2>Login</h2>
+      {error && <div>{error}</div>}
       <Form onSubmit={handleSubmit}>
         <Input type="email" placeholder="Email" required ref={emailRef} />
         <Input

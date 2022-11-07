@@ -83,14 +83,18 @@ export default function Signup() {
   }, [router, session]);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setError(null);
-    }, 5000);
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
 
     return () => {
       clearTimeout(timeout);
     };
-  });
+  }, [error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

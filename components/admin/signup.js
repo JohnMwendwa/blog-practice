@@ -20,6 +20,12 @@ const FormWrapper = styled.div`
     margin-bottom: 10px;
   }
 
+  & > div {
+    color: red;
+    margin-top: -10px;
+    padding: 5px 5px;
+  }
+
   & a {
     font-weight: 900;
     color: ${(c) => c.theme.colors.ui.secondary};
@@ -136,7 +142,7 @@ export default function Signup() {
   return (
     <FormWrapper>
       <h2>Signup</h2>
-      {error && <span>{error}</span>}
+      {error && <div>{error}</div>}
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"

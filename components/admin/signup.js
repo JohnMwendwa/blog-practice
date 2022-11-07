@@ -54,10 +54,22 @@ const Btn = styled.button`
   cursor: pointer;
 `;
 
-async function createUser(firstName, lastName, email, password) {
+async function createUser(
+  firstName,
+  lastName,
+  email,
+  password,
+  confirmPassword
+) {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
-    body: JSON.stringify({ firstName, lastName, email, password }),
+    body: JSON.stringify({
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -143,6 +155,7 @@ export default function Signup() {
     <FormWrapper>
       <h2>Signup</h2>
       {error && <div>{error}</div>}
+
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"

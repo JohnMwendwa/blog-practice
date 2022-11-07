@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -39,6 +39,20 @@ export default function ChangePassword({ user }) {
   const newPasswordRef = useRef();
   const confirmPasswordRef = useRef();
   const [error, setError] = useState();
+
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

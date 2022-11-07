@@ -38,10 +38,13 @@ export default function AccountSettings({ user }) {
   const [firstName, setFirstName] = useState(`${user.firstName}`);
   const [lastName, setLastName] = useState(`${user.lastName}`);
   const [email, setEmail] = useState(`${user.email}`);
+  const [error, setError] = useState(null);
 
   return (
     <Details>
       <h2>Account Settings</h2>
+      {error && <div>{error}</div>}
+
       <form>
         <label htmlFor="firstname">
           First name

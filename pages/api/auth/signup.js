@@ -3,6 +3,10 @@ import { hashPassword } from "../../../helpers/db/auth";
 import User from "../../../helpers/db/models/user";
 
 export default async function handler(req, res) {
+  if (re.method !== "POST") {
+    return;
+  }
+
   const { firstName, lastName, email, password } = req.body;
 
   if (

@@ -8,6 +8,12 @@ const Details = styled.div`
   align-items: center;
   padding-left: 20px;
 
+  & > div {
+    color: red;
+    margin-top: -10px;
+    text-align: center;
+  }
+
   & form {
     & label {
       display: block;

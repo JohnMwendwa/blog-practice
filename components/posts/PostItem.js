@@ -92,7 +92,7 @@ export default function PostItem({ post = {} }) {
 
   const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",
-    month: "long",
+    month: "short",
     year: "numeric",
   });
 

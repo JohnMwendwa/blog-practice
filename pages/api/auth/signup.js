@@ -3,13 +3,13 @@ import { hashPassword } from "../../../helpers/db/auth";
 import User from "../../../helpers/db/models/user";
 
 export default async function handler(req, res) {
-  if (re.method !== "POST") {
+  if (req.method !== "POST") {
     return;
   }
 
   const { firstName, lastName, email, password, confirmPassword } = req.body;
 
-  if (!email.trimm() || !email.includes("@")) {
+  if (!email.trim() || !email.includes("@")) {
     res.status(400).json({
       error: "Invalid Email!",
     });

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Details = styled.div`
@@ -45,6 +45,20 @@ export default function AccountSettings({ user }) {
   const [lastName, setLastName] = useState(`${user.lastName}`);
   const [email, setEmail] = useState(`${user.email}`);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();

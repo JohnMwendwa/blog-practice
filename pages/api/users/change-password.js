@@ -62,7 +62,6 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: "Password updated" });
   } catch (e) {
-    console.log(e.message);
     res.status(500).json({ error: e.message });
   }
 }

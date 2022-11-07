@@ -5,6 +5,13 @@ import AllPosts from "../../posts/AllPosts";
 
 const Wrapper = styled.div`
   margin: 0 auto;
+
+  & div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex: 1;
+  }
 `;
 
 export const Btn = styled.button`

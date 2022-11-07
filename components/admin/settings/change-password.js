@@ -2,30 +2,35 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
   padding-left: 20px;
-  margin: 0 auto;
 
-  & label {
-    display: block;
-
-    & input {
-      padding: 5px 10px;
-      margin-bottom: 10px;
+  & form {
+    & label {
       display: block;
-      border: none;
-      outline: 1px solid;
-    }
-  }
 
-  & button {
-    width: 100%;
-    padding: 8px 0;
-    margin-top: 5px;
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+      & input {
+        padding: 5px 10px;
+        margin-bottom: 10px;
+        display: block;
+        border: none;
+        outline: 1px solid;
+      }
+    }
+
+    & button {
+      width: 100%;
+      padding: 8px 0;
+      margin-top: 5px;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   }
 `;
 

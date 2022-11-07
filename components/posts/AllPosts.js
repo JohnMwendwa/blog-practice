@@ -28,7 +28,8 @@ export default function AllPosts({ posts, pageTitle }) {
 
   return (
     <>
-      <Title>{pageTitle}</Title>
+      {pageTitle && <Title>{pageTitle}</Title>}
+
       <PostsContainer>
         {filteredPosts.map((post) => (
           <PostItem key={post._id} post={post} />

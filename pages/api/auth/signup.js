@@ -7,7 +7,12 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, confirmPassword } = req.body;
+
+  if (password !== confirmPassword) {
+    res.status(400).json({ error: "Passwords don't match!" });
+    return;
+  }
 
   if (
     !email ||

@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     await closeConnection();
   } catch (err) {
     res.status(500).json({
-      message: err.message,
+      error: err.message,
     });
   }
 }

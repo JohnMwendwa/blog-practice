@@ -12,17 +12,23 @@ const FormWrapper = styled.div`
   margin: 0 auto;
   height: 60vh;
 
-  & a {
-    font-weight: 900;
-    color: ${(c) => c.theme.colors.ui.secondary};
-  }
-
   & h2 {
     font-size: 2.5rem;
     font-family: jokerman;
     letter-spacing: 0.15rem;
     text-transform: uppercase;
     margin-bottom: 10px;
+  }
+
+  & > div {
+    color: red;
+    margin-top: -10px;
+    padding: 5px 5px;
+  }
+
+  & a {
+    font-weight: 900;
+    color: ${(c) => c.theme.colors.ui.secondary};
   }
 `;
 const Form = styled.form``;
@@ -99,7 +105,9 @@ export default function Login() {
   return (
     <FormWrapper>
       <h2>Login</h2>
+
       {error && <div>{error}</div>}
+
       <Form onSubmit={handleSubmit}>
         <Input type="email" placeholder="Email" required ref={emailRef} />
         <Input

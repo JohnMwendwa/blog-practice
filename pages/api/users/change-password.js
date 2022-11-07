@@ -36,6 +36,14 @@ export default async function handler(req, res) {
       return;
     }
 
+    if (newPassword.trim().length < 7) {
+      await closeConnection();
+      res.status(400).json({
+        error: "Password can't be less than 7 characters",
+      });
+      return;
+    }
+
     const user = await User.findOne({ email: session.user.email });
 
     const isMatch = await verifyPassword(oldPassword, user.password);

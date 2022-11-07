@@ -66,6 +66,8 @@ export default function ChangePassword({ user }) {
     const newPassword = newPasswordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
 
+    console.log(oldPassword);
+
     if (newPassword !== confirmPassword) {
       setError("New password and confirm password don't match!");
       return;
@@ -79,10 +81,15 @@ export default function ChangePassword({ user }) {
           newPassword,
           confirmPassword,
         }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error(response.error);
+        throw new Error(data.error);
       }
     } catch (e) {
       setError(e.message);

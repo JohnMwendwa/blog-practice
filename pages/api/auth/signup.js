@@ -9,19 +9,21 @@ export default async function handler(req, res) {
 
   const { firstName, lastName, email, password, confirmPassword } = req.body;
 
+  if (!email.trimm() || !email.includes("@")) {
+    res.status(400).json({
+      error: "Invalid Email!",
+    });
+    return;
+  }
+
   if (password !== confirmPassword) {
     res.status(400).json({ error: "Passwords don't match!" });
     return;
   }
 
-  if (
-    !email ||
-    !email.includes("@") ||
-    !password ||
-    password.trim().length < 7
-  ) {
-    return res.status(422).json({
-      message: "Invalid input - password should not be less than 7 characters",
+  if (!password || password.trim().length < 7) {
+    return res.status(400).json({
+      error: "Password should not be less than 7 characters",
     });
   }
 

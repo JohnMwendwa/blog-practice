@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -71,6 +71,7 @@ export default function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+  const [error, setError] = useState();
 
   const router = useRouter();
   const { data: session } = useSession();
@@ -90,6 +91,11 @@ export default function Signup() {
     const password = passwordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
 
+    if (password !== confirmPassword) {
+      setError("Passwords don't match!");
+      return;
+    }
+
     try {
       const result = await createUser(
         firstName,
@@ -104,7 +110,7 @@ export default function Signup() {
         password,
       });
     } catch (e) {
-      console.log(e);
+      setError(e.message);
     }
   };
 

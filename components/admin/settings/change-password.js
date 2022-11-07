@@ -55,6 +55,7 @@ export default function ChangePassword({ user }) {
   return (
     <Container>
       <h2>Change Password</h2>
+      {error && <div>{error}</div>}
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="oldPassword">

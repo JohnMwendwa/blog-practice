@@ -91,6 +91,11 @@ export default function Signup() {
     const password = passwordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
 
+    if (firstName.trim().length < 2 || lastName.trim().length < 2) {
+      setError("A name should have more than two characters");
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError("Passwords don't match!");
       return;
@@ -117,6 +122,7 @@ export default function Signup() {
   return (
     <FormWrapper>
       <h2>Signup</h2>
+      {error && <span>{error}</span>}
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"

@@ -18,7 +18,7 @@ export default NextAuth({
 
         if (!user) {
           await closeConnection();
-          throw new Error("User doesn't exist");
+          throw new Error("Invalid email or password");
         }
 
         const isMatch = await verifyPassword(
@@ -28,7 +28,7 @@ export default NextAuth({
 
         if (!isMatch) {
           await closeConnection();
-          throw new Error("Wrong password");
+          throw new Error("Invalid email or password");
         }
 
         await closeConnection();

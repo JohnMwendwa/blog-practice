@@ -66,8 +66,6 @@ export default function ChangePassword({ user }) {
     const newPassword = newPasswordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
 
-    console.log(oldPassword);
-
     if (newPassword !== confirmPassword) {
       setError("New password and confirm password don't match!");
       return;

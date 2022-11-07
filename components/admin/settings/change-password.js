@@ -60,7 +60,7 @@ export default function ChangePassword({ user }) {
     };
   }, [error]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const oldPassword = oldPasswordRef.current.value;
     const newPassword = newPasswordRef.current.value;
@@ -69,6 +69,23 @@ export default function ChangePassword({ user }) {
     if (newPassword !== confirmPassword) {
       setError("New password and confirm password don't match!");
       return;
+    }
+
+    try {
+      const response = await fetch("/api/users/change-password", {
+        method: "PATCH",
+        body: JSON.stringify({
+          oldPassword,
+          newPassword,
+          confirmPassword,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(response.error);
+      }
+    } catch (e) {
+      setError(e.message);
     }
   };
 

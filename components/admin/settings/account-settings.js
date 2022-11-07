@@ -46,12 +46,35 @@ export default function AccountSettings({ user }) {
   const [email, setEmail] = useState(`${user.email}`);
   const [error, setError] = useState(null);
 
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/users/update-user", {
+        method: "PATCH",
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error);
+      }
+    } catch (e) {
+      setError(e.message);
+    }
+  };
+
   return (
     <Details>
       <h2>Account Settings</h2>
       {error && <div>{error}</div>}
 
-      <form>
+      <form onSubmit={handleUpdate}>
         <label htmlFor="firstname">
           First name
           <input

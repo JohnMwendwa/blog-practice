@@ -6,7 +6,7 @@ import AllPosts from "../../posts/AllPosts";
 const Wrapper = styled.div`
   margin: 0 auto;
 
-  & div {
+  & > div {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

@@ -6,6 +6,10 @@ import AllPosts from "../../posts/AllPosts";
 const Wrapper = styled.div`
   margin: 0 auto;
 
+  & > h2 {
+    text-align: center;
+  }
+
   & > div {
     display: flex;
     justify-content: center;

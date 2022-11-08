@@ -11,8 +11,9 @@ export const Banner = styled.div`
   width: calc(100% + 40px);
   margin: 0 -20px;
 
-  & h2 {
+  & > h2 {
     margin: 0;
+    text-align: center;
     padding-top: 30px;
     color: white;
   }

@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
-  & h2 {
+  & > h2 {
     font-family: jokerman;
+    text-align: center;
   }
 `;
 const Table = styled.table`

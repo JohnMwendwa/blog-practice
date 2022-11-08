@@ -33,20 +33,24 @@ const Avatar = styled(Image)`
 const TimeWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  align-items: center;
+  padding: 0 5px;
+  height: 30px;
   background-color: grey;
   position: relative;
 `;
 const Time = styled.time`
   color: white;
+  text-align: start;
 `;
 const CategoryLabel = styled.button`
+  position: absolute;
+  top: 0;
+  right: -1px;
+  height: 30px;
   background-color: black;
   color: white;
   padding: 3px 10px;
-  position: absolute;
-  top: 3px;
-  right: -1px;
 `;
 const ContentWrapper = styled.div`
   display: flex;
@@ -109,7 +113,7 @@ export default function PostItem({ post = {} }) {
       </ImageContainer>
       <TimeWrapper>
         <Time>{formatedDate}</Time>
-        <CategoryLabel>{category || "Javascript"}</CategoryLabel>
+        <CategoryLabel>{category}</CategoryLabel>
       </TimeWrapper>
       <ContentWrapper>
         <Content>

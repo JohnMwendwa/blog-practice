@@ -6,6 +6,10 @@ const Wrapper = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
+
+  & > h2 {
+    text-align: center;
+  }
 `;
 const Btn = styled.button`
   padding: 10px;

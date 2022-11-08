@@ -6,8 +6,7 @@ import styled from "styled-components";
 const Card = styled.article`
   display: flex;
   flex-direction: column;
-  max-width: 450px;
-  min-width: 300px;
+  width: 350px;
   height: auto;
   border: 1px solid black;
   border-radius: 5px;
@@ -56,7 +55,6 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px 20px;
-  margin: auto;
 `;
 const Content = styled.div`
   margin-top: 0px;

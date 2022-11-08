@@ -110,7 +110,7 @@ export default function Navbar() {
           </ListItem>
           <ListItem>
             <Link href="/admin">
-              <a title="Go to admin page"> Admin</a>
+              <a title="Go to login page"> Login</a>
             </Link>
           </ListItem>
         </ListItems>

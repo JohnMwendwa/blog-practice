@@ -81,10 +81,6 @@ const Main = styled.section`
   flex-direction: column;
   overflow-y: scroll;
   padding: 0 20px 30px;
-
-  & h2 {
-    text-align: center;
-  }
 `;
 
 export default function Layout({ children }) {

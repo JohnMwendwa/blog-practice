@@ -67,7 +67,7 @@ const Title = styled.h2`
   line-height: 1.2;
   margin: 0;
 
-  @media (min-width: 450px) {
+  @media (min-width: 600px) {
     font-size: 32px;
   }
 `;

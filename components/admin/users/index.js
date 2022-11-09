@@ -11,6 +11,45 @@ const Wrapper = styled.div`
     text-align: center;
   }
 `;
+
+const Table = styled.table`
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+  & td,
+  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  & td:first-child {
+    text-transform: capitalize;
+  }
+
+  & tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  & tr:hover {
+    background-color: #ddd;
+  }
+
+  & th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04aa6d;
+    color: white;
+  }
+
+  & a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 const Btn = styled.button`
   padding: 10px;
   margin: auto;
@@ -37,17 +76,36 @@ export default function Users() {
     <Wrapper>
       <h2>Users</h2>
 
-      <ol>
-        {users.map((user) => (
-          <li key={user._id}>
-            <Link href={`/admin/users/${user._id}`}>
-              <a>
+      <Table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Authenticated</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {users.map((user) => (
+            <tr key={user._id}>
+              <td>
                 {user.firstName} {user.lastName}
-              </a>
-            </Link>
-          </li>
-        ))}
-      </ol>
+              </td>
+              <td>{user?.email}</td>
+              <td>{user?.isAdmin ? "True" : "False"} </td>
+              <td>{user?.isAuthenticated ? "True" : "False"}</td>
+              <td>
+                <Link href={`/admin/users/${user._id}`}>
+                  <a>View</a>
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+
       <Btn onClick={fetchUsers}>Load more...</Btn>
     </Wrapper>
   );

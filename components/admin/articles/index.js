@@ -53,7 +53,7 @@ export default function Articles() {
     const data = await res.json();
     setPosts(data);
   };
-  console.log(posts);
+
   return (
     <Wrapper>
       <h2>My Articles</h2>

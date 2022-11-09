@@ -6,8 +6,7 @@ import styled from "styled-components";
 const Card = styled.article`
   display: flex;
   flex-direction: column;
-  width: 350px;
-  height: auto;
+  width: 300px;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
@@ -53,10 +52,14 @@ const CategoryLabel = styled.button`
 `;
 const ContentWrapper = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   padding: 0 20px 20px;
 `;
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   margin-top: 0px;
 `;
 const Title = styled.h2`

@@ -25,6 +25,7 @@
     "react-syntax-highlighter": "^15.5.0",
     "react-type-animation": "^2.1.1",
     "sharp": "^0.31.2",
+    "slugify": "^1.6.5",
     "styled-components": "^5.3.5",
     "validator": "^13.7.0"
   },

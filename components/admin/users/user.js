@@ -47,6 +47,13 @@ const Table = styled.table`
   }
 `;
 
+const Error = styled.div`
+  text-align: center;
+  color: red;
+  margin-top: -20px;
+  padding: 5px 0;
+`;
+
 export default function User() {
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
@@ -130,7 +137,9 @@ export default function User() {
       <h2>
         {user?.firstName} {user?.lastName}
       </h2>
-      {error && <div>{error}</div>}
+
+      {error && <Error>{error}</Error>}
+
       <Table>
         <thead>
           <tr>

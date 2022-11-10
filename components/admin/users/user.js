@@ -72,6 +72,21 @@ export default function User() {
     };
   }, [id]);
 
+  // Clear error state after 5 seconds
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
+
   const handleAuthentication = async () => {
     const res = await fetch("/api/users/admin/authenticate", {
       method: "PATCH",

@@ -101,6 +101,7 @@ userSchema.methods.toJSON = function () {
     delete userObject.isAdmin;
   }
 
+  delete userObject.superAdmin;
   delete userObject.password;
 
   return userObject;

@@ -18,11 +18,19 @@ export default async function handler(req, res) {
       return;
     }
 
-    const user = await User.findById({ _id: req.body.id });
+    const user = await User.findById({ _id: req.body.id }).select(
+      "+superAdmin"
+    );
 
     if (!user) {
       await closeConnection();
       res.status(404).json({ error: "User Not Found" });
+      return;
+    }
+
+    if (user.superAdmin) {
+      await closeConnection();
+      res.status(400).json({ error: "User above your clearance" });
       return;
     }
 

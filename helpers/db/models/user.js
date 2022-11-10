@@ -40,7 +40,11 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Password is required"],
     },
-
+    superAdmin: {
+      type: Boolean,
+      select: false,
+      default: false,
+    },
     avatar: {
       type: Buffer,
     },

@@ -90,7 +90,7 @@ export default function NewArticle() {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const categoryRef = useRef();
-  const markdown = useRef();
+  const markdownRef = useRef();
   const [error, setError] = useState(null);
 
   const handleFileUpload = (e) => {
@@ -106,11 +106,11 @@ export default function NewArticle() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const fd = new FormData();
-    fd.append("title", title.current.value);
-    fd.append("description", description.current.value);
-    fd.append("markdown", markdown.current.value);
+    fd.append("title", titleRef.current.value);
+    fd.append("description", descriptionRef.current.value);
+    fd.append("markdown", markdownRef.current.value);
     fd.append("image", photo);
-    fd.append("category", "React");
+    fd.append("category", categoryRef.current.value);
 
     const res = await fetch("/api/posts/new", {
       method: "POST",
@@ -168,7 +168,7 @@ export default function NewArticle() {
             cols="60"
             rows="10"
             required
-            ref={markdown}
+            ref={markdownRef}
           ></textarea>
         </label>
 

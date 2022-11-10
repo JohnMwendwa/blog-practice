@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
     if (user.superAdmin) {
       await closeConnection();
-      res.status(400).json({ error: "User above your clearance" });
+      res.status(401).json({ error: "User above your clearance" });
       return;
     }
 

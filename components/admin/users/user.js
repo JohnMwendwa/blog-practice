@@ -54,6 +54,15 @@ const Error = styled.div`
   padding: 5px 0;
 `;
 
+const Btn = styled.button`
+  display: block;
+  margin: 20px auto;
+  padding: 5px 20px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+`;
+
 export default function User() {
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
@@ -173,6 +182,8 @@ export default function User() {
           </tr>
         </tbody>
       </Table>
+
+      <Btn>Back</Btn>
     </Wrapper>
   );
 }

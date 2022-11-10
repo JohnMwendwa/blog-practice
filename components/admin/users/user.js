@@ -74,6 +74,7 @@ export default function User() {
   const handleAuthentication = async () => {
     const res = await fetch("/api/users/admin/authenticate", {
       method: "PATCH",
+      body: JSON.stringify({ id }),
       headers: {
         "Content-Type": "application/json",
       },

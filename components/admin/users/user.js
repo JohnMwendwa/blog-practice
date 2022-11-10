@@ -88,6 +88,23 @@ export default function User() {
     setUser(data);
   };
 
+  const changeAdmin = async () => {
+    const res = await fetch("/api/users/admin/change-admin", {
+      method: "PATCH",
+      body: JSON.stringify({ id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      return;
+    }
+
+    setUser(data);
+  };
+
   const date = new Date(user?.createdAt).toDateString();
 
   return (
@@ -112,7 +129,7 @@ export default function User() {
             <td>isAdmin</td>
             <td>{user?.isAdmin ? "True" : "False"} </td>
             <td>
-              <button>Edit</button>
+              <button onClick={changeAdmin}>Edit</button>
             </td>
           </tr>
           <tr>

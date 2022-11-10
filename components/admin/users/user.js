@@ -71,6 +71,22 @@ export default function User() {
     };
   }, [id]);
 
+  const handleAuthentication = async () => {
+    const res = await fetch("/api/users/admin/authenticate", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      return;
+    }
+
+    setUser(data);
+  };
+
   const date = new Date(user?.createdAt).toDateString();
 
   return (
@@ -90,9 +106,6 @@ export default function User() {
           <tr>
             <td>Email</td>
             <td>{user?.email}</td>
-            <td>
-              <button>Edit</button>
-            </td>
           </tr>
           <tr>
             <td>isAdmin</td>
@@ -105,15 +118,12 @@ export default function User() {
             <td>isAuthenticated</td>
             <td>{user?.isAuthenticated ? "True" : "False"}</td>
             <td>
-              <button>Edit</button>
+              <button onClick={handleAuthentication}>Edit</button>
             </td>
           </tr>
           <tr>
             <td>CreatedOn</td>
             <td>{date}</td>
-            <td>
-              <button>Edit</button>
-            </td>
           </tr>
         </tbody>
       </Table>

@@ -183,7 +183,7 @@ export default function User() {
         </tbody>
       </Table>
 
-      <Btn>Back</Btn>
+      <Btn onClick={() => router.back()}>Back</Btn>
     </Wrapper>
   );
 }

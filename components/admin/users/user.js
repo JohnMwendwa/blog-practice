@@ -49,6 +49,7 @@ const Table = styled.table`
 
 export default function User() {
   const [user, setUser] = useState({});
+  const [error, setError] = useState(null);
   const router = useRouter();
   const { id } = router.query;
 
@@ -82,6 +83,7 @@ export default function User() {
     const data = await res.json();
 
     if (!res.ok) {
+      setError(data.error);
       return;
     }
 
@@ -99,6 +101,7 @@ export default function User() {
     const data = await res.json();
 
     if (!res.ok) {
+      setError(data.error);
       return;
     }
 
@@ -112,6 +115,7 @@ export default function User() {
       <h2>
         {user?.firstName} {user?.lastName}
       </h2>
+      {error && <div>{error}</div>}
       <Table>
         <thead>
           <tr>

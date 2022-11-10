@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
+import slugify from "slugify";
 
 const { Schema } = mongoose;
 const window = new JSDOM("").window;
@@ -45,6 +46,11 @@ const postSchema = new Schema(
       type: Number,
       default: 0,
     },
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+    },
   },
   {
     timestamps: {
@@ -65,6 +71,10 @@ postSchema.pre("validate", async function (next) {
   post.title = purify.sanitize(post.title);
   post.description = purify.sanitize(post.title);
   post.markdown = purify.sanitize(post.markdown);
+
+  if (post.title) {
+    post.slug = slugify(post.title, { lower: true, strict: true });
+  }
   next();
 });
 

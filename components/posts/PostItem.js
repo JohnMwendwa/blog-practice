@@ -91,9 +91,9 @@ const Action = styled.div`
 `;
 
 export default function PostItem({ post = {} }) {
-  const { title, description, category, date_uploaded, _id: postId } = post;
+  const { title, description, category, date_uploaded, slug } = post;
 
-  const imageSrc = `/api/posts/${postId}/image/`;
+  const imageSrc = `/api/posts/${slug}/image/`;
 
   const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",
@@ -118,7 +118,7 @@ export default function PostItem({ post = {} }) {
       </TimeWrapper>
       <ContentWrapper>
         <Content>
-          <Link href={`/posts/${postId}`}>
+          <Link href={`/posts/${slug}`}>
             <a title="Read more about this article">
               <Title>{title}</Title>
             </a>
@@ -127,7 +127,7 @@ export default function PostItem({ post = {} }) {
         </Content>
 
         <Action>
-          <Link href={`/posts/${postId}`}>
+          <Link href={`/posts/${slug}`}>
             <a title="Read more about this article">
               <button>Read More...</button>
             </a>

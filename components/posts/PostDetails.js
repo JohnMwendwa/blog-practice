@@ -133,10 +133,17 @@ const Btn = styled.button`
 `;
 
 export default function PostDetails({ post }) {
-  const { title, image, author, author_image, date, category, content, slug } =
-    post;
+  const {
+    title,
+    _id: postId,
+    author,
+    category,
+    slug,
+    markdown,
+    date_uploaded,
+  } = post;
 
-  const formatedDate = new Date(date).toLocaleDateString("en-us", {
+  const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -188,7 +195,7 @@ export default function PostDetails({ post }) {
 
       <ImageHedaer>
         <Image
-          src={`/images/posts/${slug}/${image}`}
+          src={`/api/posts/${postId}/image/`}
           alt={title}
           width={600}
           height={250}
@@ -198,15 +205,17 @@ export default function PostDetails({ post }) {
 
       <About>
         <Author>
-          <Image src={author_image} alt={author} width={30} height={30} />
+          {/* <Image src={author_image} alt={author} width={30} height={30} /> */}
 
-          <h4>{author}</h4>
+          <h4>
+            {author.firstName} {author.lastName}
+          </h4>
         </Author>
         <DateContainer> {formatedDate}</DateContainer>
       </About>
 
       <Content>
-        <ReactMarkdown components={customRenderer}>{content}</ReactMarkdown>
+        <ReactMarkdown components={customRenderer}>{markdown}</ReactMarkdown>
       </Content>
 
       <ButtonWrapper>

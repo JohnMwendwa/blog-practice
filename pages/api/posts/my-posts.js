@@ -26,7 +26,11 @@ export default async function handler(req, res) {
       return;
     }
 
-    const posts = await Post.find({ author: user._id });
+    const posts = await Post.find({ author: user._id }).populate(
+      "author",
+      "firstName lastName",
+      User
+    );
 
     await closeConnection();
 

@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { connectToDatabase, closeConnection } from "./db/db";
 import Post from "./db/models/post";
+import User from "./db/models/user";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -57,7 +58,7 @@ export async function getPosts() {
         "slug",
         "date_uploaded",
       ])
-      .populate("author", "firstName lastName");
+      .populate("author", "firstName lastName", User);
 
     await closeConnection();
     return JSON.stringify(posts);
@@ -78,7 +79,7 @@ export async function getPostDetails(slug) {
         "markdown",
         "date_uploaded",
       ])
-      .populate("author", "firstName lastName");
+      .populate("author", "firstName lastName", User);
 
     await closeConnection();
     return JSON.stringify(posts);

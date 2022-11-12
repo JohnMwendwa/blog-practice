@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+const Title = styled.h2`
+  text-align: center;
+  font-size: 1.8em;
+`;
+
 const TopBar = styled.div`
   display: flex;
   justify-content: space-between;
@@ -54,7 +59,7 @@ export default function Messages() {
 
   return (
     <>
-      <h2>Notifications</h2>
+      <Title>Notifications</Title>
       <TopBar>
         <span>All </span>
         <span>mark all as read</span>

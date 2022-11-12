@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
 
 const { Schema } = mongoose;
@@ -7,7 +8,7 @@ const purify = DOMPurify(window);
 
 const commentSchema = new Schema(
   {
-    text: {
+    body: {
       type: String,
       trim: true,
       required: [true, "You can't create an empty comment"],
@@ -21,7 +22,7 @@ const commentSchema = new Schema(
       type: String,
       required: [true, "Name is required"],
     },
-    post: {
+    parentId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Post",
@@ -35,14 +36,8 @@ const commentSchema = new Schema(
   }
 );
 
-commentSchema.virtual("replies", {
-  ref: "Reply",
-  localField: "_id",
-  foreignField: "comment",
-});
-
 commentSchema.pre("validate", function (next) {
-  this.text = purify.sanitize(this.text);
+  this.body = purify.sanitize(this.body);
   this.email = purify.sanitize(this.email);
   this.name = purify.sanitize(this.name);
   next();

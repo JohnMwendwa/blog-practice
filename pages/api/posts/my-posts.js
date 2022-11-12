@@ -26,6 +26,8 @@ export default async function handler(req, res) {
       return;
     }
 
+    const posts = await Post.find({ author: user._id });
+
     await closeConnection();
 
     res.status(200).json(posts);

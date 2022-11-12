@@ -6,6 +6,14 @@ import PostDetails from "../components/posts/PostDetails";
 export default function PostDetailsPage({ post }) {
   return (
     <>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="description" content={post.description} />
+        <meta
+          name="author"
+          content={`${post.author.firstName} ${post.author.lastName}`}
+        ></meta>
+      </Head>
       <PostDetails post={post} />
     </>
   );

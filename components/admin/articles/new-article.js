@@ -6,6 +6,11 @@ import Image from "next/image";
 
 const Wrapper = styled.div`
   margin: 0 auto;
+
+  & > h2 {
+    text-align: center;
+    font-size: 2.25rem;
+  }
 `;
 const Form = styled.form`
   max-width: 900px;

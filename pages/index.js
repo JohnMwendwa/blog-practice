@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { getFeaturedPosts } from "../helpers/posts_utils";
 import FeaturedPosts from "../components/homepage/FeaturedPosts";
+import { getPosts } from "../helpers/posts_utils";
 
 export default function HomePage({ posts }) {
   if (!posts.length)
@@ -31,8 +31,9 @@ export default function HomePage({ posts }) {
   );
 }
 
-export const getStaticProps = () => {
-  const posts = getFeaturedPosts();
+export const getStaticProps = async () => {
+  const postData = await getPosts();
+  const posts = JSON.parse(postData);
   return {
     props: {
       posts,

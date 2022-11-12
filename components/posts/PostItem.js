@@ -98,6 +98,7 @@ export default function PostItem({ post = {} }) {
     date_uploaded,
     slug,
     _id: postId,
+    author,
   } = post;
 
   const imageSrc = `/api/posts/${postId}/image/`;
@@ -141,7 +142,9 @@ export default function PostItem({ post = {} }) {
           </Link>
           <Action>
             {/* <Avatar src={author_image} alt={author} width={30} height={30} /> */}
-            <h3>John Mwendwa</h3>
+            <h3>
+              {author.firstName} {author.lastName}
+            </h3>
           </Action>
         </Action>
       </ContentWrapper>

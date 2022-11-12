@@ -70,7 +70,14 @@ export async function getPostDetails(slug) {
     await connectToDatabase();
 
     const posts = await Post.findOne({ slug })
-      .select(["title", "author", "category", "markdown", "date_uploaded"])
+      .select([
+        "title",
+        "description",
+        "author",
+        "category",
+        "markdown",
+        "date_uploaded",
+      ])
       .populate("author", "firstName lastName");
 
     await closeConnection();

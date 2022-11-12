@@ -1,5 +1,5 @@
 import Head from "next/head";
-import FeaturedPosts from "../components/homepage/FeaturedPosts";
+import AllPosts from "../components/posts/AllPosts";
 import { getPosts } from "../helpers/posts_utils";
 
 export default function HomePage({ posts }) {
@@ -26,7 +26,7 @@ export default function HomePage({ posts }) {
         />
       </Head>
 
-      <FeaturedPosts posts={posts} />
+      <AllPosts posts={posts} pageTitle="All Posts" />
     </>
   );
 }

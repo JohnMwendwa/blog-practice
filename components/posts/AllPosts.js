@@ -10,9 +10,9 @@ const Title = styled.h1`
 
 const PostsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, 300px);
   gap: 20px;
-  justify-items: center;
+  justify-content: center;
   align-content: center;
   padding: 0 30px 30px;
 `;

@@ -5,16 +5,14 @@ import AllPosts from "../../posts/AllPosts";
 
 const Wrapper = styled.div`
   margin: 0 auto;
+  position: relative;
 
   & > h2 {
     text-align: center;
   }
 
   & > div {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex: 1;
+    width: calc(100vw - 210px);
   }
 `;
 

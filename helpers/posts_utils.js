@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { connectToDatabase, closeConnection } from "./db/db";
+import Post from "./db/models/post";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -40,4 +42,26 @@ export function getFeaturedPosts() {
   const featuredPosts = allPosts.filter((post) => post.isFeatured);
 
   return featuredPosts;
+}
+
+export async function getPosts() {
+  try {
+    await connectToDatabase();
+
+    const posts = await Post.find({})
+      .select([
+        "title",
+        "description",
+        "author",
+        "category",
+        "slug",
+        "date_uploaded",
+      ])
+      .populate("author", "firstName lastName");
+
+    await closeConnection();
+    return JSON.stringify(posts);
+  } catch (e) {
+    console.log(e);
+  }
 }

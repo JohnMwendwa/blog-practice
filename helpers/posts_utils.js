@@ -65,3 +65,17 @@ export async function getPosts() {
     console.log(e);
   }
 }
+export async function getPostDetails(slug) {
+  try {
+    await connectToDatabase();
+
+    const posts = await Post.findOne({ slug })
+      .select(["title", "author", "category", "markdown", "date_uploaded"])
+      .populate("author", "firstName lastName");
+
+    await closeConnection();
+    return JSON.stringify(posts);
+  } catch (e) {
+    console.log(e);
+  }
+}

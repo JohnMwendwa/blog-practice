@@ -91,9 +91,16 @@ const Action = styled.div`
 `;
 
 export default function PostItem({ post = {} }) {
-  const { title, description, category, date_uploaded, slug } = post;
+  const {
+    title,
+    description,
+    category,
+    date_uploaded,
+    slug,
+    _id: postId,
+  } = post;
 
-  const imageSrc = `/api/posts/${slug}/image/`;
+  const imageSrc = `/api/posts/${postId}/image/`;
 
   const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",

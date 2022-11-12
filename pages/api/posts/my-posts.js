@@ -18,6 +18,14 @@ export default async function handler(req, res) {
       return;
     }
 
+    const user = await User.findOne({ email: session.user.email });
+
+    if (!user) {
+      await closeConnection();
+      res.status(404).json({ error: "User Not Found" });
+      return;
+    }
+
     await closeConnection();
 
     res.status(200).json(posts);

@@ -126,7 +126,7 @@ export default function PostItem({ post = {} }) {
       </TimeWrapper>
       <ContentWrapper>
         <Content>
-          <Link href={`/posts/${slug}`}>
+          <Link href={`/${slug}`}>
             <a title="Read more about this article">
               <Title>{title}</Title>
             </a>
@@ -135,7 +135,7 @@ export default function PostItem({ post = {} }) {
         </Content>
 
         <Action>
-          <Link href={`/posts/${slug}`}>
+          <Link href={`/${slug}`}>
             <a title="Read more about this article">
               <button>Read More...</button>
             </a>

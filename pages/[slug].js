@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { getPostDetails } from "../helpers/posts_utils";
+import { getPostDetails, getPostSlugs } from "../helpers/posts_utils";
 import PostDetails from "../components/posts/PostDetails";
 
 export default function PostDetailsPage({ post }) {
@@ -22,5 +22,17 @@ export const getStaticProps = async (context) => {
       post,
     },
     revalidate: 10,
+  };
+};
+
+export const getStaticPaths = async () => {
+  const slugData = await getPostSlugs();
+  const slugs = JSON.parse(slugData);
+
+  return {
+    paths: slugs.map((slug) => ({
+      params: { slug },
+    })),
+    fallback: false,
   };
 };

@@ -83,7 +83,7 @@ export async function getPostSlugs() {
   try {
     await connectToDatabase();
 
-    const slugs = await Post.find(slug).select(["-_id", "slug"]);
+    const slugs = await Post.find().select(["-_id", "slug"]);
 
     await closeConnection();
     return JSON.stringify(slugs);

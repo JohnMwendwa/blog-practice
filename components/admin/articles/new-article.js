@@ -181,9 +181,6 @@ export default function NewArticle() {
         <label htmlFor="select">
           Category :{" "}
           <select id="select" ref={categoryRef}>
-            <option value="" disabled>
-              None
-            </option>
             <option value="HTML">HTML</option>
             <option value="CSS">CSS</option>
             <option value="Javascript">JAVASCRIPT</option>

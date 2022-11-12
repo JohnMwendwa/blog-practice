@@ -30,8 +30,8 @@ export const getStaticPaths = async () => {
   const slugs = JSON.parse(slugData);
 
   return {
-    paths: slugs.map((slug) => ({
-      params: { slug },
+    paths: slugs.map((post) => ({
+      params: { slug: post.slug },
     })),
     fallback: false,
   };

@@ -70,7 +70,6 @@ postSchema.pre("validate", async function (next) {
   const post = this;
   post.title = purify.sanitize(post.title);
   post.description = purify.sanitize(post.title);
-  post.markdown = purify.sanitize(post.markdown);
 
   if (post.title) {
     post.slug = slugify(post.title, { lower: true, strict: true });

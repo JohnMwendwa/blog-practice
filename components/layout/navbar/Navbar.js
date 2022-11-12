@@ -94,11 +94,6 @@ export default function Navbar() {
       <nav>
         <ListItems>
           <ListItem>
-            <Link href="/posts">
-              <a title="Go to all posts page"> Posts</a>
-            </Link>
-          </ListItem>
-          <ListItem>
             <Link href="/about">
               <a title="Go to about page"> About</a>
             </Link>

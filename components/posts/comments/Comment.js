@@ -3,6 +3,7 @@ import IconBtn from "./IconBtn";
 import { FaReply } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
+import CommentList from "./commentList";
 
 const Card = styled.div`
   padding: 0.5rem;
@@ -92,6 +93,9 @@ export default function Comment({ _id, body, user, date_uploaded }) {
         <>
           <Replies className={`${hideChildren ? "hide" : ""}`}>
             <button aria-label="Hide-reples" />
+            <div>
+              <CommentList comments={childComments} />
+            </div>
           </Replies>
         </>
       )}

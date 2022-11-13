@@ -26,8 +26,8 @@ export default function PostDetailsPage({ post }) {
 export const getStaticProps = async (context) => {
   const { params } = context;
   const { slug } = params;
-  const postData = await getPostDetails(slug);
-  const post = JSON.parse(postData);
+  const data = await getPostDetails(slug);
+  const post = JSON.parse(data);
 
   return {
     props: {

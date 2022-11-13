@@ -28,6 +28,11 @@ const Card = styled.div`
     margin-left: 0.5rem;
     margin-right: 0.5rem;
   }
+  & .footer {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
 `;
 
 export default function Comment({ body, user, date_uploaded }) {

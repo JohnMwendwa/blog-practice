@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import IconBtn from "./IconBtn";
+import { FaReply } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 
 const Card = styled.div`
   padding: 0.5rem;
@@ -41,6 +45,13 @@ export default function Comment({ body, user, date_uploaded }) {
           <span className="date">{formatedDate}</span>
         </div>
         <div className="message">{body}</div>
+        <div className="footer">
+          <IconBtn Icon={FaReply} aria-label="Reply" />
+
+          <IconBtn Icon={FaEdit} aria-label="Edit" />
+
+          <IconBtn Icon={FaTrash} aria-label="Delete" color="red" />
+        </div>
       </Card>
     </>
   );

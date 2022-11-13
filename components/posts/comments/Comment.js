@@ -35,7 +35,36 @@ const Card = styled.div`
   }
 `;
 
-export default function Comment({ body, user, date_uploaded }) {
+const Replies = styled.div`
+  display: flex;
+
+  & .hide {
+    display: none;
+  }
+
+  & button {
+    border: none;
+    background: none;
+    padding: 0;
+    width: 15px;
+    margin-top: 0.5rem;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transform: translateX(-50%);
+
+    & :hover::before,
+    :focus-visible::before {
+      background-color: hsl(235, 100%, 60%);
+    }
+  }
+`;
+
+export default function Comment({ _id, body, user, date_uploaded }) {
+  const { getReplies } = usePost();
+  const childComments = getReplies(_id);
+  const hideChildren = false;
+
   const formatedDate = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
     timeStyle: "short",
@@ -58,6 +87,14 @@ export default function Comment({ body, user, date_uploaded }) {
           <IconBtn Icon={FaTrash} aria-label="Delete" color="red" />
         </div>
       </Card>
+
+      {childComments?.length > 0 && (
+        <>
+          <Replies className={`${hideChildren ? "hide" : ""}`}>
+            <button aria-label="Hide-reples" />
+          </Replies>
+        </>
+      )}
     </>
   );
 }

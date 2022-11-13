@@ -8,6 +8,7 @@ import nightOwl from "react-syntax-highlighter/dist/cjs/styles/prism/night-owl";
 
 import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
+import CommentForm from "./commentForm";
 
 SyntaxHighlighter.registerLanguage("js", js);
 SyntaxHighlighter.registerLanguage("css", css);
@@ -221,6 +222,11 @@ export default function PostDetails({ post }) {
       <ButtonWrapper>
         <Btn onClick={() => router.back()}>Go Back</Btn>
       </ButtonWrapper>
+
+      <div>
+        <h3>Comments</h3>
+        <CommentForm />
+      </div>
     </PostContainer>
   );
 }

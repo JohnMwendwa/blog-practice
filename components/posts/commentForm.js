@@ -32,11 +32,15 @@ const Btn = styled.button`
 `;
 
 export default function CommentForm() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Wrapper>
         <TextArea />
-        <Btn>Post</Btn>
+        <Btn type="submit">Post</Btn>
       </Wrapper>
     </Form>
   );

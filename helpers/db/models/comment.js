@@ -18,10 +18,13 @@ const commentSchema = new Schema(
       required: true,
       ref: "User",
     },
-    parentId: {
+    postId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Post",
+    },
+    parentId: {
+      type: String,
     },
   },
   {

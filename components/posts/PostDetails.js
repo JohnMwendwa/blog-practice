@@ -10,6 +10,7 @@ import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
 import CommentForm from "./comments/commentForm";
 import CommentList from "./comments/commentList";
+import { usePost } from "../contexts/PostContext";
 
 SyntaxHighlighter.registerLanguage("js", js);
 SyntaxHighlighter.registerLanguage("css", css);
@@ -134,6 +135,10 @@ const Btn = styled.button`
   cursor: pointer;
 `;
 
+const Container = styled.div`
+  margin-top: 1rem;
+`;
+
 export default function PostDetails({ post }) {
   const {
     title,
@@ -144,6 +149,8 @@ export default function PostDetails({ post }) {
     markdown,
     date_uploaded,
   } = post;
+
+  const { rootComments } = usePost();
 
   const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",
@@ -228,7 +235,12 @@ export default function PostDetails({ post }) {
         <h3>Comments</h3>
         <section>
           <CommentForm />
-          <CommentList comments={[]} />
+
+          {rootComments !== null && rootComments?.length > 0 && (
+            <Container>
+              <CommentList comments={rootComments} />
+            </Container>
+          )}
         </section>
       </div>
     </PostContainer>

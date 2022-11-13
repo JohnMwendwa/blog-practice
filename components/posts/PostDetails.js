@@ -9,6 +9,7 @@ import nightOwl from "react-syntax-highlighter/dist/cjs/styles/prism/night-owl";
 import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
 import CommentForm from "./comments/commentForm";
+import CommentList from "./comments/commentList";
 
 SyntaxHighlighter.registerLanguage("js", js);
 SyntaxHighlighter.registerLanguage("css", css);
@@ -225,7 +226,10 @@ export default function PostDetails({ post }) {
 
       <div>
         <h3>Comments</h3>
-        <CommentForm />
+        <section>
+          <CommentForm />
+          <CommentList comments={[]} />
+        </section>
       </div>
     </PostContainer>
   );

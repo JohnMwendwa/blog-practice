@@ -77,6 +77,15 @@ postSchema.pre("validate", async function (next) {
   next();
 });
 
+postSchema.pre("remove", async function (next) {
+  const post = this;
+  const Comment = mongoose.model("Comment");
+
+  await Comment.deleteMany({ parentId: post._id });
+
+  next();
+});
+
 const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
 
 export default Post;

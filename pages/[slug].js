@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { getPostDetails, getPostSlugs } from "../helpers/posts_utils";
 import PostDetails from "../components/posts/PostDetails";
+import { PostProvider } from "../components/contexts/PostContext";
 
 export default function PostDetailsPage({ post }) {
   return (
@@ -14,7 +15,10 @@ export default function PostDetailsPage({ post }) {
           content={`${post.author.firstName} ${post.author.lastName}`}
         ></meta>
       </Head>
-      <PostDetails post={post} />
+
+      <PostProvider post={post}>
+        <PostDetails post={post} />
+      </PostProvider>
     </>
   );
 }

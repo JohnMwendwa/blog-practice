@@ -76,9 +76,11 @@ userSchema.pre("validate", function (next) {
 // DELETE user comments after a user deletes their account
 userSchema.pre("remove", async function (next) {
   const user = this;
+  const Post = mongoose.model("Post");
   const Comment = mongoose.model("Comment");
 
-  await Comment.deleteMany({ author: user._id });
+  await Post.deleteMany({ author: user._id });
+  await Comment.deleteMany({ user: user._id });
 
   next();
 });

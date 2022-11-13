@@ -13,14 +13,10 @@ const commentSchema = new Schema(
       trim: true,
       required: [true, "You can't create an empty comment"],
     },
-    email: {
-      type: String,
-      required: [true, "Email is required"],
-      trim: true,
-    },
-    name: {
-      type: String,
-      required: [true, "Name is required"],
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
     },
     parentId: {
       type: mongoose.Schema.Types.ObjectId,

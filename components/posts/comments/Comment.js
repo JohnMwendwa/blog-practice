@@ -54,10 +54,15 @@ const Replies = styled.div`
     outline: none;
     transform: translateX(-50%);
 
-    & :hover::before,
+    :hover::before,
     :focus-visible::before {
       background-color: hsl(235, 100%, 60%);
     }
+  }
+
+  & .child-comments {
+    padding-left: 0.5rem;
+    flex-grow: 1;
   }
 `;
 
@@ -93,7 +98,7 @@ export default function Comment({ _id, body, user, date_uploaded }) {
         <>
           <Replies className={`${hideChildren ? "hide" : ""}`}>
             <button aria-label="Hide-reples" />
-            <div>
+            <div className="child-comments">
               <CommentList comments={childComments} />
             </div>
           </Replies>

@@ -63,7 +63,7 @@ const postSchema = new Schema(
 postSchema.virtual("comments", {
   ref: "Comment",
   localField: "_id",
-  foreignField: "parentId",
+  foreignField: "postId",
 });
 
 postSchema.pre("validate", async function (next) {

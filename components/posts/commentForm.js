@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Form = styled.form``;
@@ -32,6 +33,8 @@ const Btn = styled.button`
 `;
 
 export default function CommentForm() {
+  const [message, setMessage] = useState(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -39,7 +42,10 @@ export default function CommentForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Wrapper>
-        <TextArea />
+        <TextArea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
         <Btn type="submit">Post</Btn>
       </Wrapper>
     </Form>

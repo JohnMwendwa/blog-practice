@@ -1,6 +1,10 @@
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState, useMemo, useContext } from "react";
 
 const PostContext = createContext();
+
+export const usePost = () => {
+  return useContext(PostContext);
+};
 
 export function PostProvider({ children }) {
   const [comments, setComments] = useState(null);

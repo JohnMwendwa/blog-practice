@@ -33,7 +33,7 @@ const Btn = styled.button`
 `;
 
 export default function CommentForm() {
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -8,7 +8,7 @@ import nightOwl from "react-syntax-highlighter/dist/cjs/styles/prism/night-owl";
 
 import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
-import CommentForm from "./commentForm";
+import CommentForm from "./comments/commentForm";
 
 SyntaxHighlighter.registerLanguage("js", js);
 SyntaxHighlighter.registerLanguage("css", css);

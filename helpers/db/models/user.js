@@ -59,6 +59,13 @@ userSchema.virtual("posts", {
   foreignField: "author",
 });
 
+//Create a virtual field for posts
+userSchema.virtual("comments", {
+  ref: "Comment",
+  localField: "_id",
+  foreignField: "user",
+});
+
 userSchema.pre("validate", function (next) {
   this.firstName = purify.sanitize(this.firstName);
   this.lastName = purify.sanitize(this.lastName);

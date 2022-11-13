@@ -1,15 +1,43 @@
 import styled from "styled-components";
 
 const Form = styled.form``;
-const TextArea = styled.textarea``;
-const Btn = styled.button``;
+const Wrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+const TextArea = styled.textarea`
+  flex-grow: 1;
+  resize: none;
+  height: 70px;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: inherit;
+  font-family: inherit;
+  border: 2px solid hsl(235, 50%, 74%);
+  line-height: 1.4;
 
-export default function commentForm() {
+  $ :focus {
+    border-color: hsl(235, 100%, 67%);
+    outline: none;
+  }
+`;
+const Btn = styled.button`
+  background-color: blue;
+  padding: 0.5em 1em;
+  border: none;
+  color: white;
+  border-radius: 0.5em;
+  font-size: 0.75em;
+  cursor: pointer;
+`;
+
+export default function CommentForm() {
   return (
     <Form>
-      commentForm
-      <TextArea />
-      <Btn>Post</Btn>
+      <Wrapper>
+        <TextArea />
+        <Btn>Post</Btn>
+      </Wrapper>
     </Form>
   );
 }

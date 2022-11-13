@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { connectToDatabase, closeConnection } from "./db/db";
 import Post from "./db/models/post";
 import User from "./db/models/user";
+import Comment from "./db/models/comment";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -70,7 +71,7 @@ export async function getPostDetails(slug) {
   try {
     await connectToDatabase();
 
-    const posts = await Post.findOne({ slug })
+    const post = await Post.findOne({ slug })
       .select([
         "title",
         "description",
@@ -82,7 +83,7 @@ export async function getPostDetails(slug) {
       .populate("author", "firstName lastName", User);
 
     await closeConnection();
-    return JSON.stringify(posts);
+    return JSON.stringify(post);
   } catch (e) {
     console.log(e);
   }

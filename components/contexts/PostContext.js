@@ -17,5 +17,15 @@ export function PostProvider({ children }) {
     return group;
   }, [comments]);
 
-  return <PostContext.Provider value={{}}>{children}</PostContext.Provider>;
+  function getReplies(parentId) {
+    return commentByParentId[parentId];
+  }
+
+  return (
+    <PostContext.Provider
+      value={{ rootComments: commentByParentId[null], getReplies }}
+    >
+      {children}
+    </PostContext.Provider>
+  );
 }

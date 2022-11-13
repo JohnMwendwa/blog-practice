@@ -81,7 +81,7 @@ postSchema.pre("remove", async function (next) {
   const post = this;
   const Comment = mongoose.model("Comment");
 
-  await Comment.deleteMany({ parentId: post._id });
+  await Comment.deleteMany({ postId: post._id });
 
   next();
 });

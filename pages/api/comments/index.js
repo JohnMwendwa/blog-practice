@@ -10,11 +10,9 @@ export default async function handler(req, res) {
   try {
     await connectToDatabase();
 
-    const comments = await Comment.find({ postId: req.body.id }).populate(
-      "user",
-      "firstName lastName",
-      User
-    );
+    const comments = await Comment.find({ postId: req.body.id })
+      .populate("user", "firstName lastName", User)
+      .sort({ date_uploaded: -1 });
 
     await closeConnection();
     res.status(200).json(comments);

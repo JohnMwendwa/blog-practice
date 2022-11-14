@@ -14,7 +14,9 @@ export default async function handler(req, res) {
 
     if (!session) {
       await closeConnection();
-      res.redirect("/admin/login");
+      res
+        .status(401)
+        .json({ error: "Only logged in users are allowed to comment!" });
       return;
     }
 

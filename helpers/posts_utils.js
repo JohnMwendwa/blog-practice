@@ -101,22 +101,3 @@ export async function getPostSlugs() {
     console.log(e);
   }
 }
-
-export async function createComment({ postId, message, parentId, userId }) {
-  try {
-    await connectToDatabase();
-
-    const newComment = new Comment({
-      body: message,
-      user: userId,
-      parentId,
-      postId,
-    });
-    const comment = await newComment.save();
-
-    await closeConnection();
-    return JSON.stringify(comment);
-  } catch (e) {
-    console.log(e);
-  }
-}

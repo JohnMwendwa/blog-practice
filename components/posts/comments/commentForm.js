@@ -32,7 +32,7 @@ const Btn = styled.button`
   cursor: pointer;
 `;
 
-export default function CommentForm() {
+export default function CommentForm({ loading, error }) {
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
@@ -46,7 +46,9 @@ export default function CommentForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Btn type="submit">Post</Btn>
+        <Btn type="submit" disabled={loading}>
+          {loading ? "Loading" : "Post"}
+        </Btn>
       </Wrapper>
     </Form>
   );

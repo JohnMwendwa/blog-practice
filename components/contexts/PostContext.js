@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo, useContext } from "react";
+import { createContext, useState, useMemo, useContext, useEffect } from "react";
 
 const PostContext = createContext();
 
@@ -7,7 +7,34 @@ export const usePost = () => {
 };
 
 export function PostProvider({ children }) {
-  const [comments, setComments] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {}, [comments]);
+
+  const onSendComment = async (postId, message, parentId) => {
+    setLoading(true);
+
+    const response = await fetch("/api/comments/new-comment", {
+      method: "POST",
+      body: JSON.stringify({ postId, message, parentId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      setError(data.error);
+      setLoading(false);
+    }
+
+    if (response.ok) {
+      setComments((prev) => [...prev, data]);
+      setLoading(false);
+    }
+  };
 
   const commentByParentId = useMemo(() => {
     if (comments === null) return [];
@@ -27,7 +54,13 @@ export function PostProvider({ children }) {
 
   return (
     <PostContext.Provider
-      value={{ rootComments: commentByParentId[null], getReplies }}
+      value={{
+        rootComments: commentByParentId[null],
+        getReplies,
+        error,
+        loading,
+        onSendComment,
+      }}
     >
       {children}
     </PostContext.Provider>

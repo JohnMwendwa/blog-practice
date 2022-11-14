@@ -19,6 +19,19 @@ export function PostProvider({ children, post }) {
     }
   }, [post_id]);
 
+  // Clear error state after 5 seconds
+  useEffect(() => {
+    let timeout;
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
+
   const fetchComments = async (id) => {
     const res = await fetch("/api/comments", {
       method: "POST",

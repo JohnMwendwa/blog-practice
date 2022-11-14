@@ -25,6 +25,7 @@ const commentSchema = new Schema(
     },
     parentId: {
       type: String,
+      default: null,
     },
   },
   {

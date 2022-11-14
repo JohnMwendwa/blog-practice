@@ -42,17 +42,26 @@ const Error = styled.div`
   color: hsl(0, 100%, 67%);
 `;
 
-export default function CommentForm({ loading, error }) {
-  const [message, setMessage] = useState("");
+export default function CommentForm({
+  loading,
+  error,
+  onSendComment,
+  autoFocus = false,
+  initialValue = "",
+}) {
+  const [message, setMessage] = useState(initialValue);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    onSendComment(message).then(() => setMessage(""));
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <Wrapper>
         <TextArea
+          autoFocus={autoFocus}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />

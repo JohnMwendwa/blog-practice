@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { usePost } from "../../contexts/PostContext";
 
 const Form = styled.form``;
 const Wrapper = styled.div`
@@ -42,19 +43,15 @@ const Error = styled.div`
   color: hsl(0, 100%, 67%);
 `;
 
-export default function CommentForm({
-  loading,
-  error,
-  onSendComment,
-  autoFocus = false,
-  initialValue = "",
-}) {
+export default function CommentForm({ autoFocus = false, initialValue = "" }) {
   const [message, setMessage] = useState(initialValue);
+  const { loading, error, onSendComment } = usePost();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    onSendComment(message).then(() => setMessage(""));
+    await onSendComment(message);
+    setMessage("");
   };
 
   return (

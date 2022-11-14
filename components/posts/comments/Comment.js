@@ -5,6 +5,7 @@ import { FaReply } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import CommentList from "./commentList";
+import { usePost } from "../../contexts/PostContext";
 
 const Card = styled.div`
   padding: 0.5rem;

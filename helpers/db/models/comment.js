@@ -37,8 +37,6 @@ const commentSchema = new Schema(
 
 commentSchema.pre("validate", function (next) {
   this.body = purify.sanitize(this.body);
-  this.email = purify.sanitize(this.email);
-  this.name = purify.sanitize(this.name);
   next();
 });
 

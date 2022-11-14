@@ -4,6 +4,7 @@ import { FaReply } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import CommentList from "./commentList";
+import { useState } from "react";
 
 const Card = styled.div`
   padding: 0.5rem;
@@ -69,7 +70,7 @@ const Replies = styled.div`
 export default function Comment({ _id, body, user, date_uploaded }) {
   const { getReplies } = usePost();
   const childComments = getReplies(_id);
-  const hideChildren = false;
+  const [hideChildren, setHideChildren] = useState(false);
 
   const formatedDate = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
@@ -97,11 +98,21 @@ export default function Comment({ _id, body, user, date_uploaded }) {
       {childComments?.length > 0 && (
         <>
           <Replies className={`${hideChildren ? "hide" : ""}`}>
-            <button aria-label="Hide-reples" />
+            <button
+              aria-label="Hide-reples"
+              onClick={() => setHideChildren(true)}
+            />
             <div className="child-comments">
               <CommentList comments={childComments} />
             </div>
           </Replies>
+
+          <button
+            className={`${hideChildren ? "hide" : ""}`}
+            onClick={() => setHideChildren(false)}
+          >
+            Show Replies
+          </button>
         </>
       )}
     </>

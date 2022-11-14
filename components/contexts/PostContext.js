@@ -11,7 +11,29 @@ export function PostProvider({ children, post }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {}, [comments]);
+  let post_id = post._id;
+
+  useEffect(() => {
+    if (post_id !== "") {
+      fetchComments(post_id);
+    }
+  }, [post_id]);
+
+  const fetchComments = async (id) => {
+    const res = await fetch("/api/comments", {
+      method: "POST",
+      body: JSON.stringify({ id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      return;
+    }
+
+    setComments(data);
+  };
 
   const onSendComment = async (message, parentId, postId = post._id) => {
     setLoading(true);
@@ -31,7 +53,7 @@ export function PostProvider({ children, post }) {
     }
 
     if (response.ok) {
-      setComments((prev) => [...prev, data]);
+      await fetchComments(post_id);
       setLoading(false);
     }
   };

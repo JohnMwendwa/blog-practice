@@ -32,6 +32,10 @@ const Btn = styled.button`
   cursor: pointer;
 `;
 
+const Error = styled.div`
+  color: hsl(0, 100%, 67%);
+`;
+
 export default function CommentForm({ loading, error }) {
   const [message, setMessage] = useState("");
 
@@ -50,6 +54,7 @@ export default function CommentForm({ loading, error }) {
           {loading ? "Loading" : "Post"}
         </Btn>
       </Wrapper>
+      {error && <Error>{error}</Error>}
     </Form>
   );
 }

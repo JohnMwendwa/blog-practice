@@ -88,6 +88,7 @@ export async function getPostDetails(slug) {
     console.log(e);
   }
 }
+
 export async function getPostSlugs() {
   try {
     await connectToDatabase();
@@ -96,6 +97,25 @@ export async function getPostSlugs() {
 
     await closeConnection();
     return JSON.stringify(slugs);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function createComment({ postId, message, parentId, userId }) {
+  try {
+    await connectToDatabase();
+
+    const newComment = new Comment({
+      body: message,
+      user: userId,
+      parentId,
+      postId,
+    });
+    const comment = await newComment.save();
+
+    await closeConnection();
+    return JSON.stringify(comment);
   } catch (e) {
     console.log(e);
   }

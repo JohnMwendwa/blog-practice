@@ -234,7 +234,7 @@ export default function PostDetails({ post }) {
       <div>
         <h3>Comments</h3>
         <section>
-          <CommentForm loading error onSendComment />
+          <CommentForm />
 
           {rootComments !== null && rootComments?.length > 0 && (
             <Container>

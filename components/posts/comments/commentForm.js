@@ -30,6 +30,12 @@ const Btn = styled.button`
   border-radius: 0.5em;
   font-size: 0.75em;
   cursor: pointer;
+
+  ${(props) =>
+    props.disabled &&
+    ` --color: hsl(var(--hue), 20%, 74%);
+    background-color:grey
+}`}
 `;
 
 const Error = styled.div`
@@ -54,6 +60,7 @@ export default function CommentForm({ loading, error }) {
           {loading ? "Loading" : "Post"}
         </Btn>
       </Wrapper>
+
       {error && <Error>{error}</Error>}
     </Form>
   );

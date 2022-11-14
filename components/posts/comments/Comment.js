@@ -1,10 +1,10 @@
+import { useState } from "react";
 import styled from "styled-components";
 import IconBtn from "./IconBtn";
 import { FaReply } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import CommentList from "./commentList";
-import { useState } from "react";
 
 const Card = styled.div`
   padding: 0.5rem;
@@ -67,6 +67,28 @@ const Replies = styled.div`
   }
 `;
 
+const ShowRepliesBtn = styled.button`
+  --hue: 235;
+  --color: hsl(var(--hue), 100%, 67%);
+  padding: 0.5em 1em;
+  margin-top: 0.25rem;
+  background: var(--color);
+  border: none;
+  color: white;
+  border-radius: 0.5em;
+  font-size: 0.75em;
+  cursor: pointer;
+
+  :hover,
+  :focus-visible {
+    --color: hsl(var(--hue), 100%, 74%);
+  }
+
+  & .hide {
+    display: none;
+  }
+`;
+
 export default function Comment({ _id, body, user, date_uploaded }) {
   const { getReplies } = usePost();
   const childComments = getReplies(_id);
@@ -107,12 +129,12 @@ export default function Comment({ _id, body, user, date_uploaded }) {
             </div>
           </Replies>
 
-          <button
+          <ShowRepliesBtn
             className={`${hideChildren ? "hide" : ""}`}
             onClick={() => setHideChildren(false)}
           >
             Show Replies
-          </button>
+          </ShowRepliesBtn>
         </>
       )}
     </>

@@ -150,7 +150,7 @@ export default function PostDetails({ post }) {
     date_uploaded,
   } = post;
 
-  const { rootComments } = usePost();
+  const { rootComments, loading, error, onSendComment } = usePost();
 
   const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",
@@ -234,7 +234,11 @@ export default function PostDetails({ post }) {
       <div>
         <h3>Comments</h3>
         <section>
-          <CommentForm />
+          <CommentForm
+            loading={loading}
+            error={error}
+            onSendComment={onSendComment}
+          />
 
           {rootComments !== null && rootComments?.length > 0 && (
             <Container>

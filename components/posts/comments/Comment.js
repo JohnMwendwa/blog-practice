@@ -1,38 +1,40 @@
 import { useState } from "react";
 import styled from "styled-components";
-import IconBtn from "./IconBtn";
 import { FaReply } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import CommentList from "./commentList";
 import { usePost } from "../../contexts/PostContext";
 import CommentForm from "./commentForm";
+import IconBtn from "./IconBtn";
 
 const Card = styled.div`
   padding: 0.5rem;
   border: 1px solid hsl(235, 100%, 90%);
   border-radius: 0.5rem;
 
-  & .header {
+  .header {
     color: hsl(235, 50%, 67%);
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.25rem;
     font-size: 0.75em;
   }
-  & .name {
+
+  .name {
     font-weight: bold;
   }
 
-  & .date {
+  .date {
   }
 
-  & .message {
+  .message {
     white-space: pre-wrap;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
   }
-  & .footer {
+
+  .footer {
     display: flex;
     gap: 0.5rem;
     margin-top: 0.5rem;
@@ -42,11 +44,7 @@ const Card = styled.div`
 const Replies = styled.div`
   display: flex;
 
-  & .hide {
-    display: none;
-  }
-
-  & button {
+  & > button {
     border: none;
     background: none;
     padding: 0;
@@ -63,9 +61,41 @@ const Replies = styled.div`
     }
   }
 
-  & .child-comments {
+  .collapse-line {
+    border: none;
+    background: none;
+    padding: 0;
+    width: 15px;
+    margin-top: 0.5rem;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transform: translateX(-50%);
+
+    :hover::before,
+    :focus-visible::before {
+      background-color: hsl(235, 100%, 60%);
+    }
+
+    ::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background-color: hsl(235, 50%, 74%);
+      transition: background-color 100ms ease-in-out;
+    }
+  }
+
+  .child-comments {
     padding-left: 0.5rem;
     flex-grow: 1;
+  }
+
+  .hide {
+    display: none;
   }
 `;
 
@@ -86,7 +116,7 @@ const ShowRepliesBtn = styled.button`
     --color: hsl(var(--hue), 100%, 74%);
   }
 
-  & .hide {
+  .hide {
     display: none;
   }
 `;
@@ -96,15 +126,22 @@ const Separator = styled.div`
 `;
 
 export default function Comment({ _id, body, user, date_uploaded }) {
-  const { getReplies } = usePost();
+  const { getReplies, loading, error, onSendComment } = usePost();
   const childComments = getReplies(_id);
   const [hideChildren, setHideChildren] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
+  console.log(hideChildren);
 
-  const formatedDate = new Intl.DateTimeFormat(undefined, {
+  const onCommentReply = (message) => {
+    onSendComment(message, _id);
+    setIsReplying(false);
+  };
+
+  const formatedDate = new Intl.DateTimeFormat("en-us", {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(Date.parse(date_uploaded));
+
   return (
     <>
       <Card>
@@ -130,15 +167,21 @@ export default function Comment({ _id, body, user, date_uploaded }) {
 
       {isReplying && (
         <Separator>
-          <CommentForm autoFocus />
+          <CommentForm
+            autoFocus
+            error={error}
+            loading={loading}
+            onSendComment={onCommentReply}
+          />
         </Separator>
       )}
 
-      {childComments?.length > 0 && (
+      {childComments?.length && (
         <>
           <Replies className={`${hideChildren ? "hide" : ""}`}>
             <button
-              aria-label="Hide-reples"
+              className="collapse-line"
+              aria-label="Hide Replies"
               onClick={() => setHideChildren(true)}
             />
             <div className="child-comments">
@@ -147,7 +190,7 @@ export default function Comment({ _id, body, user, date_uploaded }) {
           </Replies>
 
           <ShowRepliesBtn
-            className={`${hideChildren ? "hide" : ""}`}
+            className={`${!hideChildren ? "hide" : ""}`}
             onClick={() => setHideChildren(false)}
           >
             Show Replies

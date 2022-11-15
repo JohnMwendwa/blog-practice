@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
     const comment = await Comment.findById({ _id: commentId });
 
-    if (user._id !== comment.user) {
+    if (!user._id.equals(comment.user)) {
       await closeConnection();
       res
         .status(403)
@@ -38,7 +38,8 @@ export default async function handler(req, res) {
     await comment.save();
 
     await closeConnection();
-    res.status(204).json(comment);
+
+    res.status(204).json();
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

@@ -6,6 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import CommentList from "./commentList";
 import { usePost } from "../../contexts/PostContext";
+import CommentForm from "./commentForm";
 
 const Card = styled.div`
   padding: 0.5rem;
@@ -89,11 +90,16 @@ const ShowRepliesBtn = styled.button`
     display: none;
   }
 `;
+const Separator = styled.div`
+  margin-top: 0.5rem;
+  margin-left: 1.5rem;
+`;
 
 export default function Comment({ _id, body, user, date_uploaded }) {
   const { getReplies } = usePost();
   const childComments = getReplies(_id);
   const [hideChildren, setHideChildren] = useState(false);
+  const [isReplying, setIsReplying] = useState(false);
 
   const formatedDate = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
@@ -110,13 +116,23 @@ export default function Comment({ _id, body, user, date_uploaded }) {
         </div>
         <div className="message">{body}</div>
         <div className="footer">
-          <IconBtn Icon={FaReply} aria-label="Reply" />
+          <IconBtn
+            Icon={FaReply}
+            aria-label={isReplying ? "Cancel Reply" : "Reply"}
+            onClick={() => setIsReplying(!isReplying)}
+          />
 
           <IconBtn Icon={FaEdit} aria-label="Edit" />
 
           <IconBtn Icon={FaTrash} aria-label="Delete" color="red" />
         </div>
       </Card>
+
+      {isReplying && (
+        <Separator>
+          <CommentForm autoFocus />
+        </Separator>
+      )}
 
       {childComments?.length > 0 && (
         <>

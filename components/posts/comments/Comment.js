@@ -130,7 +130,6 @@ export default function Comment({ _id, body, user, date_uploaded }) {
   const childComments = getReplies(_id);
   const [hideChildren, setHideChildren] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
-  console.log(hideChildren);
 
   const onCommentReply = (message) => {
     onSendComment(message, _id);
@@ -155,6 +154,7 @@ export default function Comment({ _id, body, user, date_uploaded }) {
         <div className="footer">
           <IconBtn
             Icon={FaReply}
+            isActive={isReplying}
             aria-label={isReplying ? "Cancel Reply" : "Reply"}
             onClick={() => setIsReplying(!isReplying)}
           />

@@ -130,7 +130,7 @@ export default function Comment({ _id, body, user, date_uploaded }) {
     getReplies,
     loading,
     error,
-    onSendComment,
+    onCreateComment,
     onUpdateComment,
     onDeleteComment,
   } = usePost();
@@ -140,7 +140,7 @@ export default function Comment({ _id, body, user, date_uploaded }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const onCommentReply = async (message) => {
-    await onSendComment(message, _id);
+    await onCreateComment(message, _id);
     setIsReplying(false);
   };
 

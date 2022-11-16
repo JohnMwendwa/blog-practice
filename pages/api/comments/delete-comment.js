@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
     const comment = await Comment.findById(commentId);
 
-    if (!user._id.equals(comment.user)) {
+    if (!session.user.isAdmin && !user._id.equals(comment.user)) {
       await closeConnection();
       res
         .status(403)

@@ -2,10 +2,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import { FaTrash } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 
 const Card = styled.article`
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 300px;
   border: 1px solid black;
   border-radius: 5px;
@@ -89,6 +92,27 @@ const Action = styled.div`
     background-color: ${(props) => props.theme.colors.btn.primary};
   }
 `;
+const EditBtn = styled.div`
+  position: absolute;
+  left: -90px;
+  top: 65px;
+  transform: rotate(270deg);
+
+  & button {
+    color: white;
+    background-color: ${(props) => props.theme.colors.btn.primary};
+    margin-left: 5px;
+    padding: 3px 8px;
+    border: none;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+
+    :last-child {
+      background-color: red;
+    }
+  }
+`;
 
 export default function PostItem({ post = {} }) {
   const {
@@ -110,44 +134,54 @@ export default function PostItem({ post = {} }) {
   });
 
   return (
-    <Card>
-      <ImageContainer>
-        <Img
-          src={imageSrc}
-          alt={title}
-          width={300}
-          height={170}
-          layout="responsive"
-        />
-      </ImageContainer>
-      <TimeWrapper>
-        <Time>{formatedDate}</Time>
-        <CategoryLabel>{category}</CategoryLabel>
-      </TimeWrapper>
-      <ContentWrapper>
-        <Content>
-          <Link href={`/${slug}`}>
-            <a title="Read more about this article">
-              <Title>{title}</Title>
-            </a>
-          </Link>
-          <p>{description}</p>
-        </Content>
+    <>
+      <Card>
+        <EditBtn>
+          <button>
+            Edit <FaEdit />
+          </button>
+          <button>
+            Delete <FaTrash />
+          </button>
+        </EditBtn>
+        <ImageContainer>
+          <Img
+            src={imageSrc}
+            alt={title}
+            width={300}
+            height={170}
+            layout="responsive"
+          />
+        </ImageContainer>
+        <TimeWrapper>
+          <Time>{formatedDate}</Time>
+          <CategoryLabel>{category}</CategoryLabel>
+        </TimeWrapper>
+        <ContentWrapper>
+          <Content>
+            <Link href={`/${slug}`}>
+              <a title="Read more about this article">
+                <Title>{title}</Title>
+              </a>
+            </Link>
+            <p>{description}</p>
+          </Content>
 
-        <Action>
-          <Link href={`/${slug}`}>
-            <a title="Read more about this article">
-              <button>Read More...</button>
-            </a>
-          </Link>
           <Action>
-            {/* <Avatar src={author_image} alt={author} width={30} height={30} /> */}
-            <h3>
-              {author.firstName} {author.lastName}
-            </h3>
+            <Link href={`/${slug}`}>
+              <a title="Read more about this article">
+                <button>Read More...</button>
+              </a>
+            </Link>
+            <Action>
+              {/* <Avatar src={author_image} alt={author} width={30} height={30} /> */}
+              <h3>
+                {author.firstName} {author.lastName}
+              </h3>
+            </Action>
           </Action>
-        </Action>
-      </ContentWrapper>
-    </Card>
+        </ContentWrapper>
+      </Card>
+    </>
   );
 }

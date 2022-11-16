@@ -17,7 +17,7 @@ const PostsContainer = styled.div`
   padding: 0 30px 30px;
 `;
 
-export default function AllPosts({ posts, pageTitle }) {
+export default function AllPosts({ posts, pageTitle, isEdit }) {
   const { searchTerm } = useContext(SearchContext);
 
   const filteredPosts = useMemo(() => {
@@ -32,7 +32,7 @@ export default function AllPosts({ posts, pageTitle }) {
 
       <PostsContainer>
         {filteredPosts.map((post) => (
-          <PostItem key={post._id} post={post} />
+          <PostItem key={post._id} post={post} isEdit={isEdit} />
         ))}
       </PostsContainer>
     </>

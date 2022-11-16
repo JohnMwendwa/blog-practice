@@ -114,7 +114,7 @@ const EditBtn = styled.div`
   }
 `;
 
-export default function PostItem({ post, isEdit }) {
+export default function PostItem({ post, isEdit, onDeletePost, onEditPost }) {
   const {
     title,
     description,
@@ -138,10 +138,10 @@ export default function PostItem({ post, isEdit }) {
       <Card>
         {isEdit && (
           <EditBtn>
-            <button>
+            <button onClick={onEditPost}>
               Edit <FaEdit />
             </button>
-            <button>
+            <button onClick={onDeletePost}>
               Delete <FaTrash />
             </button>
           </EditBtn>

@@ -36,13 +36,23 @@ export default NextAuth({
         return {
           email: user.email,
           image: `/api/users/profile/${user._id}/avatar`,
-          name: {
-            isAdmin: user.isAdmin,
-            isAuthenticated: user.isAuthenticated,
-            firstName: user.firstName,
-          },
+          name: user.firstName,
+          id: user._id,
+          isAdmin: user.isAdmin,
+          isAuthenticated: user.isAuthenticated,
         };
       },
     }),
   ],
+
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      user && (token.user = user);
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.user = token.user;
+      return session;
+    },
+  },
 });

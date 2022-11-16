@@ -39,21 +39,35 @@ export default function Articles() {
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      fethPosts();
+      fetchPosts();
     }
     return () => {
       mounted = false;
     };
   }, []);
 
-  const fethPosts = async () => {
+  const fetchPosts = async () => {
     const res = await fetch("/api/posts/my-posts");
     const data = await res.json();
     setPosts(data);
   };
 
-  const onEditPost = () => {};
-  const onDeletePost = () => {};
+  const onEditPost = async () => {};
+  const onDeletePost = async (postId) => {
+    const res = await fetch("/api/posts/delete-post", {
+      method: "DELETE",
+      body: JSON.stringify({ postId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      await fetchPosts();
+    }
+  };
 
   return (
     <Wrapper>

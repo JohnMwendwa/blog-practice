@@ -126,8 +126,14 @@ const Separator = styled.div`
 `;
 
 export default function Comment({ _id, body, user, date_uploaded }) {
-  const { getReplies, loading, error, onSendComment, onUpdateComment } =
-    usePost();
+  const {
+    getReplies,
+    loading,
+    error,
+    onSendComment,
+    onUpdateComment,
+    onDeleteComment,
+  } = usePost();
   const childComments = getReplies(_id);
   const [hideChildren, setHideChildren] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
@@ -173,7 +179,12 @@ export default function Comment({ _id, body, user, date_uploaded }) {
             onClick={() => setIsEditing(!isEditing)}
           />
 
-          <IconBtn Icon={FaTrash} aria-label="Delete" color="red" />
+          <IconBtn
+            Icon={FaTrash}
+            aria-label="Delete"
+            color="red"
+            onClick={() => onDeleteComment(_id)}
+          />
         </div>
       </Card>
 

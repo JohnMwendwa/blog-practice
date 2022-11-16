@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     await connectToDatabase();
     const session = await getSession({ req });
 
-    if (!session && !session.user.name.isAuthenticated) {
+    if (!session || !session.user.isAuthenticated) {
       await closeConnection();
       res.status(401).json({ error: "Unauthorized access!" });
       return;

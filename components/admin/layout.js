@@ -20,6 +20,10 @@ const Profile = styled.div`
 const Details = styled.div`
   margin-left: 10px;
   margin-right: 20px;
+
+  & > p {
+    text-transform: capitalize;
+  }
   & p {
     margin: 0;
   }

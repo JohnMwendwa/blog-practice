@@ -98,14 +98,14 @@ export default function Layout({ children }) {
           <>
             <Avatar
               src={session.user.image}
-              alt={session.user.name?.firstName}
+              alt={session.user.name}
               width={50}
               height={50}
             />
           </>
           <Details>
-            <p>{session.user.name.firstName}</p>
-            <p>{session.user.name.isAdmin ? "Admin" : "User"}</p>
+            <p>{session.user.name}</p>
+            <p>{session.user.isAdmin ? "Admin" : "User"}</p>
           </Details>
         </Profile>
       </Header>
@@ -117,7 +117,7 @@ export default function Layout({ children }) {
               <Link href="/admin/dashboard">Dashboard</Link>
             </li>
 
-            {session.user?.name.isAdmin && (
+            {session.user?.isAdmin && (
               <>
                 <li>
                   <Link href="/admin/messages">Messages</Link>
@@ -128,7 +128,7 @@ export default function Layout({ children }) {
               </>
             )}
 
-            {session.user.name.isAuthenticated && (
+            {session.user?.isAuthenticated && (
               <>
                 <li>
                   <Link href="/admin/articles">Articles</Link>

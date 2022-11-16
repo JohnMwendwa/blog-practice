@@ -99,7 +99,7 @@ export function PostProvider({ children, post }) {
   const onDeleteComment = async (commentId) => {
     setLoading(true);
 
-    const res = await fetch("/api/comments/update-comment", {
+    const res = await fetch("/api/comments/delete-comment", {
       method: "DELETE",
       body: JSON.stringify({ commentId }),
       headers: {

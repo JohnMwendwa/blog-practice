@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { FaReply } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
+import { useSession } from "next-auth/react";
+
 import CommentList from "./commentList";
 import { usePost } from "../../contexts/PostContext";
 import CommentForm from "./commentForm";
@@ -126,6 +128,7 @@ const Separator = styled.div`
 `;
 
 export default function Comment({ _id, body, user, date_uploaded }) {
+  const { data: session } = useSession();
   const {
     getReplies,
     loading,
@@ -172,19 +175,23 @@ export default function Comment({ _id, body, user, date_uploaded }) {
             onClick={() => setIsReplying(!isReplying)}
           />
 
-          <IconBtn
-            Icon={FaEdit}
-            isActive={isEditing}
-            aria-label={isEditing ? "Cancel Edit" : "Edit"}
-            onClick={() => setIsEditing(!isEditing)}
-          />
+          {(session.user.id === user._id || session.user.isAdmin) && (
+            <>
+              <IconBtn
+                Icon={FaEdit}
+                isActive={isEditing}
+                aria-label={isEditing ? "Cancel Edit" : "Edit"}
+                onClick={() => setIsEditing(!isEditing)}
+              />
 
-          <IconBtn
-            Icon={FaTrash}
-            aria-label="Delete"
-            color="red"
-            onClick={() => onDeleteComment(_id)}
-          />
+              <IconBtn
+                Icon={FaTrash}
+                aria-label="Delete"
+                color="red"
+                onClick={() => onDeleteComment(_id)}
+              />
+            </>
+          )}
         </div>
       </Card>
 

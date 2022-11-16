@@ -48,7 +48,7 @@ export function PostProvider({ children, post }) {
     setComments(data);
   };
 
-  const onSendComment = async (message, parentId, postId = post._id) => {
+  const onCreateComment = async (message, parentId, postId = post._id) => {
     setLoading(true);
 
     const response = await fetch("/api/comments/new-comment", {
@@ -143,7 +143,7 @@ export function PostProvider({ children, post }) {
         getReplies,
         error,
         loading,
-        onSendComment,
+        onCreateComment,
         onUpdateComment,
         onDeleteComment,
       }}

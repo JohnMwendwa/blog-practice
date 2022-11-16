@@ -141,7 +141,7 @@ export default function PostItem({ post, isEdit, onDeletePost, onEditPost }) {
             <button onClick={onEditPost}>
               Edit <FaEdit />
             </button>
-            <button onClick={onDeletePost}>
+            <button onClick={() => onDeletePost(postId)}>
               Delete <FaTrash />
             </button>
           </EditBtn>

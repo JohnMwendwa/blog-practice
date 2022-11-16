@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
     const user = await User.findOne({ email: session.user.email });
 
-    const comment = await Comment.findById({ _id: commentId });
+    const comment = await Comment.findById(commentId);
 
     if (!user._id.equals(comment.user)) {
       await closeConnection();
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       return;
     }
 
-    await Comment.findByIdAndDelete({ _id: commentId });
+    await Comment.findByIdAndDelete(commentId);
 
     await closeConnection();
 

@@ -126,14 +126,21 @@ const Separator = styled.div`
 `;
 
 export default function Comment({ _id, body, user, date_uploaded }) {
-  const { getReplies, loading, error, onSendComment } = usePost();
+  const { getReplies, loading, error, onSendComment, onUpdateComment } =
+    usePost();
   const childComments = getReplies(_id);
   const [hideChildren, setHideChildren] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const onCommentReply = (message) => {
-    onSendComment(message, _id);
+  const onCommentReply = async (message) => {
+    await onSendComment(message, _id);
     setIsReplying(false);
+  };
+
+  const onCommentUpdate = async (message) => {
+    await onUpdateComment(message, _id);
+    setIsEditing(false);
   };
 
   const formatedDate = new Intl.DateTimeFormat("en-us", {
@@ -159,7 +166,12 @@ export default function Comment({ _id, body, user, date_uploaded }) {
             onClick={() => setIsReplying(!isReplying)}
           />
 
-          <IconBtn Icon={FaEdit} aria-label="Edit" />
+          <IconBtn
+            Icon={FaEdit}
+            isActive={isEditing}
+            aria-label={isEditing ? "Cancel Edit" : "Edit"}
+            onClick={() => setIsEditing(!isEditing)}
+          />
 
           <IconBtn Icon={FaTrash} aria-label="Delete" color="red" />
         </div>
@@ -172,6 +184,18 @@ export default function Comment({ _id, body, user, date_uploaded }) {
             error={error}
             loading={loading}
             onSendComment={onCommentReply}
+          />
+        </Separator>
+      )}
+
+      {isEditing && (
+        <Separator>
+          <CommentForm
+            autoFocus
+            error={error}
+            loading={loading}
+            initialValue={body}
+            onSendComment={onCommentUpdate}
           />
         </Separator>
       )}

@@ -96,6 +96,31 @@ export function PostProvider({ children, post }) {
     setLoading(false);
   };
 
+  const onDeleteComment = async (commentId) => {
+    setLoading(true);
+
+    const res = await fetch("/api/comments/update-comment", {
+      method: "DELETE",
+      body: JSON.stringify({ commentId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      setError(data.error);
+      setLoading(false);
+    }
+
+    if (res.ok) {
+      await fetchComments(post_id);
+      setLoading(false);
+    }
+
+    setLoading(false);
+  };
+
   const commentByParentId = useMemo(() => {
     const group = {};
 
@@ -120,6 +145,7 @@ export function PostProvider({ children, post }) {
         loading,
         onSendComment,
         onUpdateComment,
+        onDeleteComment,
       }}
     >
       {children}

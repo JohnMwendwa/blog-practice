@@ -71,6 +71,31 @@ export function PostProvider({ children, post }) {
     }
   };
 
+  const onUpdateComment = async (message, commentId) => {
+    setLoading(true);
+
+    const res = await fetch("/api/comments/update-comment", {
+      method: "PATCH",
+      body: JSON.stringify({ message, commentId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      setError(data.error);
+      setLoading(false);
+    }
+
+    if (res.ok) {
+      await fetchComments(post_id);
+      setLoading(false);
+    }
+
+    setLoading(false);
+  };
+
   const commentByParentId = useMemo(() => {
     const group = {};
 
@@ -94,6 +119,7 @@ export function PostProvider({ children, post }) {
         error,
         loading,
         onSendComment,
+        onUpdateComment,
       }}
     >
       {children}

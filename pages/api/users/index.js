@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
     const session = await getSession({ req });
 
-    if (!session.user.name.isAdmin) {
+    if (!session.user.isAdmin) {
       res.status(401).json({ message: "Unauthaurized access!" });
       return;
     }

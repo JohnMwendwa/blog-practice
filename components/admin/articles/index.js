@@ -63,7 +63,7 @@ export default function Articles() {
         </a>
       </Link>
 
-      <AllPosts posts={posts} />
+      <AllPosts posts={posts} isEdit />
     </Wrapper>
   );
 }

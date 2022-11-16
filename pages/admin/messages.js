@@ -16,7 +16,7 @@ export async function getServerSideProps(context) {
         permanent: false,
       },
     };
-  } else if (!session.user.name.isAdmin) {
+  } else if (!session.user.isAdmin) {
     return {
       redirect: {
         destination: "/admin/dashboard",

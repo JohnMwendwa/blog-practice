@@ -21,7 +21,13 @@ const PostsContainer = styled.div`
   }
 `;
 
-export default function AllPosts({ posts, pageTitle, isEdit }) {
+export default function AllPosts({
+  posts,
+  pageTitle,
+  isEdit,
+  onDeletePost,
+  onEditPost,
+}) {
   const { searchTerm } = useContext(SearchContext);
 
   const filteredPosts = useMemo(() => {
@@ -36,7 +42,13 @@ export default function AllPosts({ posts, pageTitle, isEdit }) {
 
       <PostsContainer className={`${isEdit ? "editing" : ""}`}>
         {filteredPosts.map((post) => (
-          <PostItem key={post._id} post={post} isEdit={isEdit} />
+          <PostItem
+            key={post._id}
+            post={post}
+            isEdit={isEdit}
+            onDeletePost={onDeletePost}
+            onEditPost={onEditPost}
+          />
         ))}
       </PostsContainer>
     </>

@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 
     await closeConnection();
 
-    res.status(204).json();
+    res.status(200).json({});
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

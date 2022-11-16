@@ -52,6 +52,9 @@ export default function Articles() {
     setPosts(data);
   };
 
+  const onEditPost = () => {};
+  const onDeletePost = () => {};
+
   return (
     <Wrapper>
       <h2>My Articles</h2>
@@ -63,7 +66,12 @@ export default function Articles() {
         </a>
       </Link>
 
-      <AllPosts posts={posts} isEdit />
+      <AllPosts
+        posts={posts}
+        isEdit
+        onDeletePost={onDeletePost}
+        onEditPost={onEditPost}
+      />
     </Wrapper>
   );
 }

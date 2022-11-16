@@ -114,7 +114,7 @@ const EditBtn = styled.div`
   }
 `;
 
-export default function PostItem({ post = {} }) {
+export default function PostItem({ post, isEdit }) {
   const {
     title,
     description,
@@ -136,14 +136,16 @@ export default function PostItem({ post = {} }) {
   return (
     <>
       <Card>
-        <EditBtn>
-          <button>
-            Edit <FaEdit />
-          </button>
-          <button>
-            Delete <FaTrash />
-          </button>
-        </EditBtn>
+        {isEdit && (
+          <EditBtn>
+            <button>
+              Edit <FaEdit />
+            </button>
+            <button>
+              Delete <FaTrash />
+            </button>
+          </EditBtn>
+        )}
         <ImageContainer>
           <Img
             src={imageSrc}

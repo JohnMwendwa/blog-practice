@@ -150,7 +150,7 @@ export default function PostDetails({ post }) {
     date_uploaded,
   } = post;
 
-  const { rootComments, loading, error, onSendComment } = usePost();
+  const { rootComments, loading, error, onCreateComment } = usePost();
 
   const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",
@@ -237,7 +237,7 @@ export default function PostDetails({ post }) {
           <CommentForm
             loading={loading}
             error={error}
-            onSendComment={onSendComment}
+            onSendComment={onCreateComment}
           />
 
           {rootComments !== null && rootComments?.length > 0 && (

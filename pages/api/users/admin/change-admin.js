@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
     const session = await getSession({ req });
 
-    if (!session || !session.user.name.isAdmin) {
+    if (!session || !session.user.isAdmin) {
       await closeConnection();
       res.status(401).json({ error: "Unauthorized Access!" });
       return;

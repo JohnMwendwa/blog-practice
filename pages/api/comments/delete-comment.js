@@ -4,7 +4,7 @@ import User from "../../../helpers/db/models/user";
 import Comment from "../../../helpers/db/models/comment";
 
 export default async function handler(req, res) {
-  if (req.method !== "PATCH") {
+  if (req.method !== "DELETE") {
     return;
   }
 

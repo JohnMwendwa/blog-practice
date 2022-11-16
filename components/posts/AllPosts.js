@@ -15,6 +15,10 @@ const PostsContainer = styled.div`
   justify-content: center;
   align-content: center;
   padding: 0 30px 30px;
+
+  &.editing {
+    gap: 30px 40px;
+  }
 `;
 
 export default function AllPosts({ posts, pageTitle, isEdit }) {
@@ -30,7 +34,7 @@ export default function AllPosts({ posts, pageTitle, isEdit }) {
     <>
       {pageTitle && <Title>{pageTitle}</Title>}
 
-      <PostsContainer>
+      <PostsContainer className={`${isEdit ? "editing" : ""}`}>
         {filteredPosts.map((post) => (
           <PostItem key={post._id} post={post} isEdit={isEdit} />
         ))}

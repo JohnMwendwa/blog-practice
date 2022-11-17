@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
 import AllPosts from "../../posts/AllPosts";
@@ -35,6 +36,7 @@ export const Btn = styled.button`
 
 export default function Articles() {
   const [posts, setPosts] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     let mounted = true;
@@ -52,7 +54,9 @@ export default function Articles() {
     setPosts(data);
   };
 
-  const onEditPost = async () => {};
+  const onEditPost = (slug) => {
+    router.replace(`/admin/articles/edit/${slug}`);
+  };
   const onDeletePost = async (postId) => {
     const res = await fetch("/api/posts/delete-post", {
       method: "DELETE",

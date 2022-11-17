@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       return;
     }
 
-    await Comment.findByIdAndDelete(commentId);
+    await comment.remove();
 
     await closeConnection();
 

@@ -138,7 +138,7 @@ export default function PostItem({ post, isEdit, onDeletePost, onEditPost }) {
       <Card>
         {isEdit && (
           <EditBtn>
-            <button onClick={onEditPost}>
+            <button onClick={() => onEditPost(slug)}>
               Edit <FaEdit />
             </button>
             <button onClick={() => onDeletePost(postId)}>

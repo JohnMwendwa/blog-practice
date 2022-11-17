@@ -38,7 +38,7 @@ export default async function handler(req, res) {
       return;
     }
 
-    await Post.findByIdAndDelete(postId);
+    await post.remove();
 
     await closeConnection();
 

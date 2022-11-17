@@ -27,7 +27,8 @@ export async function getServerSideProps(context) {
     };
   }
   const slug = context.query.slug;
-  const post = await getPostDetails(slug);
+  const postData = await getPostDetails(slug);
+  const post = JSON.parse(postData);
 
   return {
     props: {

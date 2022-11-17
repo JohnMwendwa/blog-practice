@@ -1,7 +1,8 @@
 import { getSession } from "next-auth/react";
+import EditArticle from "../../../../components/admin/articles/edit-article";
 
 export default function EditArticlePage(props) {
-  return <div>Editing</div>;
+  return <EditArticle />;
 }
 
 export async function getServerSideProps(context) {

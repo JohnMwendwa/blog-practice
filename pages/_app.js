@@ -31,6 +31,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           router.pathname === "/admin/users/[id]" ||
           router.pathname === "/admin/articles" ||
           router.pathname === "/admin/articles/new" ||
+          router.pathname === "/admin/articles/edit/[slug]" ||
           router.pathname === "/admin/settings" ? (
             <AdminLayout>
               <Component {...pageProps} />

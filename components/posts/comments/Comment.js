@@ -175,7 +175,7 @@ export default function Comment({ _id, body, user, date_uploaded }) {
             onClick={() => setIsReplying(!isReplying)}
           />
 
-          {(session.user.id === user._id || session.user.isAdmin) && (
+          {session && (session.user.id === user._id || session.user.isAdmin) && (
             <>
               <IconBtn
                 Icon={FaEdit}

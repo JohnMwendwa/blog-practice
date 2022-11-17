@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { signOut, useSession } from "next-auth/react";
 import Footer from "../layout/footer/Footer";
@@ -89,6 +90,13 @@ const Main = styled.section`
 
 export default function Layout({ children }) {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/admin/login");
+    }
+  }, [session, router]);
 
   const logoutHandler = async () => {
     await signOut();
@@ -101,15 +109,15 @@ export default function Layout({ children }) {
         <Profile>
           <>
             <Avatar
-              src={session.user.image}
-              alt={session.user.name}
+              src={session?.user.image}
+              alt={session?.user.name}
               width={50}
               height={50}
             />
           </>
           <Details>
-            <p>{session.user.name}</p>
-            <p>{session.user.isAdmin ? "Admin" : "User"}</p>
+            <p>{session?.user.name}</p>
+            <p>{session?.user.isAdmin ? "Admin" : "User"}</p>
           </Details>
         </Profile>
       </Header>
@@ -121,7 +129,7 @@ export default function Layout({ children }) {
               <Link href="/admin/dashboard">Dashboard</Link>
             </li>
 
-            {session.user?.isAdmin && (
+            {session?.user.isAdmin && (
               <>
                 <li>
                   <Link href="/admin/messages">Messages</Link>
@@ -132,7 +140,7 @@ export default function Layout({ children }) {
               </>
             )}
 
-            {session.user?.isAuthenticated && (
+            {session?.user.isAuthenticated && (
               <>
                 <li>
                   <Link href="/admin/articles">Articles</Link>

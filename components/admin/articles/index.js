@@ -55,7 +55,7 @@ export default function Articles() {
   };
 
   const onEditPost = (slug) => {
-    router.replace(`/admin/articles/edit/${slug}`);
+    router.push(`/admin/articles/edit/${slug}`);
   };
   const onDeletePost = async (postId) => {
     const res = await fetch("/api/posts/delete-post", {

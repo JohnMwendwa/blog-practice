@@ -1,8 +1,9 @@
 import { getSession } from "next-auth/react";
 import EditArticle from "../../../../components/admin/articles/edit-article";
+import { getPostDetails } from "../../../../helpers/posts_utils";
 
-export default function EditArticlePage(props) {
-  return <EditArticle />;
+export default function EditArticlePage({ post }) {
+  return <EditArticle post={post} />;
 }
 
 export async function getServerSideProps(context) {
@@ -16,6 +17,7 @@ export async function getServerSideProps(context) {
       },
     };
   }
+
   if (!session.user.isAuthenticated) {
     return {
       redirect: {
@@ -24,8 +26,12 @@ export async function getServerSideProps(context) {
       },
     };
   }
+  const slug = context.query.slug;
+  const post = await getPostDetails(slug);
 
   return {
-    props: {},
+    props: {
+      post,
+    },
   };
 }

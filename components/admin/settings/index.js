@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import AccountSettings from "./account-settings";
 import ChangePassword from "./change-password";
+import { FaTrash } from "react-icons/fa";
 
 const Container = styled.div``;
 export const Banner = styled.div`
@@ -72,7 +73,7 @@ const Sidenav = styled.nav`
   display: flex;
   flex-direction: column;
   width: 200px;
-  padding: 20px 0;
+  padding: 20px 0 0;
   border-right: 1px solid #ddd;
 
   & p {
@@ -109,6 +110,22 @@ const Sidenav = styled.nav`
     }
   }
 `;
+const Btn = styled.button`
+  border: none;
+  padding: 10px 0;
+  color: white;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: auto;
+
+  & svg {
+    margin-right: 5px;
+  }
+`;
+
 const ActionBtns = styled.div`
   margin: 5px auto 3px;
 
@@ -245,6 +262,11 @@ export default function Settings() {
               </Link>
             </li>
           </ul>
+
+          <Btn>
+            <FaTrash />
+            Delete Account
+          </Btn>
         </Sidenav>
 
         {isAccount && isUser && <AccountSettings user={user} />}

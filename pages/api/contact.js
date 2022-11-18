@@ -70,7 +70,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const messages = await Message.find({});
+    const messages = await Message.find({}).sort({ createdAt: -1 });
 
     await closeConnection();
     res.status(200).json(messages);

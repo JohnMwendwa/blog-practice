@@ -17,7 +17,8 @@ export default async function handler(req, res) {
       return;
     }
 
-    await User.findOneAndRemove({ email: session.user.email });
+    const user = await User.findOne({ email: session.user.email });
+    await user.remove();
 
     await closeConnection();
     res.status(200).json({

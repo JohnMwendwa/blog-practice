@@ -66,7 +66,7 @@ export default async function handler(req, res) {
     if (!session.user.isAdmin) {
       await closeConnection();
       return res.status(401).json({
-        message: "Unauthorized access",
+        error: "Unauthorized access",
       });
     }
 

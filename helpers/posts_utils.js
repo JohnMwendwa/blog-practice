@@ -79,6 +79,7 @@ export async function getPostDetails(slug) {
         "category",
         "markdown",
         "date_uploaded",
+        "slug",
       ])
       .populate("author", "firstName lastName", User);
 

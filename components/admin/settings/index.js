@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import AccountSettings from "./account-settings";
-import ChangePassword from "./change-password";
+import { signOut } from "next-auth/react";
 import { FaTrash } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { FaExpeditedssl } from "react-icons/fa";
+
+import AccountSettings from "./account-settings";
+import ChangePassword from "./change-password";
 
 const Container = styled.div``;
 export const Banner = styled.div`
@@ -222,6 +224,13 @@ export default function Settings() {
         "Are you sure you want to delete your account ?\nBy deleting your account, all your posts and comments will also be deleted!"
       )
     ) {
+      const res = await fetch("/api/users/delete-user", {
+        method: "DELETE",
+      });
+
+      if (res.ok) {
+        signOut();
+      }
       return;
     }
 

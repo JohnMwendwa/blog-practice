@@ -13,7 +13,8 @@ export default async function handler(req, res) {
     const session = await getSession({ req });
 
     if (!session.user.isAdmin) {
-      res.status(401).json({ message: "Unauthaurized access!" });
+      await closeConnection();
+      res.status(401).json({ error: "Unauthaurized access!" });
       return;
     }
 
@@ -23,6 +24,6 @@ export default async function handler(req, res) {
 
     res.status(200).json(users);
   } catch (e) {
-    res.status(500).json({ message: e.message });
+    res.status(500).json({ error: e.message });
   }
 }

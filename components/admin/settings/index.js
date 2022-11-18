@@ -189,6 +189,21 @@ export default function Settings() {
     };
   }, []);
 
+  // clear error after 5 seconds
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
+
   const AccountHandler = () => {
     setIsAccount(true);
     setIsPassword(false);

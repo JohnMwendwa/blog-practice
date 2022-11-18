@@ -125,7 +125,7 @@ export default function EditArticle({ post }) {
     fd.append("image", photo);
     fd.append("category", category);
 
-    const res = await fetch("/api/posts/update-post", {
+    const res = await fetch(`/api/posts/update/${post.slug}`, {
       method: "PATCH",
       body: fd,
     });

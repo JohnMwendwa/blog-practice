@@ -30,7 +30,7 @@ const handler = nextConnect({
 
       if (!session) {
         await closeConnection();
-        res.status(401).json({ message: "Unauthaurized access!" });
+        res.status(401).json({ error: "Unauthorized access!" });
         return;
       }
 

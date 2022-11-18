@@ -162,6 +162,7 @@ export default function Settings() {
 
   const [isAccount, setIsAccount] = useState(true);
   const [isPassword, setIsPassword] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     let mounted = true;
@@ -227,6 +228,11 @@ export default function Settings() {
       const res = await fetch("/api/users/delete-user", {
         method: "DELETE",
       });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error);
+      }
 
       if (res.ok) {
         signOut();

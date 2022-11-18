@@ -84,6 +84,12 @@ const Button = styled(Btn)`
   background-color: ${(c) => c.theme.colors.ui.secondary};
   margin-right: 10px;
   display: inline-block;
+
+  ${(props) =>
+    props.disabled &&
+    `
+  background-color:grey
+  `}
 `;
 const CancelBtn = styled(Button)`
   background-color: grey;

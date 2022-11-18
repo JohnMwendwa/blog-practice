@@ -4,6 +4,8 @@ import Link from "next/link";
 import AccountSettings from "./account-settings";
 import ChangePassword from "./change-password";
 import { FaTrash } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+import { FaExpeditedssl } from "react-icons/fa";
 
 const Container = styled.div``;
 export const Banner = styled.div`
@@ -101,11 +103,18 @@ const Sidenav = styled.nav`
       }
 
       & a {
-        display: block;
+        display: flex;
+        align-items: center;
         width: 100%;
         height: 100%;
         padding: 10px 0;
         padding-left: 20px;
+
+        & svg {
+          margin-right: 5px;
+          color: blue;
+          font-size: 18px;
+        }
       }
     }
   }
@@ -119,6 +128,7 @@ const Btn = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 0 0 0 5px;
   margin-top: auto;
 
   & svg {
@@ -253,12 +263,18 @@ export default function Settings() {
           <ul>
             <li onClick={AccountHandler}>
               <Link href="" scroll={false}>
-                Account
+                <a>
+                  <FaUserCircle />
+                  Account
+                </a>
               </Link>
             </li>
             <li onClick={passwordHandler}>
               <Link href="" scroll={false}>
-                Password
+                <a>
+                  <FaExpeditedssl />
+                  Password
+                </a>
               </Link>
             </li>
           </ul>

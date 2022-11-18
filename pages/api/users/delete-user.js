@@ -3,7 +3,7 @@ import { connectToDatabase, closeConnection } from "../../../helpers/db/db";
 import User from "../../../helpers/db/models/user";
 
 export default async function handler(req, res) {
-  if (req.method !== "PATCH") {
+  if (req.method !== "DELETE") {
     return;
   }
 

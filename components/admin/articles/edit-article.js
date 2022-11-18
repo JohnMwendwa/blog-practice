@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { Btn } from ".";
@@ -115,6 +115,20 @@ export default function EditArticle({ post }) {
       setPhoto(null);
     }
   };
+
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

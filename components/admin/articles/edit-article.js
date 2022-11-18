@@ -129,7 +129,12 @@ export default function EditArticle({ post }) {
       method: "PATCH",
       body: fd,
     });
+
     const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.error);
+    }
   };
 
   return (

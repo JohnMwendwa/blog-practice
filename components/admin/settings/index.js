@@ -155,6 +155,12 @@ const ActionBtns = styled.div`
     background-color: blue;
   }
 `;
+const Error = styled.div`
+  text-align: center;
+  padding: 20px;
+  color: red;
+  font-weight: 700;
+`;
 
 export default function Settings() {
   const [user, setUser] = useState({});
@@ -316,6 +322,7 @@ export default function Settings() {
 
         {isPassword && <ChangePassword user={user} />}
       </Card>
+      {error && <Error>{error}</Error>}
     </Container>
   );
 }

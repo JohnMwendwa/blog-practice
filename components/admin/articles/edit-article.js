@@ -104,6 +104,7 @@ export default function EditArticle({ post }) {
   const [description, setDescription] = useState(post.description);
   const [category, setCategory] = useState(post.category);
   const [markdown, setMarkdown] = useState(post.markdown);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const handleFileUpload = (e) => {
@@ -131,6 +132,8 @@ export default function EditArticle({ post }) {
   }, [error]);
 
   const handleSubmit = async (e) => {
+    setLoading(true);
+
     e.preventDefault();
     const fd = new FormData();
     fd.append("title", title);
@@ -148,7 +151,11 @@ export default function EditArticle({ post }) {
 
     if (!res.ok) {
       setError(data.error);
+      setLoading(false);
+      return;
     }
+
+    setLoading(false);
   };
 
   return (

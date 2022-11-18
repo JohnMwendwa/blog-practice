@@ -90,6 +90,13 @@ const CancelBtn = styled(Button)`
   margin-right: 10px;
   font-size: 1rem;
 `;
+const Error = styled.div`
+  margin-top: -30px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: red;
+  font-weight: 700;
+`;
 
 export default function EditArticle({ post }) {
   const [photo, setPhoto] = useState(null);
@@ -116,6 +123,8 @@ export default function EditArticle({ post }) {
   return (
     <Wrapper>
       <h2>Edit Article</h2>
+
+      {error && <Error>{error}</Error>}
 
       <Form onSubmit={handleSubmit}>
         <label htmlFor="image">

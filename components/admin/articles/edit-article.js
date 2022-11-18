@@ -118,6 +118,18 @@ export default function EditArticle({ post }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const fd = new FormData();
+    fd.append("title", title);
+    fd.append("description", description);
+    fd.append("markdown", markdown);
+    fd.append("image", photo);
+    fd.append("category", category);
+
+    const res = await fetch("/api/posts/update-post", {
+      method: "PATCH",
+      body: fd,
+    });
+    const data = await res.json();
   };
 
   return (

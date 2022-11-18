@@ -206,7 +206,7 @@ export default function EditArticle({ post }) {
           </a>
         </Link>
 
-        <Button type="submit">Save</Button>
+        <Button type="submit">Update</Button>
       </Form>
     </Wrapper>
   );

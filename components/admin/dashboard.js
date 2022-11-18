@@ -50,7 +50,7 @@ export default function Dashboard() {
     <>
       <DashBanner>
         <h2>Dashboard</h2>
-        <p>Welcome, {session.user.name.firstName} </p>
+        <p>Welcome, {session?.user.name} </p>
       </DashBanner>
       <Cards>
         <Card>

@@ -216,6 +216,18 @@ export default function Settings() {
     setPhoto(null);
   };
 
+  const handleAccountDelete = async () => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete your account ?\nBy deleting your account, all your posts and comments will also be deleted!"
+      )
+    ) {
+      return;
+    }
+
+    return;
+  };
+
   const isUser = Object.keys(user).length !== 0;
 
   return (
@@ -279,7 +291,7 @@ export default function Settings() {
             </li>
           </ul>
 
-          <Btn>
+          <Btn onClick={handleAccountDelete}>
             <FaTrash />
             Delete Account
           </Btn>

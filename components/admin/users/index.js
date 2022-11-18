@@ -61,6 +61,9 @@ const Table = styled.table`
   .delete {
     color: red;
   }
+  .edit {
+    color: green;
+  }
 `;
 
 const Btn = styled.button`
@@ -109,11 +112,15 @@ export default function Users() {
               </td>
               <td>{user?.email}</td>
               <td>
-                {user?.isAdmin ? <FaCheck /> : <FaTimes className="delete" />}{" "}
+                {user?.isAdmin ? (
+                  <FaCheck className="edit" />
+                ) : (
+                  <FaTimes className="delete" />
+                )}{" "}
               </td>
               <td>
                 {user?.isAuthenticated ? (
-                  <FaCheck />
+                  <FaCheck className="edit" />
                 ) : (
                   <FaTimes className="delete" />
                 )}
@@ -121,7 +128,7 @@ export default function Users() {
               <td>
                 <Link href={`/admin/users/${user._id}`}>
                   <a>
-                    <FaEdit />
+                    <FaEdit className="edit" />
                   </a>
                 </Link>
               </td>

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import { FaEdit } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
 const Wrapper = styled.div`
   & > h2 {
@@ -13,6 +16,7 @@ const Table = styled.table`
   border-collapse: collapse;
   width: 80%;
   margin: 0 auto;
+  text-align: center;
 
   & th,
   td {
@@ -21,6 +25,7 @@ const Table = styled.table`
   }
   & td:first-child {
     font-weight: bold;
+    text-align: left;
   }
 
   & tr:nth-child(even) {
@@ -34,16 +39,24 @@ const Table = styled.table`
     background-color: ${(c) => c.theme.colors.ui.secondary};
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+
     color: white;
   }
 
   & button {
+    display: block;
     cursor: pointer;
     background-color: #04aa6d;
     color: white;
     padding: 5px 20px;
     border: none;
+    margin: auto;
+  }
+  .edit {
+    color: green;
+  }
+  .delete {
+    color: red;
   }
 `;
 
@@ -164,16 +177,32 @@ export default function User() {
           </tr>
           <tr>
             <td>isAdmin</td>
-            <td>{user?.isAdmin ? "True" : "False"} </td>
             <td>
-              <button onClick={changeAdmin}>Edit</button>
+              {user?.isAdmin ? (
+                <FaCheck className="edit" />
+              ) : (
+                <FaTimes className="delete" />
+              )}{" "}
+            </td>
+            <td>
+              <button onClick={changeAdmin}>
+                <FaEdit />
+              </button>
             </td>
           </tr>
           <tr>
             <td>isAuthenticated</td>
-            <td>{user?.isAuthenticated ? "True" : "False"}</td>
             <td>
-              <button onClick={handleAuthentication}>Edit</button>
+              {user?.isAuthenticated ? (
+                <FaCheck className="edit" />
+              ) : (
+                <FaTimes className="delete" />
+              )}
+            </td>
+            <td>
+              <button onClick={handleAuthentication}>
+                <FaEdit />
+              </button>
             </td>
           </tr>
           <tr>

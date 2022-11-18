@@ -253,7 +253,9 @@ export default function EditArticle({ post }) {
           </a>
         </Link>
 
-        <Button type="submit">Update</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? "Updating..." : "Update"}
+        </Button>
       </Form>
     </Wrapper>
   );

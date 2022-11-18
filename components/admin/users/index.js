@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { FaEdit } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,6 +20,7 @@ const Table = styled.table`
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  text-align: center;
 
   & td,
   th {
@@ -25,6 +30,7 @@ const Table = styled.table`
 
   & td:first-child {
     text-transform: capitalize;
+    text-align: left;
   }
 
   & tr:nth-child(even) {
@@ -38,15 +44,22 @@ const Table = styled.table`
   & th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #04aa6d;
     color: white;
   }
 
   & a {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
+    color: green;
+    cursor: pointer;
+  }
+  .delete {
+    color: red;
   }
 `;
 
@@ -84,6 +97,7 @@ export default function Users() {
             <th>Admin</th>
             <th>Authenticated</th>
             <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
 
@@ -94,12 +108,27 @@ export default function Users() {
                 {user.firstName} {user.lastName}
               </td>
               <td>{user?.email}</td>
-              <td>{user?.isAdmin ? "True" : "False"} </td>
-              <td>{user?.isAuthenticated ? "True" : "False"}</td>
+              <td>
+                {user?.isAdmin ? <FaCheck /> : <FaTimes className="delete" />}{" "}
+              </td>
+              <td>
+                {user?.isAuthenticated ? (
+                  <FaCheck />
+                ) : (
+                  <FaTimes className="delete" />
+                )}
+              </td>
               <td>
                 <Link href={`/admin/users/${user._id}`}>
-                  <a>View</a>
+                  <a>
+                    <FaEdit />
+                  </a>
                 </Link>
+              </td>
+              <td>
+                <a className="delete">
+                  <FaTrash />
+                </a>
               </td>
             </tr>
           ))}

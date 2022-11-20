@@ -45,6 +45,7 @@ const Btn = styled.button`
 
 export default function Messages() {
   const [messages, setMessages] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchMessages();
@@ -53,6 +54,11 @@ export default function Messages() {
   const fetchMessages = async () => {
     const response = await fetch(`/api/contact`);
     const data = await response.json();
+
+    if (!response.ok) {
+      setError(data.error);
+      return;
+    }
 
     setMessages(data);
   };

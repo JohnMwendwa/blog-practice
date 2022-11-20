@@ -43,7 +43,12 @@ const Btn = styled.button`
   outline: 1px solid ${(c) => c.theme.colors.ui.secondary};
 `;
 
-const Error = styled.div``;
+const Error = styled.p`
+  color: red;
+  font-weight: 600;
+  margin-top: -15px;
+  text-align: center;
+`;
 
 export default function Messages() {
   const [messages, setMessages] = useState([]);

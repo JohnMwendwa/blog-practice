@@ -43,6 +43,8 @@ const Btn = styled.button`
   outline: 1px solid ${(c) => c.theme.colors.ui.secondary};
 `;
 
+const Error = styled.div``;
+
 export default function Messages() {
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState(null);
@@ -79,6 +81,9 @@ export default function Messages() {
   return (
     <>
       <Title>Notifications</Title>
+
+      {error && <Error>{error}</Error>}
+
       <TopBar>
         <span>All </span>
         <span>mark all as read</span>

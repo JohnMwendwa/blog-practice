@@ -51,6 +51,19 @@ export default function Messages() {
     fetchMessages();
   }, []);
 
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
+
   const fetchMessages = async () => {
     const response = await fetch(`/api/contact`);
     const data = await response.json();

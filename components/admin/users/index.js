@@ -75,6 +75,12 @@ const Btn = styled.button`
   outline: 1px solid ${(c) => c.theme.colors.ui.secondary};
 `;
 
+const Error = styled.p`
+  color: red;
+  font-weight: 600;
+  margin-top: -15px;
+  text-align: center;
+`;
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
@@ -114,6 +120,8 @@ export default function Users() {
   return (
     <Wrapper>
       <h2>Users</h2>
+
+      {error && <Error>{error}</Error>}
 
       <Table>
         <thead>

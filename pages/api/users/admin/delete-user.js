@@ -21,7 +21,9 @@ export default async function handler(req, res) {
     const user = await User.findById({ _id: req.body.id }).select(
       "+superAdmin"
     );
-    const currentUser = await User.findOne({ email: session.user.email });
+    const currentUser = await User.findOne({
+      email: session.user.email,
+    }).select("+superAdmin");
 
     if (!user) {
       await closeConnection();

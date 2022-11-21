@@ -88,6 +88,24 @@ export default function Users() {
     setUsers(data);
   };
 
+  const deleteUser = async (user) => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete ${user.firstName} ${user.lastName}'s account?`
+      )
+    ) {
+      const res = await fetch("/api/users/admin/delete-user", {
+        method: "DELETE",
+        body: JSON.stringify(user._id),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+    }
+  };
+
   return (
     <Wrapper>
       <h2>Users</h2>
@@ -133,7 +151,7 @@ export default function Users() {
                 </Link>
               </td>
               <td>
-                <a className="delete">
+                <a onClick={() => deleteUser(user)} className="delete">
                   <FaTrash />
                 </a>
               </td>

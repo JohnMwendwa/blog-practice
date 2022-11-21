@@ -77,6 +77,7 @@ const Btn = styled.button`
 
 export default function Users() {
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchUsers();
@@ -96,13 +97,17 @@ export default function Users() {
     ) {
       const res = await fetch("/api/users/admin/delete-user", {
         method: "DELETE",
-        body: JSON.stringify(user._id),
+        body: JSON.stringify({ id: user._id }),
         headers: {
           "Content-Type": "application/json",
         },
       });
 
       const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error);
+      }
     }
   };
 

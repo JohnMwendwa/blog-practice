@@ -127,6 +127,10 @@ export default function Users() {
       if (!res.ok) {
         setError(data.error);
       }
+
+      if (res.ok) {
+        await fetchUsers();
+      }
     }
   };
 

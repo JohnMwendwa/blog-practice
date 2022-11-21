@@ -89,6 +89,19 @@ export default function Users() {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
+
   const fetchUsers = async () => {
     const response = await fetch("/api/users");
     const data = await response.json();

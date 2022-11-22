@@ -22,15 +22,27 @@ export default async function handler(req, res) {
       "+superAdmin"
     );
 
+    const currentUser = await User.findOne({
+      email: session.user.email,
+    }).select("+superAdmin");
+
     if (!user) {
       await closeConnection();
       res.status(404).json({ error: "User Not Found" });
       return;
     }
 
+    if (!currentUser.superAdmin) {
+      await closeConnection();
+      res
+        .status(401)
+        .json({ error: "You have no permission to change user admin status" });
+      return;
+    }
+
     if (user.superAdmin) {
       await closeConnection();
-      res.status(401).json({ error: "User above your clearance" });
+      res.status(401).json({ error: "You can't change your admin status" });
       return;
     }
 

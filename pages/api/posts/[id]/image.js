@@ -8,6 +8,7 @@ export default async function handler(req, res) {
 
   try {
     await connectToDatabase();
+
     const post = await Post.findById({ _id: req.query.id });
 
     if (!post) {
@@ -17,6 +18,8 @@ export default async function handler(req, res) {
     }
 
     res.setHeader("Content-Type", "image/png");
+
+    await closeConnection();
 
     res.send(post.image);
   } catch (e) {

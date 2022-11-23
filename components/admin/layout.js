@@ -99,6 +99,7 @@ const Main = styled.section`
   flex-direction: column;
   overflow-y: scroll;
   padding: 0 20px 30px;
+  overflow-y: auto;
 `;
 
 export default function Layout({ children }) {

@@ -17,11 +17,13 @@ export default async function handler(req, res) {
       return;
     }
 
-    res.setHeader("Content-Type", "image/png");
+    const image = post.image;
 
     await closeConnection();
 
-    res.send(post.image);
+    res.setHeader("Content-Type", "image/png");
+
+    res.status(200).send(image);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

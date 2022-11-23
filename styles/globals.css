@@ -14,12 +14,12 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-::-webkit-scrollbar {
-  width: 1em;
+body::-webkit-scrollbar {
+  width: 0.7em;
   background-color: #a0a0a0;
 }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   background-color: rgba(2, 43, 58, 0.9);
   width: 0.5em;
 }

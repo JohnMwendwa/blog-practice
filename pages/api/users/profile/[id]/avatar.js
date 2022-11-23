@@ -16,10 +16,13 @@ export default async function handler(req, res) {
     if (!user || !user.avatar) {
       throw new Error();
     }
-    res.setHeader("Content-Type", "image/png");
+    const avatar = user.avatar;
+
     await closeConnection();
 
-    res.send(user.avatar);
+    res.setHeader("Content-Type", "image/png");
+
+    res.status(200).send(avatar);
   } catch (e) {
     res.status(404).json({ error: "Not Found" });
   }

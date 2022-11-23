@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   }
 
   & > div {
-    width: calc(100vw - 210px);
+    width: calc(100vw - 230px);
   }
 `;
 

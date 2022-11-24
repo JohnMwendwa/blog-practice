@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import styled from "styled-components";
 import { Banner } from "./settings";
 
@@ -53,22 +54,41 @@ export default function Dashboard() {
         <p>Welcome, {session?.user.name} </p>
       </DashBanner>
       <Cards>
-        <Card>
-          <p>📨</p>
-          <h3>Messages</h3>
-        </Card>
-        <Card>
-          <p>📚</p>
-          <h3>Articles</h3>
-        </Card>
-        <Card>
-          <p>⚙</p>
-          <h3>Settings</h3>
-        </Card>
-        <Card>
-          <p>📩</p>
-          <h3>Comments</h3>
-        </Card>
+        <Link href="/admin/messages">
+          <a>
+            <Card>
+              <p>📨</p>
+              <h3>Messages</h3>
+            </Card>
+          </a>
+        </Link>
+
+        <Link href="/admin/articles">
+          <a>
+            <Card>
+              <p>📚</p>
+              <h3>Articles</h3>
+            </Card>
+          </a>
+        </Link>
+
+        <Link href="/admin/settings">
+          <a>
+            <Card>
+              <p>⚙</p>
+              <h3>Settings</h3>
+            </Card>
+          </a>
+        </Link>
+
+        <Link href="/admin/comments">
+          <a>
+            <Card>
+              <p>📩</p>
+              <h3>Comments</h3>
+            </Card>
+          </a>
+        </Link>
       </Cards>
     </>
   );

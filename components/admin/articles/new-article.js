@@ -131,6 +131,11 @@ export default function NewArticle() {
       body: fd,
     });
     const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.error);
+      return;
+    }
   };
 
   return (

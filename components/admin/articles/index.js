@@ -34,6 +34,8 @@ export const Btn = styled.button`
   }
 `;
 
+const Error = styled.div``;
+
 export default function Articles() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
@@ -84,6 +86,8 @@ export default function Articles() {
           </Btn>
         </a>
       </Link>
+
+      {error && <Error>{error}</Error>}
 
       <AllPosts
         posts={posts}

@@ -129,6 +129,8 @@ export default function NewArticle() {
     <Wrapper>
       <h2>New Article</h2>
 
+      {error && <div>{error}</div>}
+
       <Form onSubmit={handleSubmit}>
         <label htmlFor="image">
           <div>

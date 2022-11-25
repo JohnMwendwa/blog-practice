@@ -81,6 +81,7 @@ export async function getPostDetails(slug) {
         "markdown",
         "date_uploaded",
         "slug",
+        "imgSrc",
       ])
       .populate("author", "firstName lastName", User);
 

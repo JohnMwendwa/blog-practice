@@ -91,6 +91,14 @@ const CancelBtn = styled(Button)`
   font-size: 1rem;
 `;
 
+const Error = styled.div`
+  margin-top: -30px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: red;
+  font-weight: 700;
+`;
+
 export default function NewArticle() {
   const [photo, setPhoto] = useState(null);
   const titleRef = useRef();
@@ -129,7 +137,7 @@ export default function NewArticle() {
     <Wrapper>
       <h2>New Article</h2>
 
-      {error && <div>{error}</div>}
+      {error && <Error>{error}</Error>}
 
       <Form onSubmit={handleSubmit}>
         <label htmlFor="image">

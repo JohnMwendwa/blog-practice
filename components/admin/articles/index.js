@@ -59,6 +59,12 @@ export default function Articles() {
   const fetchPosts = async () => {
     const res = await fetch("/api/posts/my-posts");
     const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.error);
+      return;
+    }
+
     setPosts(data);
   };
 
@@ -75,6 +81,11 @@ export default function Articles() {
     });
 
     const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.error);
+      return;
+    }
 
     if (res.ok) {
       await fetchPosts();

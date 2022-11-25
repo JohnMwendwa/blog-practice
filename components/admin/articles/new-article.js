@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { Btn } from ".";
@@ -106,6 +106,21 @@ export default function NewArticle() {
   const categoryRef = useRef();
   const markdownRef = useRef();
   const [error, setError] = useState(null);
+
+  // Clear error state after 5 seconds
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
 
   const handleFileUpload = (e) => {
     let file = e.target.files;

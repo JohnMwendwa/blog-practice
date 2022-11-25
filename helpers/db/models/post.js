@@ -51,6 +51,11 @@ const postSchema = new Schema(
       required: true,
       unique: true,
     },
+    imgSrc: {
+      type: String,
+      required: true,
+      unique: true,
+    },
   },
   {
     timestamps: {

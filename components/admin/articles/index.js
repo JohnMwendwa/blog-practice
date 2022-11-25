@@ -46,6 +46,7 @@ export default function Articles() {
   const [error, setError] = useState(null);
   const router = useRouter();
 
+  // fetch user posts when page loads
   useEffect(() => {
     let mounted = true;
     if (mounted) {
@@ -55,6 +56,21 @@ export default function Articles() {
       mounted = false;
     };
   }, []);
+
+  // Clear error state after 5 seconds
+  useEffect(() => {
+    let timeout;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
 
   const fetchPosts = async () => {
     const res = await fetch("/api/posts/my-posts");

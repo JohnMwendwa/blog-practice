@@ -34,7 +34,12 @@ export const Btn = styled.button`
   }
 `;
 
-const Error = styled.div``;
+const Error = styled.div`
+  margin-bottom: 10px;
+  text-align: center;
+  color: red;
+  font-weight: 700;
+`;
 
 export default function Articles() {
   const [posts, setPosts] = useState([]);

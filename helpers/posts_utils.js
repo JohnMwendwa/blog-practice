@@ -58,6 +58,7 @@ export async function getPosts() {
         "category",
         "slug",
         "date_uploaded",
+        "imgSrc",
       ])
       .populate("author", "firstName lastName", User);
 

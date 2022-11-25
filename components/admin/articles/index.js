@@ -36,6 +36,7 @@ export const Btn = styled.button`
 
 export default function Articles() {
   const [posts, setPosts] = useState([]);
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   useEffect(() => {

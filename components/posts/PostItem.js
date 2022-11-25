@@ -123,9 +123,8 @@ export default function PostItem({ post, isEdit, onDeletePost, onEditPost }) {
     slug,
     _id: postId,
     author,
+    imgSrc,
   } = post;
-
-  const imageSrc = `/api/posts/${postId}/image/`;
 
   const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",
@@ -148,7 +147,7 @@ export default function PostItem({ post, isEdit, onDeletePost, onEditPost }) {
         )}
         <ImageContainer>
           <Img
-            src={imageSrc}
+            src={imgSrc}
             alt={title}
             width={300}
             height={170}

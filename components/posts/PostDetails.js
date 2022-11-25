@@ -147,6 +147,7 @@ export default function PostDetails({ post }) {
     category,
     slug,
     markdown,
+    imgSrc,
     date_uploaded,
   } = post;
 
@@ -204,7 +205,7 @@ export default function PostDetails({ post }) {
 
       <ImageHedaer>
         <Image
-          src={`/api/posts/${postId}/image/`}
+          src={imgSrc}
           alt={title}
           width={600}
           height={250}

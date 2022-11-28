@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 export const Btn = styled.button`
   display: block;
-  margin: 0 auto 20px;
+  margin: 20px auto;
   padding: 5px 10px;
   border: none;
   cursor: pointer;
@@ -110,7 +110,6 @@ export default function Articles() {
 
   return (
     <Wrapper>
-      <h2>My Articles</h2>
       <Link href="/admin/articles/new">
         <a>
           <Btn>
@@ -118,6 +117,8 @@ export default function Articles() {
           </Btn>
         </a>
       </Link>
+
+      <h2>My Articles</h2>
 
       {error && <Error>{error}</Error>}
 

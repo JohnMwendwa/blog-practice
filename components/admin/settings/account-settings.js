@@ -61,10 +61,16 @@ export default function AccountSettings({ user }) {
       }, 5000);
     }
 
+    if (message) {
+      timeout = setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }
+
     return () => {
       clearTimeout(timeout);
     };
-  }, [error]);
+  }, [error, message]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();

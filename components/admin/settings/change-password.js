@@ -40,6 +40,8 @@ const Container = styled.div`
   }
 `;
 
+const Message = styled(Error)``;
+
 export default function ChangePassword({ user }) {
   const oldPasswordRef = useRef();
   const newPasswordRef = useRef();
@@ -90,6 +92,8 @@ export default function ChangePassword({ user }) {
       if (!response.ok) {
         throw new Error(data.error);
       }
+
+      setMessage(data.message);
     } catch (e) {
       setError(e.message);
     }
@@ -98,6 +102,7 @@ export default function ChangePassword({ user }) {
   return (
     <Container>
       <h2>Change Password</h2>
+      {message && <Message>{message}</Message>}
       {error && <div>{error}</div>}
 
       <form onSubmit={handleSubmit}>

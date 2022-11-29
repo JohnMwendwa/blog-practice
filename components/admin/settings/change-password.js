@@ -53,6 +53,7 @@ export default function ChangePassword({ user }) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState();
 
+  // Clear the error or message state after 5 seconds
   useEffect(() => {
     let timeout;
 
@@ -62,10 +63,16 @@ export default function ChangePassword({ user }) {
       }, 5000);
     }
 
+    if (message) {
+      timeout = setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }
+
     return () => {
       clearTimeout(timeout);
     };
-  }, [error]);
+  }, [error, message]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

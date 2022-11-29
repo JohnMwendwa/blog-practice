@@ -99,7 +99,9 @@ const Error = styled.div`
   font-weight: 700;
 `;
 
-const Message = styled(Error)``;
+const Message = styled(Error)`
+  color: green;
+`;
 
 export default function NewArticle() {
   const [photo, setPhoto] = useState(null);

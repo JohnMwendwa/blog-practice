@@ -8,12 +8,6 @@ const Container = styled.div`
   align-items: center;
   padding-left: 20px;
 
-  & > div {
-    color: red;
-    margin-top: -10px;
-    text-align: center;
-  }
-
   & form {
     & label {
       display: block;
@@ -39,11 +33,14 @@ const Container = styled.div`
     }
   }
 `;
-
-const Message = styled.div`
-  color: green;
+const Error = styled.div`
+  color: red;
   margin-top: -10px;
   text-align: center;
+`;
+
+const Message = styled(Error)`
+  color: green;
 `;
 
 export default function ChangePassword({ user }) {
@@ -113,8 +110,9 @@ export default function ChangePassword({ user }) {
   return (
     <Container>
       <h2>Change Password</h2>
+      {error && <Error>{error}</Error>}
+
       {message && <Message>{message}</Message>}
-      {error && <div>{error}</div>}
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="oldPassword">

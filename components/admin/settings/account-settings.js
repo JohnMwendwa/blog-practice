@@ -44,6 +44,7 @@ export default function AccountSettings({ user }) {
   const [firstName, setFirstName] = useState(`${user.firstName}`);
   const [lastName, setLastName] = useState(`${user.lastName}`);
   const [email, setEmail] = useState(`${user.email}`);
+  const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
 
   useEffect(() => {

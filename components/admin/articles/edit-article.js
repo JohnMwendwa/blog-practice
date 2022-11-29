@@ -103,7 +103,9 @@ const Error = styled.div`
   color: red;
   font-weight: 700;
 `;
-const Message = styled(Error)``;
+const Message = styled(Error)`
+  color: green;
+`;
 
 export default function EditArticle({ post }) {
   const [photo, setPhoto] = useState(null);

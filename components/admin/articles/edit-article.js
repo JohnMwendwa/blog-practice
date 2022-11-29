@@ -112,6 +112,7 @@ export default function EditArticle({ post }) {
   const [markdown, setMarkdown] = useState(post.markdown);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState("");
 
   const handleFileUpload = (e) => {
     let file = e.target.files;

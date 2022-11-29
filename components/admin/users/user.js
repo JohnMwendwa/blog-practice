@@ -78,6 +78,7 @@ const Btn = styled.button`
 
 export default function User() {
   const [user, setUser] = useState({});
+  const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
   const router = useRouter();
   const { id } = router.query;

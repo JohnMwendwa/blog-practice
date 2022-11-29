@@ -116,10 +116,16 @@ export default function User() {
       }, 5000);
     }
 
+    if (message) {
+      timeout = setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }
+
     return () => {
       clearTimeout(timeout);
     };
-  }, [error]);
+  }, [error, message]);
 
   const handleAuthentication = async () => {
     const res = await fetch("/api/users/admin/authenticate", {

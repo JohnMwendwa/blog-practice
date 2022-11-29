@@ -81,7 +81,9 @@ const Error = styled.p`
   margin-top: -15px;
   text-align: center;
 `;
-const Message = styled(Error)``;
+const Message = styled(Error)`
+  color: green;
+`;
 
 export default function Users() {
   const [users, setUsers] = useState([]);

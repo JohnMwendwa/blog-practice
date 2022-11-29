@@ -81,6 +81,8 @@ const Error = styled.p`
   margin-top: -15px;
   text-align: center;
 `;
+const Message = styled(Error)``;
+
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
@@ -130,6 +132,7 @@ export default function Users() {
       }
 
       if (res.ok) {
+        setMessage(data.message);
         await fetchUsers();
       }
     }
@@ -140,6 +143,7 @@ export default function Users() {
       <h2>Users</h2>
 
       {error && <Error>{error}</Error>}
+      {message && <Message>{message}</Message>}
 
       <Table>
         <thead>

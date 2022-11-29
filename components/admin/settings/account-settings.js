@@ -39,6 +39,7 @@ const Details = styled.div`
     }
   }
 `;
+const Message = styled.div``;
 
 export default function AccountSettings({ user }) {
   const [firstName, setFirstName] = useState(`${user.firstName}`);
@@ -82,6 +83,8 @@ export default function AccountSettings({ user }) {
       if (!response.ok) {
         setError(data.error);
       }
+
+      setMessage(data.message);
     } catch (e) {
       setError(e.message);
     }
@@ -90,6 +93,8 @@ export default function AccountSettings({ user }) {
   return (
     <Details>
       <h2>Account Settings</h2>
+
+      {message && <Message>{message}</Message>}
       {error && <div>{error}</div>}
 
       <form onSubmit={handleUpdate}>

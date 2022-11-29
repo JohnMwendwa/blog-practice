@@ -76,7 +76,9 @@ const Btn = styled.button`
   cursor: pointer;
 `;
 
-const Message = styled(Error)``;
+const Message = styled(Error)`
+  color: green;
+`;
 
 export default function User() {
   const [user, setUser] = useState({});

@@ -122,10 +122,16 @@ export default function NewArticle() {
       }, 5000);
     }
 
+    if (message) {
+      timeout = setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }
+
     return () => {
       clearTimeout(timeout);
     };
-  }, [error]);
+  }, [error, message]);
 
   const handleFileUpload = (e) => {
     let file = e.target.files;

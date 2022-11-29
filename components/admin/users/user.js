@@ -76,6 +76,8 @@ const Btn = styled.button`
   cursor: pointer;
 `;
 
+const Message = styled(Error)``;
+
 export default function User() {
   const [user, setUser] = useState({});
   const [message, setMessage] = useState("");
@@ -132,6 +134,7 @@ export default function User() {
       return;
     }
 
+    setMessage(data.message);
     setUser(data);
   };
 
@@ -150,6 +153,7 @@ export default function User() {
       return;
     }
 
+    setMessage(data.message);
     setUser(data);
   };
 
@@ -162,6 +166,7 @@ export default function User() {
       </h2>
 
       {error && <Error>{error}</Error>}
+      {message && <Message>{message}</Message>}
 
       <Table>
         <thead>

@@ -99,6 +99,8 @@ const Error = styled.div`
   font-weight: 700;
 `;
 
+const Message = styled(Error)``;
+
 export default function NewArticle() {
   const [photo, setPhoto] = useState(null);
   const titleRef = useRef();
@@ -152,6 +154,8 @@ export default function NewArticle() {
       setError(data.error);
       return;
     }
+
+    setMessage(data.message);
   };
 
   return (
@@ -159,6 +163,7 @@ export default function NewArticle() {
       <h2>New Article</h2>
 
       {error && <Error>{error}</Error>}
+      {message && <Message>{message}</Message>}
 
       <Form onSubmit={handleSubmit}>
         <label htmlFor="image">

@@ -193,7 +193,7 @@ export default function Settings() {
     };
   }, []);
 
-  // clear error after 5 seconds
+  // clear error or message after 5 seconds
   useEffect(() => {
     let timeout;
 
@@ -203,10 +203,16 @@ export default function Settings() {
       }, 5000);
     }
 
+    if (message) {
+      timeout = setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }
+
     return () => {
       clearTimeout(timeout);
     };
-  }, [error]);
+  }, [error, message]);
 
   const AccountHandler = () => {
     setIsAccount(true);

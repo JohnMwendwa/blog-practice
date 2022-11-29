@@ -161,6 +161,7 @@ const Error = styled.div`
   color: red;
   font-weight: 700;
 `;
+const Message = styled(Error)``;
 
 export default function Settings() {
   const [user, setUser] = useState({});
@@ -346,7 +347,9 @@ export default function Settings() {
 
         {isPassword && <ChangePassword user={user} />}
       </Card>
+
       {error && <Error>{error}</Error>}
+      {message && <Message>{message}</Message>}
     </Container>
   );
 }

@@ -136,10 +136,16 @@ export default function EditArticle({ post }) {
       }, 5000);
     }
 
+    if (message) {
+      timeout = setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }
+
     return () => {
       clearTimeout(timeout);
     };
-  }, [error]);
+  }, [error, message]);
 
   const handleSubmit = async (e) => {
     setLoading(true);

@@ -102,10 +102,17 @@ export default function Users() {
         setError(null);
       }, 5000);
     }
+
+    if (message) {
+      timeout = setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }
+
     return () => {
       clearTimeout(timeout);
     };
-  }, [error]);
+  }, [error, message]);
 
   const fetchUsers = async () => {
     const response = await fetch("/api/users");

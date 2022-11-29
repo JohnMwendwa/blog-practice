@@ -40,7 +40,7 @@ const Container = styled.div`
   }
 `;
 
-const Message = styled(Error)`
+const Message = styled.div`
   color: green;
   margin-top: -10px;
   text-align: center;

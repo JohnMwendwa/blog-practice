@@ -106,6 +106,7 @@ export default function NewArticle() {
   const categoryRef = useRef();
   const markdownRef = useRef();
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState("");
 
   // Clear error state after 5 seconds
   useEffect(() => {

@@ -103,6 +103,7 @@ const Error = styled.div`
   color: red;
   font-weight: 700;
 `;
+const Message = styled(Error)``;
 
 export default function EditArticle({ post }) {
   const [photo, setPhoto] = useState(null);
@@ -162,6 +163,7 @@ export default function EditArticle({ post }) {
       return;
     }
 
+    setMessage(data.message);
     setLoading(false);
   };
 
@@ -170,6 +172,7 @@ export default function EditArticle({ post }) {
       <h2>Edit Article</h2>
 
       {error && <Error>{error}</Error>}
+      {message && <Message>{message}</Message>}
 
       <Form onSubmit={handleSubmit}>
         <label htmlFor="image">

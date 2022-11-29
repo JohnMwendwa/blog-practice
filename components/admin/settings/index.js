@@ -233,11 +233,19 @@ export default function Settings() {
     const fd = new FormData();
     fd.append("avatar", photo);
 
-    await fetch("/api/users/profile", {
+    const res = await fetch("/api/users/profile", {
       method: "POST",
       body: fd,
     });
 
+    const data = res.json();
+
+    if (!res.ok) {
+      setError(data.error);
+      return;
+    }
+
+    setMessage(data.message);
     setPhoto(null);
   };
 

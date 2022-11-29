@@ -161,7 +161,9 @@ const Error = styled.div`
   color: red;
   font-weight: 700;
 `;
-const Message = styled(Error)``;
+const Message = styled(Error)`
+  color: green;
+`;
 
 export default function Settings() {
   const [user, setUser] = useState({});

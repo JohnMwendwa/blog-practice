@@ -39,7 +39,11 @@ const Details = styled.div`
     }
   }
 `;
-const Message = styled.div``;
+const Message = styled.div`
+  color: green;
+  margin-top: -10px;
+  text-align: center;
+`;
 
 export default function AccountSettings({ user }) {
   const [firstName, setFirstName] = useState(`${user.firstName}`);

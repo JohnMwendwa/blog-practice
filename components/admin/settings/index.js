@@ -168,6 +168,7 @@ export default function Settings() {
 
   const [isAccount, setIsAccount] = useState(true);
   const [isPassword, setIsPassword] = useState(false);
+  const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
 
   useEffect(() => {

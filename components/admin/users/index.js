@@ -83,6 +83,7 @@ const Error = styled.p`
 `;
 export default function Users() {
   const [users, setUsers] = useState([]);
+  const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
 
   useEffect(() => {

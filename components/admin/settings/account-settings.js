@@ -8,12 +8,6 @@ const Details = styled.div`
   align-items: center;
   padding-left: 20px;
 
-  & > div {
-    color: red;
-    margin-top: -10px;
-    text-align: center;
-  }
-
   & form {
     & label {
       display: block;
@@ -39,10 +33,14 @@ const Details = styled.div`
     }
   }
 `;
-const Message = styled.div`
-  color: green;
+
+const Error = styled.div`
+  color: red;
   margin-top: -10px;
   text-align: center;
+`;
+const Message = styled(Error)`
+  color: green;
 `;
 
 export default function AccountSettings({ user }) {
@@ -105,7 +103,7 @@ export default function AccountSettings({ user }) {
       <h2>Account Settings</h2>
 
       {message && <Message>{message}</Message>}
-      {error && <div>{error}</div>}
+      {error && <Error>{error}</Error>}
 
       <form onSubmit={handleUpdate}>
         <label htmlFor="firstname">

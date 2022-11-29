@@ -44,6 +44,7 @@ export default function ChangePassword({ user }) {
   const oldPasswordRef = useRef();
   const newPasswordRef = useRef();
   const confirmPasswordRef = useRef();
+  const [message, setMessage] = useState("");
   const [error, setError] = useState();
 
   useEffect(() => {

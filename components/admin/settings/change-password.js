@@ -40,7 +40,11 @@ const Container = styled.div`
   }
 `;
 
-const Message = styled(Error)``;
+const Message = styled(Error)`
+  color: green;
+  margin-top: -10px;
+  text-align: center;
+`;
 
 export default function ChangePassword({ user }) {
   const oldPasswordRef = useRef();

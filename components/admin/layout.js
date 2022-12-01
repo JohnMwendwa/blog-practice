@@ -119,6 +119,7 @@ const Main = styled.section`
 `;
 
 export default function Layout({ children }) {
+  const [error, setError] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -132,6 +133,11 @@ export default function Layout({ children }) {
     await signOut();
   };
 
+  const onError = () => {
+    setError(true);
+  };
+  console.log(error);
+
   return (
     <>
       <Header>
@@ -143,6 +149,7 @@ export default function Layout({ children }) {
               alt={session?.user.name}
               width={50}
               height={50}
+              onError={onError}
             />
           </AvatarContainer>
           <Details>

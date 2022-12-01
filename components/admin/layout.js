@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -24,9 +24,36 @@ const Header = styled.header`
   padding: 20px 30px;
   color
 `;
+
+const Logo = styled.h2`
+  font-family: jokerman;
+  font-size: 2.5rem;
+  margin: 0;
+`;
+
 const Profile = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const AvatarContainer = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: black;
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Avatar = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 `;
 const Details = styled.div`
   margin-left: 10px;
@@ -43,18 +70,7 @@ const Details = styled.div`
     color: yellow;
   }
 `;
-const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #fff;
-`;
 
-const Logo = styled.h2`
-  font-family: jokerman;
-  font-size: 2.5rem;
-  margin: 0;
-`;
 const Container = styled.div`
   display: flex;
   height: 80vh;
@@ -121,14 +137,14 @@ export default function Layout({ children }) {
       <Header>
         <Logo>TECHme</Logo>
         <Profile>
-          <>
+          <AvatarContainer>
             <Avatar
               src={session?.user.image}
               alt={session?.user.name}
               width={50}
               height={50}
             />
-          </>
+          </AvatarContainer>
           <Details>
             <p>{session?.user.name}</p>
             <p>{session?.user.isAdmin ? "Admin" : "User"}</p>

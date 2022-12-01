@@ -80,31 +80,12 @@ const Message = styled(Error)`
   color: green;
 `;
 
-export default function User() {
-  const [user, setUser] = useState({});
+export default function User({ user: data }) {
+  const [user, setUser] = useState(data);
   const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
   const router = useRouter();
   const { id } = router.query;
-
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchUser = async () => {
-      const response = await fetch(`/api/users/${id}`);
-      const data = await response.json();
-
-      if (mounted) {
-        setUser(data);
-      }
-    };
-
-    fetchUser();
-
-    return () => {
-      mounted = false;
-    };
-  }, [id]);
 
   // Clear error state after 5 seconds
   useEffect(() => {

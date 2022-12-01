@@ -144,7 +144,9 @@ export default function Layout({ children }) {
       <Header>
         <Logo>TECHme</Logo>
         <Profile>
-          <AvatarContainer>
+          {error ? (
+            <AvatarContainer>{session?.user.name.charAt(0)}</AvatarContainer>
+          ) : (
             <Avatar
               src={session?.user.image}
               alt={session?.user.name}
@@ -152,7 +154,8 @@ export default function Layout({ children }) {
               height={50}
               onError={onError}
             />
-          </AvatarContainer>
+          )}
+
           <Details>
             <p>{session?.user.name}</p>
             <p>{session?.user.isAdmin ? "Admin" : "User"}</p>

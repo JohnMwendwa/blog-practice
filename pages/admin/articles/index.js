@@ -1,10 +1,12 @@
 import { authOptions } from "../../api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
 
+import { connectToDatabase, closeConnection } from "../../../helpers/db/db";
+import Post from "../../../helpers/db/models/post";
 import Articles from "../../../components/admin/articles/index";
 
-export default function articles() {
-  return <Articles />;
+export default function articles({ posts }) {
+  return <Articles posts={posts} />;
 }
 
 export async function getServerSideProps(context) {
@@ -29,8 +31,15 @@ export async function getServerSideProps(context) {
       },
     };
   } else {
+    await connectToDatabase();
+
+    const postsData = await Post.find({ author: session.user.id });
+    const postsJSON = JSON.stringify(postsData);
+    const posts = JSON.parse(postsJSON);
+
+    await closeConnection();
     return {
-      props: { session },
+      props: { session, posts },
     };
   }
 }

@@ -41,21 +41,10 @@ const Error = styled.div`
   font-weight: 700;
 `;
 
-export default function Articles() {
-  const [posts, setPosts] = useState([]);
+export default function Articles({ posts: data }) {
+  const [posts, setPosts] = useState(data);
   const [error, setError] = useState(null);
   const router = useRouter();
-
-  // fetch user posts when page loads
-  useEffect(() => {
-    let mounted = true;
-    if (mounted) {
-      fetchPosts();
-    }
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   // Clear error state after 5 seconds
   useEffect(() => {

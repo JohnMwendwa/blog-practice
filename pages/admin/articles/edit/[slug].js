@@ -1,8 +1,9 @@
 import { authOptions } from "../../../api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
 
+import { connectToDatabase, closeConnection } from "../../../../helpers/db/db";
+import Post from "../../../../helpers/db/models/post";
 import EditArticle from "../../../../components/admin/articles/edit-article";
-import { getPostDetails } from "../../../../helpers/posts_utils";
 
 export default function EditArticlePage({ post }) {
   return <EditArticle post={post} />;
@@ -32,10 +33,23 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  const slug = context.query.slug;
-  const postData = await getPostDetails(slug);
-  const post = JSON.parse(postData);
 
+  await connectToDatabase();
+  const slug = context.query.slug;
+  const postData = await Post.findOne({ slug });
+  const postJSON = JSON.stringify(postData);
+  const post = JSON.parse(postJSON);
+
+  await closeConnection();
+
+  if (session.user.id !== post.author) {
+    return {
+      redirect: {
+        destination: "/admin/articles",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
       post,

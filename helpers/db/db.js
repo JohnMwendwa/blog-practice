@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
+const MONGO_URL = process.env.mongo_url;
+
 export const connectToDatabase = async () => {
   try {
-    await mongoose.connect(process.env.mongo_url);
+    await mongoose.connect(MONGO_URL);
 
     console.log("Connected to db  successfully");
   } catch (error) {
@@ -12,7 +14,7 @@ export const connectToDatabase = async () => {
 
 export const closeConnection = async () => {
   try {
-    await mongoose.disconnect(process.env.local_db);
+    await mongoose.disconnect(MONGO_URL);
 
     console.log("Closed connection successfully");
   } catch (error) {

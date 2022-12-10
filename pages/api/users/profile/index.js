@@ -1,7 +1,8 @@
 import nextConnect from "next-connect";
-import { getSession } from "next-auth/react";
 import sharp from "sharp";
+import { unstable_getServerSession } from "next-auth";
 
+import { authOptions } from "../../auth/[...nextauth]";
 import { connectToDatabase, closeConnection } from "../../../../helpers/db/db";
 import User from "../../../../helpers/db/models/user";
 import { upload } from "../../../../helpers/upload";
@@ -26,7 +27,7 @@ const handler = nextConnect({
     try {
       await connectToDatabase();
 
-      const session = await getSession({ req });
+      const session = await unstable_getServerSession(req, res, authOptions);
 
       if (!session) {
         await closeConnection();

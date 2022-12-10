@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   try {
     await connectToDatabase();
 
-    const session = await getSession({ req });
+    const session = await unstable_getServerSession(req, res, authOptions);
 
     if (!session || !session.user.isAdmin) {
       await closeConnection();

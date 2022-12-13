@@ -1,4 +1,6 @@
-import { getSession } from "next-auth/react";
+import { unstable_getServerSession } from "next-auth";
+
+import { authOptions } from "./auth/[...nextauth]";
 import { connectToDatabase, closeConnection } from "../../helpers/db/db";
 import Message from "../../helpers/db/models/message";
 
@@ -61,7 +63,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const session = await getSession({ req });
+    const session = await unstable_getServerSession(req, res, authOptions);
 
     if (!session.user.isAdmin) {
       await closeConnection();

@@ -160,7 +160,7 @@ export default function PostItem({ post, isEdit, onDeletePost, onEditPost }) {
         </TimeWrapper>
         <ContentWrapper>
           <Content>
-            <Link href={`/${slug}`}>
+            <Link href={`/${encodeURIComponent(slug)}`}>
               <a title="Read more about this article">
                 <Title>{title}</Title>
               </a>
@@ -169,7 +169,7 @@ export default function PostItem({ post, isEdit, onDeletePost, onEditPost }) {
           </Content>
 
           <Action>
-            <Link href={`/${slug}`}>
+            <Link href={`/${encodeURIComponent(slug)}`}>
               <a title="Read more about this article">
                 <button>Read More...</button>
               </a>

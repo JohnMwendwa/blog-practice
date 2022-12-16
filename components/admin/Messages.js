@@ -50,13 +50,9 @@ const Error = styled.p`
   text-align: center;
 `;
 
-export default function Messages() {
-  const [messages, setMessages] = useState([]);
+export default function Messages({ messages: data }) {
+  const [messages, setMessages] = useState(data);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetchMessages();
-  }, []);
 
   useEffect(() => {
     let timeout;

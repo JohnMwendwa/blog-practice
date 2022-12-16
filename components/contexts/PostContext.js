@@ -6,18 +6,13 @@ export const usePost = () => {
   return useContext(PostContext);
 };
 
-export function PostProvider({ children, post }) {
-  const [comments, setComments] = useState([]);
+export function PostProvider({ children, comments: data }) {
+  const [comments, setComments] = useState(data || []);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  let post_id = post._id;
-
-  useEffect(() => {
-    if (post_id !== "") {
-      fetchComments(post_id);
-    }
-  }, [post_id]);
+  let post = children.props.post;
+  const post_id = post._id;
 
   // Clear error state after 5 seconds
   useEffect(() => {

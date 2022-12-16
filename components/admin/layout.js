@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { signOut, useSession } from "next-auth/react";
@@ -41,20 +40,25 @@ const AvatarContainer = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #fff;
-  color: black;
-  font-weight: 700;
-  font-size: 1.8rem;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: white;
+
+  & div {
+    color: black;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
-const Avatar = styled(Image)`
+const Avatar = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  color: black;
+  vertical-align: middle;
 `;
 const Details = styled.div`
   margin-left: 10px;
@@ -120,7 +124,6 @@ const Main = styled.section`
 `;
 
 export default function Layout({ children }) {
-  const [error, setError] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -134,27 +137,19 @@ export default function Layout({ children }) {
     await signOut();
   };
 
-  const onError = () => {
-    setError(true);
-  };
-  console.log(error);
-
   return (
     <>
       <Header>
         <Logo>TECHme</Logo>
         <Profile>
-          {error ? (
-            <AvatarContainer>{session?.user.name.charAt(0)}</AvatarContainer>
-          ) : (
+          <AvatarContainer>
             <Avatar
               src={session?.user.image}
               alt={session?.user.name}
               width={50}
               height={50}
-              onError={onError}
             />
-          )}
+          </AvatarContainer>
 
           <Details>
             <p>{session?.user.name}</p>

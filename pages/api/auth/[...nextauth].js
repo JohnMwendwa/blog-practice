@@ -4,7 +4,7 @@ import { connectToDatabase, closeConnection } from "../../../helpers/db/db";
 import User from "../../../helpers/db/models/user";
 import { verifyPassword } from "../../../helpers/db/auth";
 
-export default NextAuth({
+export const authOptions = {
   session: {
     strategy: "jwt",
     maxAge: 60 * 60,
@@ -55,4 +55,6 @@ export default NextAuth({
       return session;
     },
   },
-});
+};
+
+export default NextAuth(authOptions);

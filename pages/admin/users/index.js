@@ -1,10 +1,12 @@
 import { authOptions } from "../../api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
 
+import { connectToDatabase, closeConnection } from "../../../helpers/db/db";
 import Users from "../../../components/admin/users/index";
+import User from "../../../helpers/db/models/user";
 
-export default function UsersPage() {
-  return <Users />;
+export default function UsersPage({ users }) {
+  return <Users users={users} />;
 }
 
 export async function getServerSideProps(context) {
@@ -21,9 +23,24 @@ export async function getServerSideProps(context) {
         permanent: false,
       },
     };
-  } else {
+  } else if (!session.user.isAdmin) {
     return {
-      props: { session },
+      redirect: {
+        destination: "/admin/dashboard",
+        permanent: false,
+      },
+    };
+  } else {
+    await connectToDatabase();
+
+    const usersData = await User.find({});
+    const usersJSON = JSON.stringify(usersData);
+    const users = JSON.parse(usersJSON);
+
+    await closeConnection();
+
+    return {
+      props: { session, users },
     };
   }
 }

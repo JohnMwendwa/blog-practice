@@ -165,33 +165,14 @@ const Message = styled(Error)`
   color: green;
 `;
 
-export default function Settings() {
-  const [user, setUser] = useState({});
+export default function Settings({ user: data }) {
+  const [user, setUser] = useState(data);
   const [photo, setPhoto] = useState(null);
 
   const [isAccount, setIsAccount] = useState(true);
   const [isPassword, setIsPassword] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchUser = async () => {
-      const response = await fetch(`/api/users/user`);
-      const data = await response.json();
-
-      if (mounted) {
-        setUser(data);
-      }
-    };
-
-    fetchUser();
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   // clear error or message after 5 seconds
   useEffect(() => {

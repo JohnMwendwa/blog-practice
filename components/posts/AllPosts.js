@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import styled from "styled-components";
 
 import PostItem from "./PostItem";
@@ -28,13 +28,14 @@ export default function AllPosts({
   onDeletePost,
   onEditPost,
 }) {
+  const [all_posts, setAllPosts] = useState(posts || []);
   const { searchTerm } = useContext(SearchContext);
 
   const filteredPosts = useMemo(() => {
-    return posts.filter((post) => {
+    return all_posts.filter((post) => {
       return post.title.toLowerCase().includes(searchTerm.trim().toLowerCase());
     });
-  }, [searchTerm, posts]);
+  }, [searchTerm, all_posts]);
 
   return (
     <>

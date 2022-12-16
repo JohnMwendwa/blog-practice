@@ -26,7 +26,7 @@ export async function getServerSideProps(context) {
   } else {
     await connectToDatabase();
 
-    const userData = User.findOne({ email: session.user.email });
+    const userData = await User.findOne({ email: session.user.email });
     const userJSON = JSON.stringify(userData);
     const user = JSON.parse(userJSON);
 

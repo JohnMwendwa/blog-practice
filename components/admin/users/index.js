@@ -85,14 +85,10 @@ const Message = styled(Error)`
   color: green;
 `;
 
-export default function Users() {
-  const [users, setUsers] = useState([]);
+export default function Users({ users: data }) {
+  const [users, setUsers] = useState(data);
   const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
 
   useEffect(() => {
     let timeout;

@@ -1,4 +1,6 @@
-import { getSession } from "next-auth/react";
+import { authOptions } from "pages/api/auth/[...nextauth]";
+import { unstable_getServerSession } from "next-auth/next";
+
 import Settings from "../../components/admin/settings";
 
 export default function SettingsPage() {
@@ -6,7 +8,11 @@ export default function SettingsPage() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
 
   if (!session) {
     return {

@@ -1,4 +1,5 @@
-import { getSession } from "next-auth/react";
+import { authOptions } from "pages/api/auth/[...nextauth]";
+import { unstable_getServerSession } from "next-auth/next";
 
 import Messages from "../../components/admin/Messages";
 
@@ -7,7 +8,11 @@ export default function MessagesPage() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
 
   if (!session) {
     return {

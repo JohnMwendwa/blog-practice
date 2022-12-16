@@ -1,10 +1,22 @@
 import React from "react";
 import Head from "next/head";
-import { getPostDetails, getPostSlugs } from "../helpers/posts_utils";
+import { useRouter } from "next/router";
+
+import { connectToDatabase, closeConnection } from "../helpers/db/db";
+import Post from "../helpers/db/models/post";
+import User from "../helpers/db/models/user";
+import Comment from "../helpers/db/models/comment";
 import PostDetails from "../components/posts/PostDetails";
 import { PostProvider } from "../components/contexts/PostContext";
 
-export default function PostDetailsPage({ post }) {
+export default function PostDetailsPage({ post, comments }) {
+  const router = useRouter();
+
+  // If the page is not yet generated, this will be displayed initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Head>
@@ -16,30 +28,21 @@ export default function PostDetailsPage({ post }) {
         ></meta>
       </Head>
 
-      <PostProvider post={post}>
+      <PostProvider comments={comments}>
         <PostDetails post={post} />
       </PostProvider>
     </>
   );
 }
 
-export const getStaticProps = async (context) => {
-  const { params } = context;
-  const { slug } = params;
-  const data = await getPostDetails(slug);
-  const post = JSON.parse(data);
+export async function getStaticPaths() {
+  await connectToDatabase();
 
-  return {
-    props: {
-      post,
-    },
-    revalidate: 10,
-  };
-};
+  const slugsData = await Post.find().select(["-_id", "slug"]);
+  const slugsJSON = JSON.stringify(slugsData);
+  const slugs = JSON.parse(slugsJSON);
 
-export const getStaticPaths = async () => {
-  const slugData = await getPostSlugs();
-  const slugs = JSON.parse(slugData);
+  await closeConnection();
 
   return {
     paths: slugs.map((post) => ({
@@ -47,4 +50,38 @@ export const getStaticPaths = async () => {
     })),
     fallback: false,
   };
-};
+}
+
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+  await connectToDatabase();
+
+  const postData = await Post.findOne({ slug })
+    .select([
+      "title",
+      "description",
+      "author",
+      "category",
+      "markdown",
+      "date_uploaded",
+      "slug",
+      "imgSrc",
+    ])
+    .populate("author", "firstName lastName", User);
+  const id = postData._id.toString();
+  const commentsData = await Comment.find({ postId: id });
+  const dataJSON = JSON.stringify([postData, commentsData]);
+  const data = JSON.parse(dataJSON);
+  const post = data[0];
+  const comments = data[1];
+
+  await closeConnection();
+
+  return {
+    props: {
+      post,
+      comments,
+    },
+    revalidate: 10,
+  };
+}

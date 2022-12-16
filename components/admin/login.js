@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -59,13 +59,6 @@ export default function Login() {
   const passwordRef = useRef();
   const router = useRouter();
   const [error, setError] = useState(null);
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    if (session) {
-      router.replace("/admin/dashboard");
-    }
-  }, [router, session]);
 
   useEffect(() => {
     let timeout;
@@ -87,19 +80,19 @@ export default function Login() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    try {
-      const response = await signIn("credentials", {
-        redirect: false,
-        email,
-        password,
-      });
+    const response = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+      callbackUrl: "/admin/dashboard",
+    });
 
-      if (!response.ok) {
-        throw new Error(response.error);
-      }
-    } catch (e) {
-      setError(e.message);
+    if (response !== undefined && !response?.ok) {
+      setError(response.error);
+      return;
     }
+
+    router.push(response.url);
   };
 
   return (

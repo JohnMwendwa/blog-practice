@@ -1,6 +1,9 @@
 import Head from "next/head";
+
 import AllPosts from "../components/posts/AllPosts";
-import { getPosts } from "../helpers/posts_utils";
+import { connectToDatabase, closeConnection } from "../helpers/db/db";
+import Post from "../helpers/db/models/post";
+import User from "../helpers/db/models/user";
 
 export default function HomePage({ posts }) {
   if (!posts.length)
@@ -32,11 +35,27 @@ export default function HomePage({ posts }) {
 }
 
 export const getStaticProps = async () => {
-  const postData = await getPosts();
-  const posts = JSON.parse(postData);
+  await connectToDatabase();
+
+  const postsData = await Post.find({})
+    .select([
+      "title",
+      "description",
+      "author",
+      "category",
+      "slug",
+      "date_uploaded",
+      "imgSrc",
+    ])
+    .populate("author", "firstName lastName", User);
+  const postsJSON = JSON.stringify(postsData);
+  const posts = JSON.parse(postsJSON);
+  await closeConnection();
+
   return {
     props: {
       posts,
     },
+    revalidate: 10,
   };
 };

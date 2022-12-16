@@ -1,10 +1,12 @@
 import { authOptions } from "../api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
 
+import { connectToDatabase, closeConnection } from "../../helpers/db/db";
+import User from "../../helpers/db/models/user";
 import Settings from "../../components/admin/settings";
 
-export default function SettingsPage() {
-  return <Settings />;
+export default function SettingsPage({ user }) {
+  return <Settings user={user} />;
 }
 
 export async function getServerSideProps(context) {
@@ -22,8 +24,15 @@ export async function getServerSideProps(context) {
       },
     };
   } else {
+    await connectToDatabase();
+
+    const userData = User.findOne({ email: session.user.email });
+    const userJSON = JSON.stringify(userData);
+    const user = JSON.parse(userJSON);
+
+    await closeConnection();
     return {
-      props: { session },
+      props: { session, user },
     };
   }
 }

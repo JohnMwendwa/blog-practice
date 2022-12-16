@@ -25,6 +25,8 @@ const ImageContainer = styled.figure`
 const Img = styled(Image)`
   object-fit: fill;
   border-radius: 5px;
+  width: 300px;
+  height: 170px;
 `;
 
 const Avatar = styled(Image)`

@@ -1,4 +1,4 @@
-import { authOptions } from "pages/api/auth/[...nextauth]";
+import { authOptions } from "../api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
 
 import Messages from "../../components/admin/Messages";

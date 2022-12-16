@@ -1,4 +1,6 @@
-import { getSession } from "next-auth/react";
+import { authOptions } from "../../../api/auth/[...nextauth]";
+import { unstable_getServerSession } from "next-auth/next";
+
 import EditArticle from "../../../../components/admin/articles/edit-article";
 import { getPostDetails } from "../../../../helpers/posts_utils";
 
@@ -7,7 +9,11 @@ export default function EditArticlePage({ post }) {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
 
   if (!session) {
     return {

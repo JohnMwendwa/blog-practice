@@ -134,11 +134,7 @@ export default function Layout({ children }) {
   }, [session, router]);
 
   const logoutHandler = async () => {
-    const data = await signOut({
-      redirect: false,
-      callbackUrl: "/admin/login",
-    });
-    router.push(data.url);
+    await signOut();
   };
 
   return (

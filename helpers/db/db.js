@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
-const MONGO_URL = process.env.mongo_url;
+const MONGO_URL =
+  process.env.NODE_ENV !== "production"
+    ? process.env.local_db
+    : process.env.mongo_url;
 
 export const connectToDatabase = async () => {
   try {

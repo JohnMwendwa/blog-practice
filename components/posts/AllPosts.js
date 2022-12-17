@@ -28,7 +28,7 @@ export default function AllPosts({
   onDeletePost,
   onEditPost,
 }) {
-  const [all_posts, setAllPosts] = useState(posts || []);
+  const [all_posts, setAllPosts] = useState(posts);
   const { searchTerm } = useContext(SearchContext);
 
   const filteredPosts = useMemo(() => {

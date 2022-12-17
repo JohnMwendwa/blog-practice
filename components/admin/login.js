@@ -55,17 +55,17 @@ const Btn = styled.button`
 `;
 
 export default function Login() {
+  const [error, setError] = useState("");
   const emailRef = useRef();
   const passwordRef = useRef();
   const router = useRouter();
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     let timeout;
 
     if (error) {
       timeout = setTimeout(() => {
-        setError(null);
+        setError("");
       }, 5000);
     }
 

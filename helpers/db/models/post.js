@@ -74,7 +74,7 @@ postSchema.virtual("comments", {
 postSchema.pre("validate", async function (next) {
   const post = this;
   post.title = purify.sanitize(post.title);
-  post.description = purify.sanitize(post.title);
+  post.description = purify.sanitize(post.description);
   post.imgSrc = `/api/posts/${post._id}/image/`;
 
   if (post.title) {

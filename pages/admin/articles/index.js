@@ -33,7 +33,9 @@ export async function getServerSideProps(context) {
   } else {
     await connectToDatabase();
 
-    const postsData = await Post.find({ author: session.user.id });
+    const postsData = await Post.find({ author: session.user.id }).sort({
+      date_uploaded: -1,
+    });
     const postsJSON = JSON.stringify(postsData);
     const posts = JSON.parse(postsJSON);
 

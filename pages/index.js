@@ -34,7 +34,7 @@ export default function HomePage({ posts }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   await connectToDatabase();
 
   const postsData = await Post.find({})
@@ -48,6 +48,7 @@ export const getStaticProps = async () => {
       "imgSrc",
     ])
     .populate("author", "firstName lastName", User);
+
   const postsJSON = JSON.stringify(postsData);
   const posts = JSON.parse(postsJSON);
   await closeConnection();

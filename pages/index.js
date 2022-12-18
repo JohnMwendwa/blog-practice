@@ -47,7 +47,8 @@ export const getServerSideProps = async () => {
       "date_uploaded",
       "imgSrc",
     ])
-    .populate("author", "firstName lastName", User);
+    .populate("author", "firstName lastName", User)
+    .sort({ date_uploaded: -1 });
 
   const postsJSON = JSON.stringify(postsData);
   const posts = JSON.parse(postsJSON);
@@ -57,6 +58,5 @@ export const getServerSideProps = async () => {
     props: {
       posts,
     },
-    revalidate: 10,
   };
 };

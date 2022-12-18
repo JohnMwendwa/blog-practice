@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import { useRouter } from "next/router";
 
 import { connectToDatabase, closeConnection } from "../helpers/db/db";
 import Post from "../helpers/db/models/post";
@@ -10,13 +9,6 @@ import PostDetails from "../components/posts/PostDetails";
 import { PostProvider } from "../components/contexts/PostContext";
 
 export default function PostDetailsPage({ post, comments }) {
-  const router = useRouter();
-
-  // If the page is not yet generated, this will be displayed initially until getStaticProps() finishes running
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <>
       <Head>
@@ -35,24 +27,7 @@ export default function PostDetailsPage({ post, comments }) {
   );
 }
 
-export async function getStaticPaths() {
-  await connectToDatabase();
-
-  const slugsData = await Post.find().select(["-_id", "slug"]);
-  const slugsJSON = JSON.stringify(slugsData);
-  const slugs = JSON.parse(slugsJSON);
-
-  await closeConnection();
-
-  return {
-    paths: slugs.map((post) => ({
-      params: { slug: post.slug },
-    })),
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { slug } = params;
   await connectToDatabase();
 
@@ -82,6 +57,5 @@ export async function getStaticProps({ params }) {
       post,
       comments,
     },
-    revalidate: 10,
   };
 }

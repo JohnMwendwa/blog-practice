@@ -1,8 +1,8 @@
 import React from "react";
-import Link from "next/link";
 import styled from "styled-components";
 
 import Search from "../search/Search";
+import CustomLink from "../../links/CustomLink";
 
 const Header = styled.header`
   display: flex;
@@ -83,9 +83,9 @@ export default function Navbar() {
     <Header>
       <NavigationItems>
         <Logo>
-          <Link href="/">
+          <CustomLink href="/">
             <a title="Go to home page"> TECHme</a>
-          </Link>
+          </CustomLink>
         </Logo>
         <SearchContainer>
           <Search />
@@ -94,19 +94,19 @@ export default function Navbar() {
       <nav>
         <ListItems>
           <ListItem>
-            <Link href="/about">
+            <CustomLink href="/about">
               <a title="Go to about page"> About</a>
-            </Link>
+            </CustomLink>
           </ListItem>
           <ListItem>
-            <Link href="/contact">
+            <CustomLink href="/contact">
               <a title="Go to contact page"> Contact</a>
-            </Link>
+            </CustomLink>
           </ListItem>
           <ListItem>
-            <Link href="/admin">
+            <CustomLink href="/admin/login">
               <a title="Go to login page"> Login</a>
-            </Link>
+            </CustomLink>
           </ListItem>
         </ListItems>
       </nav>

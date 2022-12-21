@@ -86,9 +86,15 @@ const Sidebar = styled.nav`
   color: black;
   box-shadow: 0px 0px 5px;
   width: 150px;
+  transition: all 0.3s linear;
+
+  #mobile-sidebar {
+    display: none;
+  }
 
   & ul {
     margin: 0;
+    padding: 0;
     padding-left: 10px;
 
     & li {
@@ -112,6 +118,34 @@ const Sidebar = styled.nav`
     & li:first-child {
       margin-top: 10px;
     }
+  }
+  @media screen and (max-width: 700px) {
+    width: 50px;
+
+    #mobile-sidebar {
+      display: block;
+    }
+    .sidebar {
+      display: none;
+    }
+
+    ul {
+      padding: 0;
+
+      & li a {
+        justify-content:center;
+        padding: 10px 0;
+  
+          & svg {
+           margin:0
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 20px;
   }
 `;
 const Main = styled.section`
@@ -160,7 +194,7 @@ export default function Layout({ children }) {
 
       <Container>
         <Sidebar>
-          <ul>
+          <ul className="sidebar">
             <li>
               <Link href="/admin/dashboard">
                 <a>
@@ -225,6 +259,69 @@ export default function Layout({ children }) {
                 <a>
                   <FaRegCaretSquareLeft />
                   Logout
+                </a>
+              </Link>
+            </li>
+          </ul>
+
+          <ul id="mobile-sidebar">
+            <li>
+              <Link href="/admin/dashboard">
+                <a>
+                  <FaHome />
+                </a>
+              </Link>
+            </li>
+
+            {session?.user.isAdmin && (
+              <>
+                <li>
+                  <Link href="/admin/messages">
+                    <a>
+                      <FaRegCommentAlt />
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/admin/users">
+                    <a>
+                      <FaRegUser />
+                    </a>
+                  </Link>
+                </li>
+              </>
+            )}
+
+            {session?.user.isAuthenticated && (
+              <>
+                <li>
+                  <Link href="/admin/articles">
+                    <a>
+                      <FaBookOpen />
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/admin/comments">
+                    <a>
+                      <FaRegComments />
+                    </a>
+                  </Link>
+                </li>
+              </>
+            )}
+
+            <li>
+              <Link href="/admin/settings">
+                <a>
+                  <FaCog />
+                </a>
+              </Link>
+            </li>
+            <li onClick={logoutHandler}>
+              <Link href="">
+                <a>
+                  <FaRegCaretSquareLeft />
                 </a>
               </Link>
             </li>

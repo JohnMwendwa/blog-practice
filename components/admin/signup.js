@@ -9,8 +9,7 @@ const FormWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  max-width: 400px;
+  margin: 0 20px;
   margin-bottom: 30px;
 
   & h2 {
@@ -31,7 +30,9 @@ const FormWrapper = styled.div`
     color: ${(c) => c.theme.colors.ui.secondary};
   }
 `;
-const Form = styled.form``;
+const Form = styled.form`
+  max-width: 400px;
+`;
 const Input = styled.input`
   width: 100%;
   padding: 10px;

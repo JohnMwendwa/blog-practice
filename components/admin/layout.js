@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { signOut, useSession } from "next-auth/react";
@@ -13,6 +12,7 @@ import {
   FaRegCaretSquareLeft,
 } from "react-icons/fa";
 
+import CustomLink from "../links/CustomLink";
 import Footer from "../layout/footer/Footer";
 
 const Header = styled.header`
@@ -196,31 +196,31 @@ export default function Layout({ children }) {
         <Sidebar>
           <ul className="sidebar">
             <li>
-              <Link href="/admin/dashboard">
+              <CustomLink href="/admin/dashboard">
                 <a>
                   <FaHome />
                   Dashboard
                 </a>
-              </Link>
+              </CustomLink>
             </li>
 
             {session?.user.isAdmin && (
               <>
                 <li>
-                  <Link href="/admin/messages">
+                  <CustomLink href="/admin/messages">
                     <a>
                       <FaRegCommentAlt />
                       Messages
                     </a>
-                  </Link>
+                  </CustomLink>
                 </li>
                 <li>
-                  <Link href="/admin/users">
+                  <CustomLink href="/admin/users">
                     <a>
                       <FaRegUser />
                       Users
                     </a>
-                  </Link>
+                  </CustomLink>
                 </li>
               </>
             )}
@@ -228,66 +228,66 @@ export default function Layout({ children }) {
             {session?.user.isAuthenticated && (
               <>
                 <li>
-                  <Link href="/admin/articles">
+                  <CustomLink href="/admin/articles">
                     <a>
                       <FaBookOpen />
                       Articles
                     </a>
-                  </Link>
+                  </CustomLink>
                 </li>
                 <li>
-                  <Link href="/admin/comments">
+                  <CustomLink href="/admin/comments">
                     <a>
                       <FaRegComments />
                       Comments
                     </a>
-                  </Link>
+                  </CustomLink>
                 </li>
               </>
             )}
 
             <li>
-              <Link href="/admin/settings">
+              <CustomLink href="/admin/settings">
                 <a>
                   <FaCog />
                   Settings
                 </a>
-              </Link>
+              </CustomLink>
             </li>
             <li onClick={logoutHandler}>
-              <Link href="">
+              <CustomLink href="">
                 <a>
                   <FaRegCaretSquareLeft />
                   Logout
                 </a>
-              </Link>
+              </CustomLink>
             </li>
           </ul>
 
           <ul id="mobile-sidebar">
             <li>
-              <Link href="/admin/dashboard">
+              <CustomLink href="/admin/dashboard">
                 <a>
                   <FaHome />
                 </a>
-              </Link>
+              </CustomLink>
             </li>
 
             {session?.user.isAdmin && (
               <>
                 <li>
-                  <Link href="/admin/messages">
+                  <CustomLink href="/admin/messages">
                     <a>
                       <FaRegCommentAlt />
                     </a>
-                  </Link>
+                  </CustomLink>
                 </li>
                 <li>
-                  <Link href="/admin/users">
+                  <CustomLink href="/admin/users">
                     <a>
                       <FaRegUser />
                     </a>
-                  </Link>
+                  </CustomLink>
                 </li>
               </>
             )}
@@ -295,35 +295,35 @@ export default function Layout({ children }) {
             {session?.user.isAuthenticated && (
               <>
                 <li>
-                  <Link href="/admin/articles">
+                  <CustomLink href="/admin/articles">
                     <a>
                       <FaBookOpen />
                     </a>
-                  </Link>
+                  </CustomLink>
                 </li>
                 <li>
-                  <Link href="/admin/comments">
+                  <CustomLink href="/admin/comments">
                     <a>
                       <FaRegComments />
                     </a>
-                  </Link>
+                  </CustomLink>
                 </li>
               </>
             )}
 
             <li>
-              <Link href="/admin/settings">
+              <CustomLink href="/admin/settings">
                 <a>
                   <FaCog />
                 </a>
-              </Link>
+              </CustomLink>
             </li>
             <li onClick={logoutHandler}>
-              <Link href="">
+              <CustomLink href="">
                 <a>
                   <FaRegCaretSquareLeft />
                 </a>
-              </Link>
+              </CustomLink>
             </li>
           </ul>
         </Sidebar>

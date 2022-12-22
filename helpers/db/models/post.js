@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
 import slugify from "slugify";
+import Comment from "./comment";
 
 const { Schema } = mongoose;
 const window = new JSDOM("").window;
@@ -85,7 +86,6 @@ postSchema.pre("validate", async function (next) {
 
 postSchema.pre("remove", async function (next) {
   const post = this;
-  const Comment = mongoose.model("Comment");
 
   await Comment.deleteMany({ postId: post._id });
 

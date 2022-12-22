@@ -29,11 +29,11 @@ export default async function handler(req, res) {
       return;
     }
 
-    const posts = await Post.find({ author: user._id }).populate(
-      "author",
-      "firstName lastName",
-      User
-    );
+    const posts = await Post.find({ author: user._id })
+      .populate("author", "firstName lastName", User)
+      .sort({
+        date_uploaded: -1,
+      });
 
     await closeConnection();
 

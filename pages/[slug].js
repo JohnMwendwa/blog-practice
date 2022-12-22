@@ -43,7 +43,18 @@ export async function getServerSideProps({ params }) {
       "imgSrc",
     ])
     .populate("author", "firstName lastName", User);
-  const id = postData._id.toString();
+
+  if (!postData) {
+    await closeConnection();
+    return {
+      redirect: {
+        destination: "404",
+        permanent: false,
+      },
+    };
+  }
+
+  const id = await postData._id.toString();
   const commentsData = await Comment.find({ postId: id });
   const dataJSON = JSON.stringify([postData, commentsData]);
   const data = JSON.parse(dataJSON);

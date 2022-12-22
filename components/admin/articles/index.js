@@ -61,18 +61,6 @@ export default function Articles({ posts: data }) {
     };
   }, [error]);
 
-  const fetchPosts = async () => {
-    const res = await fetch("/api/posts/my-posts");
-    const data = await res.json();
-
-    if (!res.ok) {
-      setError(data.error);
-      return;
-    }
-
-    setPosts(data);
-  };
-
   const onEditPost = (slug) => {
     router.push(`/admin/articles/edit/${slug}`);
   };
@@ -93,7 +81,7 @@ export default function Articles({ posts: data }) {
     }
 
     if (res.ok) {
-      await fetchPosts();
+      router.reload();
     }
   };
 

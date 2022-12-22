@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import validator from "validator";
 import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
+import Post from "./post";
+import Comment from "./comment";
 
 const window = new JSDOM("").window;
 const purify = DOMPurify(window);
@@ -76,8 +78,6 @@ userSchema.pre("validate", function (next) {
 // DELETE user comments after a user deletes their account
 userSchema.pre("remove", async function (next) {
   const user = this;
-  const Post = mongoose.model("Post");
-  const Comment = mongoose.model("Comment");
 
   await Post.deleteMany({ author: user._id });
   await Comment.deleteMany({ user: user._id });

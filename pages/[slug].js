@@ -27,7 +27,24 @@ export default function PostDetailsPage({ post, comments }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  await connectToDatabase();
+
+  const slugsData = await Post.find().select(["-_id", "slug"]);
+  const slugsJSON = JSON.stringify(slugsData);
+  const slugs = JSON.parse(slugsJSON);
+
+  await closeConnection();
+
+  return {
+    paths: slugs.map((post) => ({
+      params: { slug: post.slug },
+    })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const { slug } = params;
   await connectToDatabase();
 
@@ -68,5 +85,6 @@ export async function getServerSideProps({ params }) {
       post,
       comments,
     },
+    revalidate: 10,
   };
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -8,9 +8,9 @@ import nightOwl from "react-syntax-highlighter/dist/cjs/styles/prism/night-owl";
 
 import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
-import CommentForm from "./comments/commentForm";
-import CommentList from "./comments/commentList";
-import { usePost } from "../contexts/PostContext";
+// import CommentForm from "./comments/commentForm";
+// import CommentList from "./comments/commentList";
+// import { usePost } from "../contexts/PostContext";
 
 SyntaxHighlighter.registerLanguage("js", js);
 SyntaxHighlighter.registerLanguage("css", css);
@@ -151,7 +151,24 @@ export default function PostDetails({ post }) {
     date_uploaded,
   } = post;
 
-  const { rootComments, loading, error, onCreateComment } = usePost();
+  // const { comments, loading, error, onCreateComment } = usePost();
+
+  // const commentByParentId = useMemo(() => {
+  //   const group = {};
+
+  //   comments.forEach((comment) => {
+  //     group[comment.parentId] ||= [];
+  //     group[comment.parentId].push(comment);
+  //   });
+
+  //   return group;
+  // }, [comments]);
+
+  // function getReplies(parentId) {
+  //   return commentByParentId[parentId];
+  // }
+
+  // const rootComments = commentByParentId[null];
 
   const formatedDate = new Date(date_uploaded).toLocaleDateString("en-us", {
     day: "numeric",
@@ -234,7 +251,7 @@ export default function PostDetails({ post }) {
 
       <div>
         <h3>Comments</h3>
-        <section>
+        {/* <section>
           <CommentForm
             loading={loading}
             error={error}
@@ -246,7 +263,7 @@ export default function PostDetails({ post }) {
               <CommentList comments={rootComments} />
             </Container>
           )}
-        </section>
+        </section> */}
       </div>
     </PostContainer>
   );

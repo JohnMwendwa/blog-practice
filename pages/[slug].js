@@ -64,10 +64,7 @@ export async function getStaticProps({ params }) {
   if (!postData) {
     await closeConnection();
     return {
-      redirect: {
-        destination: "404",
-        permanent: false,
-      },
+      notFound: true,
     };
   }
 

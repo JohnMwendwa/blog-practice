@@ -6,7 +6,7 @@ import Post from "../helpers/db/models/post";
 import User from "../helpers/db/models/user";
 import Comment from "../helpers/db/models/comment";
 import PostDetails from "../components/posts/PostDetails";
-import { PostProvider } from "../components/contexts/PostContext";
+// import { PostProvider } from "../components/contexts/PostContext";
 
 export default function PostDetailsPage({ post, comments }) {
   return (
@@ -20,9 +20,9 @@ export default function PostDetailsPage({ post, comments }) {
         ></meta>
       </Head>
 
-      <PostProvider>
-        <PostDetails post={post} comments={comments} />
-      </PostProvider>
+      {/* <PostProvider> */}
+      <PostDetails post={post} comments={comments} />
+      {/* </PostProvider> */}
     </>
   );
 }

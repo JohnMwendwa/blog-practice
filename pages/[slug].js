@@ -20,8 +20,8 @@ export default function PostDetailsPage({ post, comments }) {
         ></meta>
       </Head>
 
-      <PostProvider comments={comments}>
-        <PostDetails post={post} />
+      <PostProvider>
+        <PostDetails post={post} comments={comments} />
       </PostProvider>
     </>
   );

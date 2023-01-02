@@ -163,7 +163,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     if (!session) {
-      router.push("/admin/login");
+      router.replace("/admin/login");
     }
   }, [session, router]);
 

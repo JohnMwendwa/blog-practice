@@ -11,6 +11,8 @@ export const authOptions = {
   },
   providers: [
     CredentialsProvider({
+      type: "credentials",
+      credentials: {},
       async authorize(credentials) {
         await connectToDatabase();
 
@@ -54,6 +56,9 @@ export const authOptions = {
       session.user = token.user;
       return session;
     },
+  },
+  pages: {
+    signIn: "/admin/login",
   },
 };
 

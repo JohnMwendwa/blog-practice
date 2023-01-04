@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+mongoose.set("strictQuery", true);
 
 const MONGO_URL =
   process.env.NODE_ENV !== "production"
